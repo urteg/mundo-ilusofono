@@ -83,6 +83,7 @@ test("/entrar valida o e-mail e não é indexada", async ({ page }) => {
   await page.getByLabel("Seu e-mail").fill("x");
   await page.getByRole("button", { name: "Enviar link de acesso" }).click();
   await expect(page.getByText(/não parece certo/)).toBeVisible();
+  await expect(page.getByLabel("Seu e-mail")).toBeFocused();
 });
 
 test("sem rolagem horizontal nas páginas novas", async ({ page }) => {

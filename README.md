@@ -8,13 +8,18 @@ Regras do projeto: ver `CLAUDE.md`. Plano completo por fases: `docs/Instrucoes-C
 
 ## Como rodar
 
-Requisitos: Node 20+, pnpm. (Fases seguintes: Supabase CLI e Stripe CLI.)
+Requisitos: Node 20+, pnpm e Docker (para o Supabase local). O Supabase CLI já vem nas dependências.
 
 ```bash
 pnpm install
-cp .env.example .env.local   # preencha os valores
+pnpm db:start                # sobe o Supabase local (banco, login e Mailpit)
+pnpm exec supabase status    # mostra URL e chaves locais
+cp .env.example .env.local   # preencha com os valores do status
 pnpm dev                     # http://localhost:3000
 ```
+
+E-mails de login no ambiente local: abra o Mailpit em http://127.0.0.1:54324.
+Usuário de teste do seed: `teste@exemplo.com` (plano Entender ativo).
 
 | Comando                        | O que faz                                      |
 | ------------------------------ | ---------------------------------------------- |
@@ -44,13 +49,31 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 
 - [x] Fase 0: base (tokens, fontes, componentes, vitrine `/_ui`)
 - [x] Fase 1: site (Início, Como funciona, Séries, Planos, Desafio, Recursos, Blog, Obrigado, 404)
-- [ ] Fase 2: Supabase e login (`/entrar` hoje só valida o e-mail; ver `TODO(Fase 2)`)
+- [x] Fase 2: Supabase, RLS e login por link no e-mail
 - [ ] Fase 3: app, telas principais
 - [ ] Fase 4: Stripe e acesso (botões de compra levam a `/entrar`; ver `TODO(Fase 4)`)
 - [ ] Fase 5: lives
 - [ ] Fase 6: vocabulário
 - [ ] Fase 7: V2
 - [ ] Fase 8: qualidade e entrega
+
+## Banco de dados
+
+Migrações em `supabase/migrations/` (001_base a 006_rls) e dados de exemplo em `supabase/seed.sql`.
+
+- RLS ligada em todas as tabelas. O aluno lê e escreve só o que é dele; `entitlements` é só leitura para o aluno; conteúdo é leitura para quem está logado.
+- `videos.video_ref` e `lives.sala_url` nunca saem por consulta do cliente: as tabelas `videos` e `lives` não têm acesso para `anon`/`authenticated`. O cliente usa as views `v_videos_publicos` e `v_lives_publicas`. O site público usa também `v_series_publicas` e `v_apresentadores_publicos`.
+- Clientes: `lib/supabase/cliente.ts` (navegador), `servidor.ts` (servidor com cookies, e cliente público sem sessão para páginas estáticas), `admin.ts` (service role, só no servidor).
+
+## Supabase real: o que configurar
+
+1. Criar o projeto em supabase.com (região na UE, ex.: Frankfurt) e anotar URL, chave `anon` e `service_role` (Project Settings > API). Colocar nas variáveis da Vercel; a `service_role` nunca vai para o navegador.
+2. Aplicar as migrações: `pnpm exec supabase link --project-ref <ref>` e `pnpm exec supabase db push`. Não rodar o `seed.sql` em produção.
+3. Authentication > URL Configuration: Site URL = endereço do site (ex.: `https://mundoilusofono.com`); Redirect URLs = `https://mundoilusofono.com/auth/callback` (e o endereço de prévia da Vercel, se usar).
+4. Authentication > Sign In / Providers > Email: ligado; "Confirm email" pode ficar ligado (o link de acesso já confirma).
+5. Authentication > Emails > SMTP Settings: usar o Resend (host `smtp.resend.com`, porta 465, usuário `resend`, senha = chave da API do Resend, remetente de um domínio verificado no Resend). Sem SMTP próprio, o Supabase limita a poucos e-mails por hora.
+6. Authentication > Emails > Templates: em "Magic Link" e "Confirm signup", assunto "Seu link para entrar no Mundo Ilusófono" e o HTML de `supabase/templates/link-acesso.html`.
+7. Authentication > Rate Limits: revisar o limite de e-mails por hora depois de ligar o SMTP.
 
 ## Blog
 

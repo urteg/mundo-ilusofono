@@ -9,7 +9,7 @@ import {
   TextoOuMarcador,
 } from "@/components/site/Secao";
 import { Cartao, SeloNivel } from "@/components/ui";
-import { apresentadores, seriesPublicas } from "@/lib/dados-publicos";
+import { listarApresentadores, listarSeriesPublicas } from "@/lib/conteudo-publico";
 import { formatarEuro, precos } from "@/lib/precos";
 
 export const metadata: Metadata = {
@@ -19,7 +19,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/series" },
 };
 
-export default function Series() {
+// Página estática, renovada a cada hora com os dados públicos do banco.
+export const revalidate = 3600;
+
+export default async function Series() {
+  const [series, apresentadores] = await Promise.all([
+    listarSeriesPublicas(),
+    listarApresentadores(),
+  ]);
   return (
     <>
       <Abertura mao="um episódio puxa o outro" titulo="Séries para assistir em sequência">
@@ -32,8 +39,11 @@ export default function Series() {
       <section className="pb-20 sm:pb-24">
         <Envoltorio>
           <h2 className="sr-only">Todas as séries</h2>
+          {series.length === 0 && (
+            <p className="text-texto-suave text-lg">As séries aparecem aqui em breve.</p>
+          )}
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(min(300px,100%),1fr))] gap-7">
-            {seriesPublicas.map((s) => (
+            {series.map((s) => (
               <Cartao as="li" key={s.id} className="relative flex flex-col overflow-hidden p-0">
                 <CenaPorNome nome={s.cena} className="block aspect-[4/3] w-full" />
                 <div className="flex flex-col gap-2.5 px-5 pt-4 pb-5">
@@ -58,8 +68,8 @@ export default function Series() {
             Conheça os apresentadores
           </h2>
           <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(230px,100%),1fr))] gap-6">
-            {apresentadores.map((a, i) => (
-              <Apresentador key={i} nome={a.nome} temas={a.temas} />
+            {apresentadores.map((a) => (
+              <Apresentador key={a.id} nome={a.nome} temas={a.temas} />
             ))}
           </ul>
         </Envoltorio>

@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { BotaoLink, Cartao, Marcador, cx } from "@/components/ui";
 import { site } from "@/lib/site";
 import { CenaCampo, CenaConversa, CenaFeira, CenaMar } from "./cenas";
-import type { CenaSerie } from "@/lib/dados-publicos";
+import type { CenaSerie } from "@/lib/cenas";
 
 /** Largura máxima e margens laterais do site. */
 export function Envoltorio({ children, className }: { children: ReactNode; className?: string }) {

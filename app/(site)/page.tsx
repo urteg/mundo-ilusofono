@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CenaCampo, CenaConversa, CenaMar } from "@/components/site/cenas";
+import { CelularCena } from "@/components/site/CelularCena";
 import { ChamadaEmail } from "@/components/site/ChamadaEmail";
 import { Apresentador, Envoltorio, FaixaChamada, Mao } from "@/components/site/Secao";
 import { QuadroVideoExemplo } from "@/components/site/LegendaAnimada";
 import { Acordeao, BotaoLink, Cartao, Icone, Marcador, SeloEtapa } from "@/components/ui";
+import { listarApresentadores } from "@/lib/conteudo-publico";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -59,7 +61,11 @@ const organizacao = {
   email: site.email,
 };
 
-export default function Inicio() {
+// Página estática, renovada a cada hora com os dados públicos do banco.
+export const revalidate = 3600;
+
+export default async function Inicio() {
+  const apresentadores = await listarApresentadores();
   return (
     <>
       <script
@@ -93,36 +99,14 @@ export default function Inicio() {
           </div>
 
           <div className="flex flex-[1_1_380px] justify-center py-6">
-            <div className="relative w-[min(300px,76vw)] -rotate-6">
-              <div className="bg-texto rounded-[44px] p-3 shadow-[0_24px_48px_rgba(30,39,46,.22)]">
-                <div className="bg-papel flex flex-col overflow-hidden rounded-[34px]">
-                  <div className="relative">
-                    <CenaMar
-                      titulo="Cena ilustrada: barco no mar num dia de sol"
-                      className="block aspect-[9/11] w-full"
-                    />
-                    <p className="bg-azul-fundo/90 text-branco absolute inset-x-3.5 bottom-3.5 rounded-xl px-3 py-2.5 text-center text-[17px] leading-snug font-semibold">
-                      Olha, que dia bonito, né?
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-2.5 p-4">
-                    <SeloEtapa etapa={1} className="self-start" />
-                    <p className="font-titulo text-azul-fundo text-lg font-semibold">
-                      Um passeio de barco
-                    </p>
-                    <div className="bg-areia h-2 overflow-hidden rounded-full" aria-hidden="true">
-                      <i className="bg-verde block h-full w-[45%] rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <span
-                aria-hidden="true"
-                className="rounded-bolha bg-branco font-mao text-coral-texto shadow-card absolute top-14 -right-4 rotate-[8deg] px-4 py-2.5 text-[26px] whitespace-nowrap sm:-right-14"
-              >
-                deixa passar, elas voltam
-              </span>
-            </div>
+            <CelularCena
+              cena="mar"
+              tituloCena="Cena ilustrada: barco no mar num dia de sol"
+              legenda="Olha, que dia bonito, né?"
+              tituloVideo="Um passeio de barco"
+              progresso={45}
+              anotacao="deixa passar, elas voltam"
+            />
           </div>
         </Envoltorio>
       </section>
@@ -328,13 +312,8 @@ export default function Inicio() {
             Professores e apresentadores
           </h2>
           <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(230px,100%),1fr))] gap-6">
-            <Apresentador nome="Márlio" temas="Cotidiano, cultura, conversa" />
-            {[1, 2, 3].map((n) => (
-              <Apresentador
-                key={n}
-                nome="[PLACEHOLDER: apresentador convidado]"
-                temas="[PLACEHOLDER: temas]"
-              />
+            {apresentadores.map((a) => (
+              <Apresentador key={a.id} nome={a.nome} temas={a.temas} />
             ))}
           </ul>
         </Envoltorio>

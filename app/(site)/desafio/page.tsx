@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CenaPorNome, Envoltorio, FaixaChamada } from "@/components/site/Secao";
 import { BotaoLink, Cartao, Icone, Marcador, type NomeIcone } from "@/components/ui";
 import { destinoComprarDesafio } from "@/lib/acesso";
-import type { CenaSerie } from "@/lib/dados-publicos";
+import type { CenaSerie } from "@/lib/cenas";
 import { formatarEuro, precos } from "@/lib/precos";
 
 const preco = formatarEuro(precos.desafio);

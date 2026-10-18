@@ -84,14 +84,17 @@ test("/planos: botão Assinar leva ao login com o destino", async ({ page }) => 
   );
 });
 
-test("/series: seis séries com nível e episódios", async ({ page }) => {
+test("/series: séries do banco com nível e episódios", async ({ page }) => {
   await page.goto("/series");
   const cartoes = page
     .getByRole("list")
     .filter({ hasText: "episódios" })
     .first()
     .getByRole("listitem");
-  await expect(cartoes).toHaveCount(6);
-  await expect(page.getByText(/^\d+ episódios$/)).toHaveCount(6);
-  await expect(page.getByText(/^Nível \d$/)).toHaveCount(6);
+  await expect(cartoes).toHaveCount(3);
+  for (const titulo of ["A cidade", "A cozinha", "A família"]) {
+    await expect(page.getByRole("heading", { level: 3, name: titulo })).toBeVisible();
+  }
+  await expect(page.getByText(/^4 episódios$/)).toHaveCount(3);
+  await expect(page.getByText(/^Nível \d$/)).toHaveCount(3);
 });
