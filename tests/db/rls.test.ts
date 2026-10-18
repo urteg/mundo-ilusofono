@@ -41,13 +41,10 @@ beforeAll(async () => {
   [idA, participanteA] = await criarParticipante(`rls-a-${sufixo}@exemplo.com`);
   [idB, participanteB] = await criarParticipante(`rls-b-${sufixo}@exemplo.com`);
 
-  // Dados do participante A, gravados por ele mesmo.
+  // O tempo assistido só entra pelo servidor; o resto, A grava por conta própria.
   expect(
-    (
-      await participanteA
-        .from("visualizacoes")
-        .insert({ user_id: idA, video_id: VIDEO, segundos: 40 })
-    ).error,
+    (await admin.from("visualizacoes").insert({ user_id: idA, video_id: VIDEO, segundos: 40 }))
+      .error,
   ).toBeNull();
   expect(
     (
@@ -115,6 +112,35 @@ describe("RLS: cada participante só vê e altera o que é dele", () => {
       .from("tempo_fora")
       .insert({ user_id: idA, tipo: "assistindo", dia: "2026-10-18", segundos: 60 });
     expect(t.error?.code).toBe("42501");
+  });
+
+  it("A não grava tempo assistido direto (só pelo servidor)", async () => {
+    const ins = await participanteA
+      .from("visualizacoes")
+      .upsert({ user_id: idA, video_id: VIDEO, segundos: 99999 });
+    expect(ins.error?.code).toBe("42501");
+    const upd = await participanteA
+      .from("visualizacoes")
+      .update({ segundos: 99999 })
+      .eq("user_id", idA);
+    expect(upd.error?.code).toBe("42501");
+    const atv = await participanteA
+      .from("atividade_diaria")
+      .insert({ user_id: idA, dia: "2026-10-18", segundos: 99999 });
+    expect(atv.error?.code).toBe("42501");
+    // Salvar e avaliar continuam permitidos.
+    const ok = await participanteA
+      .from("visualizacoes")
+      .update({ salvo: true, entendimento: "principal" })
+      .eq("user_id", idA)
+      .eq("video_id", VIDEO);
+    expect(ok.error).toBeNull();
+    const { data } = await admin
+      .from("visualizacoes")
+      .select("segundos")
+      .eq("user_id", idA)
+      .single();
+    expect(data?.segundos).toBe(40);
   });
 
   it("B não lê nem altera o perfil de A", async () => {

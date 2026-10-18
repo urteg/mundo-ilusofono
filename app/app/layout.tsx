@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { Avisos } from "@/components/app/Avisos";
 import { BarraApp } from "@/components/app/BarraApp";
 import { NavInferior } from "@/components/app/NavInferior";
 import { Pilulas } from "@/components/app/Pilulas";
@@ -38,6 +39,7 @@ export default async function LayoutApp({ children }: { children: ReactNode }) {
         {children}
       </main>
       <NavInferior />
+      <Avisos />
     </div>
   );
 }

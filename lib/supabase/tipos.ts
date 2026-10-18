@@ -335,6 +335,8 @@ export type Database = {
           modo_escuro: boolean;
           nome: string | null;
           previa_video: boolean;
+          pular_vistos: boolean;
+          reproducao_automatica: boolean;
           stripe_customer_id: string | null;
         };
         ComputedFields: never;
@@ -352,6 +354,8 @@ export type Database = {
           modo_escuro?: boolean;
           nome?: string | null;
           previa_video?: boolean;
+          pular_vistos?: boolean;
+          reproducao_automatica?: boolean;
           stripe_customer_id?: string | null;
         };
         Update: {
@@ -368,6 +372,8 @@ export type Database = {
           modo_escuro?: boolean;
           nome?: string | null;
           previa_video?: boolean;
+          pular_vistos?: boolean;
+          reproducao_automatica?: boolean;
           stripe_customer_id?: string | null;
         };
         Relationships: [];
@@ -855,6 +861,7 @@ export type Database = {
           provedor: string | null;
           publicado_em: string | null;
           serie_id: string | null;
+          temas: string[] | null;
           titulo: string | null;
         };
         ComputedFields: never;
@@ -873,6 +880,7 @@ export type Database = {
           provedor?: string | null;
           publicado_em?: string | null;
           serie_id?: string | null;
+          temas?: never;
           titulo?: string | null;
         };
         Update: {
@@ -890,6 +898,7 @@ export type Database = {
           provedor?: string | null;
           publicado_em?: string | null;
           serie_id?: string | null;
+          temas?: never;
           titulo?: string | null;
         };
         Relationships: [
@@ -925,7 +934,21 @@ export type Database = {
       };
     };
     Functions: {
-      [_ in never]: never;
+      registrar_progresso: {
+        Args: {
+          p_delta: number;
+          p_dia: string;
+          p_posicao: number;
+          p_user: string;
+          p_video: string;
+        };
+        Returns: {
+          concluido: boolean;
+          posicao_seg: number;
+          recem_concluido: boolean;
+          segundos: number;
+        }[];
+      };
     };
     Enums: {
       [_ in never]: never;

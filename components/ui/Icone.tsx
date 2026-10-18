@@ -1,6 +1,43 @@
 import type { SVGProps } from "react";
 
 const caminhos = {
+  "tela-cheia": (
+    <>
+      <path d="M4 9V4h5" />
+      <path d="M20 9V4h-5" />
+      <path d="M4 15v5h5" />
+      <path d="M20 15v5h-5" />
+    </>
+  ),
+  "sair-tela-cheia": (
+    <>
+      <path d="M9 4v5H4" />
+      <path d="M15 4v5h5" />
+      <path d="M9 20v-5H4" />
+      <path d="M15 20v-5h5" />
+    </>
+  ),
+  compartilhar: (
+    <>
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="M8.6 13.5l6.8 4" />
+      <path d="M15.4 6.5l-6.8 4" />
+    </>
+  ),
+  "seta-esquerda": (
+    <>
+      <path d="M19 12H5" />
+      <path d="M11 6l-6 6 6 6" />
+    </>
+  ),
+  "de-novo": (
+    <>
+      <path d="M4 12a8 8 0 1 0 2.5-5.8" />
+      <path d="M4 4v4h4" />
+    </>
+  ),
   play: <path d="M7 5v14l12-7z" />,
   pausa: (
     <>

@@ -23,6 +23,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.118.0
         version: 2.118.0
+      hls.js:
+        specifier: ^1.7.3
+        version: 1.7.3
       next:
         specifier: 15.5.28
         version: 15.5.28(@playwright/test@1.64.1)(@types/node@20.19.43)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1729,6 +1732,9 @@ packages:
 
   hast-util-whitespace@3.0.0:
     resolution: {integrity: sha512-88JUN06ipLwsnv+dVn+OIYOvAuvBMy/Qoi6O7mQHxdPXpjy+Cd6xRkWwux7DKO+4sYILtLBRIKgsdpS2gQc7qw==}
+
+  hls.js@1.7.3:
+    resolution: {integrity: sha512-MsPlx6yVW4Qv4C7mEVou4/gk/5cN2dVxOTnrNjPSmyH2f0Ln+/UkG10Ax1PE6OvrmTVPKgQYozTtBaPOuCzq7A==}
 
   html-encoding-sniffer@7.0.0:
     resolution: {integrity: sha512-UikN5yr7xsCDAq87Or5or0PAlD3HJJOKVzM05az588WnpDJ4Ux7a2A53Qi6gofGg2/EtvF/H4hCi/TXfCW4Y6w==}
@@ -4709,6 +4715,8 @@ snapshots:
   hast-util-whitespace@3.0.0:
     dependencies:
       '@types/hast': 3.0.5
+
+  hls.js@1.7.3: {}
 
   html-encoding-sniffer@7.0.0(@noble/hashes@1.8.0):
     dependencies:

@@ -1,3 +1,5 @@
+import { diaNoFuso, fusoPadrao } from "./datas";
+
 // Regras de acesso (seção 6). Usar SEMPRE no servidor; o cliente nunca decide o plano.
 
 export type Produto = "desafio" | "entender" | "participar";
@@ -37,15 +39,25 @@ export function produtosAtivos(ents: Entitlement[], agora: Date): Set<string> {
   return new Set(ents.filter((e) => estaAtivo(e, agora)).map((e) => e.produto));
 }
 
-/** Dia do Desafio liberado hoje (1 a 7), contando a partir da compra. 0 se não comprou. */
-export function diaDoDesafio(ents: Entitlement[], agora: Date): number {
+/**
+ * Dia do Desafio liberado hoje (1 a 7). O dia 1 é o dia da compra; cada meia-noite no fuso
+ * do participante libera o seguinte. 0 se não comprou ou se o acesso não está valendo.
+ */
+export function diaDoDesafio(ents: Entitlement[], agora: Date, fuso: string = fusoPadrao): number {
   const d = ents.find((e) => e.produto === "desafio" && estaAtivo(e, agora));
   if (!d?.comprado_em) return 0;
-  const passados = Math.floor((agora.getTime() - new Date(d.comprado_em).getTime()) / umDia);
+  const inicio = Date.parse(`${diaNoFuso(new Date(d.comprado_em), fuso)}T00:00:00Z`);
+  const hoje = Date.parse(`${diaNoFuso(agora, fuso)}T00:00:00Z`);
+  const passados = Math.round((hoje - inicio) / umDia);
   return Math.min(7, Math.max(1, passados + 1));
 }
 
-export function podeAssistir(video: VideoAcesso, ents: Entitlement[], agora: Date): boolean {
+export function podeAssistir(
+  video: VideoAcesso,
+  ents: Entitlement[],
+  agora: Date,
+  fuso: string = fusoPadrao,
+): boolean {
   if (video.plano_minimo === "gratis") return true;
   const ativos = produtosAtivos(ents, agora);
   if (video.plano_minimo === "entender" && (ativos.has("entender") || ativos.has("participar"))) {
@@ -53,6 +65,24 @@ export function podeAssistir(video: VideoAcesso, ents: Entitlement[], agora: Dat
   }
   if (video.plano_minimo === "participar" && ativos.has("participar")) return true;
   // O Desafio libera só os vídeos do desafio, um por dia a partir da compra.
-  const dia = diaDoDesafio(ents, agora);
+  const dia = diaDoDesafio(ents, agora, fuso);
   return video.desafio_dia !== null && dia > 0 && video.desafio_dia <= dia;
+}
+
+export type Motivo = "sem_plano" | "plano_participar" | "desafio_dia_futuro" | "fora_do_desafio";
+
+/** Por que o vídeo está bloqueado (para a mensagem e o 403). null = pode assistir. */
+export function motivoBloqueio(
+  video: VideoAcesso,
+  ents: Entitlement[],
+  agora: Date,
+  fuso: string = fusoPadrao,
+): Motivo | null {
+  if (podeAssistir(video, ents, agora, fuso)) return null;
+  const ativos = produtosAtivos(ents, agora);
+  if (video.plano_minimo === "participar" && ativos.has("entender")) return "plano_participar";
+  if (ativos.has("desafio")) {
+    return video.desafio_dia !== null ? "desafio_dia_futuro" : "fora_do_desafio";
+  }
+  return "sem_plano";
 }

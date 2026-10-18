@@ -50,7 +50,7 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 - [x] Fase 0: base (tokens, fontes, componentes, vitrine `/_ui`)
 - [x] Fase 1: site (Início, Como funciona, Séries, Planos, Desafio, Recursos, Blog, Obrigado, 404)
 - [x] Fase 2: Supabase, RLS e login por link no e-mail
-- [ ] Fase 3: app, telas principais (feito: casca do app, pílulas de meta e sequência, Lição de hoje, tempo fora do app; falta: Assistir, Séries, Vídeo, Progresso, Conta)
+- [ ] Fase 3: app, telas principais (feito: casca do app, pílulas, Lição de hoje, tempo fora do app, Assistir com filtros, Séries, player com tempo contado de verdade; falta: Progresso, Conta)
 - [ ] Fase 4: Stripe e acesso (botões de compra levam a `/entrar`; ver `TODO(Fase 4)`)
 - [ ] Fase 5: lives
 - [ ] Fase 6: vocabulário
@@ -97,6 +97,8 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 - Perguntas frequentes: respostas finais (rascunhos em `lib/faq.ts`, cada um marcado "revisar com o Márlio").
 - Blog: títulos, resumos e textos dos 3 posts (`content/blog/`).
 - Obrigado Participar: dia e hora da próxima live (virá do banco na Fase 5).
+- Regra para menores de 18 anos (`lib/app/catalogo.ts`): por ora os vídeos adultos só mostram o selo +18.
+- Última legenda do vídeo de demonstração (`public/videos/exemplo.vtt`).
 
 **Pessoas e mídia**
 

@@ -39,6 +39,14 @@ select
   case when n <= 7 then n end
 from generate_series(1, 12) as n;
 
+-- O vídeo 1 (grátis) usa o arquivo local de demonstração, para testar o player sem rede.
+update public.videos
+set provedor = 'file', video_ref = '/videos/exemplo.webm', legenda_url = '/videos/exemplo.vtt', duracao_seg = 40
+where id = 'd0000000-0000-4000-8000-000000000001';
+
+-- Vídeo 12: adulto, para o selo +18.
+update public.videos set adulto = true where id = 'd0000000-0000-4000-8000-000000000012';
+
 insert into public.video_temas (video_id, tema_id)
 select v.id, t.id
 from public.videos v
@@ -136,3 +144,7 @@ insert into auth.identities (
 -- Plano Entender ativo para o usuário de teste (útil nas próximas fases).
 insert into public.entitlements (user_id, produto, status, intervalo, renova_em)
 values ('f0000000-0000-4000-8000-000000000001', 'entender', 'active', 'mensal', now() + interval '30 days');
+
+-- Datas de publicação diferentes, para a ordem "mais novos / mais antigos".
+update public.videos
+set publicado_em = now() - make_interval(days => 13 - right(id::text, 2)::int);

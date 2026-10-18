@@ -101,13 +101,13 @@ test("navegação pelas abas", async ({ page, request, isMobile }, info) => {
   const nav = page.getByRole("navigation", { name: "App" });
   const destinos = isMobile
     ? [
-        ["Assistir", "Assistir"],
+        ["Assistir", "O que vamos assistir?"],
         ["Séries", "Séries"],
         ["Lives", "Lives"],
         ["Início", "Lição de hoje"],
       ]
     : [
-        ["Assistir", "Assistir"],
+        ["Assistir", "O que vamos assistir?"],
         ["Séries", "Séries"],
         ["Lives", "Lives"],
         ["Progresso", "Progresso"],

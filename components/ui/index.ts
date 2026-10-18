@@ -12,3 +12,5 @@ export { SeloPlano, type Plano } from "./SeloPlano";
 export { Marcador } from "./Marcador";
 export { SeloEtapa, etapas } from "./SeloEtapa";
 export { Alternador, type OpcaoAlternador } from "./Alternador";
+export { SeloMais18 } from "./SeloMais18";
+export { Interruptor } from "./Interruptor";
