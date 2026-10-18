@@ -252,7 +252,7 @@ export function PainelInferior({
       onClose={aoFechar}
       onClick={(e) => e.target === ref.current && aoFechar()}
       className={cx(
-        "bg-branco text-texto backdrop:bg-azul-fundo/50 mx-0 mt-auto mb-0 max-h-[85dvh] w-full max-w-none rounded-t-[24px] p-0",
+        "bg-branco text-texto mx-0 mt-auto mb-0 max-h-[85dvh] w-full max-w-none rounded-t-[24px] p-0 backdrop:bg-[#0a3d62]/60",
       )}
     >
       <div className="flex items-center justify-between gap-4 p-5 pb-2">

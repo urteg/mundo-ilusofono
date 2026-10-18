@@ -15,7 +15,7 @@ import { formatarEuro, precos } from "@/lib/precos";
 export const metadata: Metadata = {
   title: "Séries",
   description:
-    "Histórias com os mesmos lugares e as mesmas pessoas, em português do Brasil. Quanto mais você assiste, mais entende.",
+    "Histórias com os mesmos lugares e as mesmas pessoas. Quanto mais você assiste, mais entende.",
   alternates: { canonical: "/series" },
 };
 

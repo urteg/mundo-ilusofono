@@ -18,6 +18,9 @@ export async function participanteDaApi(): Promise<DadosParticipante | null> {
   return {
     id: user.id,
     email: user.email ?? "",
+    nome: null,
+    tema: "sistema",
+    fusoEscolhido: true,
     fuso,
     hoje: diaNoFuso(new Date(), fuso),
     metaMin: perfil.data?.meta_diaria_min ?? 20,

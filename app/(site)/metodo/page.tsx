@@ -68,7 +68,7 @@ const escada = [
   },
   {
     etapa: 4 as const,
-    frase: "Assiste a qualquer coisa feita para brasileiros",
+    frase: "Assiste a qualquer coisa feita para quem fala português",
     horas: "[PLACEHOLDER: horas do nível 4]",
   },
 ];

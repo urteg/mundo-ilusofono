@@ -1,11 +1,11 @@
 # Mundo Ilusófono
 
-Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do participante.
+Plataforma de vídeos em português para estrangeiros, com falantes de vários países onde a língua é falada (português pluricêntrico): site de venda + aplicativo web do participante.
 Lema oficial, sempre exatamente: "O português se vive, não só se estuda."
 
 ## Regras que nunca se quebram
 
-1. Interface SOMENTE em português do Brasil. Sem seletor de idioma, sem botão de traduzir, sem textos em inglês/espanhol. `<html lang="pt-BR">`. Texto sempre como texto real (nunca em imagem), para o tradutor do navegador funcionar.
+1. Interface SOMENTE em português do Brasil (os vídeos, sim, trazem o português de vários países). Sem seletor de idioma, sem botão de traduzir, sem textos em inglês/espanhol. `<html lang="pt-BR">`. Texto sempre como texto real (nunca em imagem), para o tradutor do navegador funcionar.
 2. Todos os preços já incluem o IVA. Exibir "IVA incluído" junto dos preços (nunca "+ IVA"). Fonte única: `lib/precos.ts`. No Stripe: tax_behavior = inclusive.
 3. Sem emoji em nenhum lugar (UI, código, commits, seeds). Ícones são SVG de traço.
 4. Texto em minúsculas de frase (só a primeira letra maiúscula). Tratamento "você". Quem usa a plataforma é "participante", nunca "aluno".

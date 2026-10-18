@@ -31,7 +31,7 @@ export function Dialogo({ aberto, aoFechar, titulo, children, rodape }: Props) {
       onClick={(e) => {
         if (e.target === ref.current) aoFechar();
       }}
-      className="rounded-card border-borda bg-branco text-texto shadow-card backdrop:bg-azul-fundo/50 m-auto w-[calc(100%-2rem)] max-w-lg border p-0"
+      className="rounded-card border-borda bg-branco text-texto shadow-card m-auto w-[calc(100%-2rem)] max-w-lg border p-0 backdrop:bg-[#0a3d62]/60"
     >
       <div className="flex items-start justify-between gap-4 p-5 pb-0">
         <h2 id={idTitulo} className="text-azul-fundo text-2xl">

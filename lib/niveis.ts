@@ -31,3 +31,14 @@ export function lerNivel(valor: string | number | null | undefined): number {
   if (!Number.isFinite(n)) return 0;
   return Math.min(nivelMaximo, Math.max(0, Math.trunc(n)));
 }
+
+// Nomes das fases do método, em português. [a confirmar pelo Márlio]
+export const nomesDosNiveis = [
+  "Conectando: primeiros passos",
+  "Conectando",
+  "Emergente",
+  "Conhecível",
+  "Relações profundas",
+  "Ampliando o entendimento",
+  "Sempre participando",
+] as const;

@@ -5,8 +5,8 @@ export type Plano = "gratis" | "desafio" | "entender" | "participar";
 
 const config: Record<Plano, { rotulo: string; classes: string }> = {
   gratis: { rotulo: "Grátis", classes: "bg-[#D6F5EC] text-[#065F46]" },
-  desafio: { rotulo: "Desafio", classes: "bg-[#FFE1D3] text-fogo" },
-  entender: { rotulo: "Entender", classes: "bg-[#CDEBFB] text-azul-fundo" },
+  desafio: { rotulo: "Desafio", classes: "bg-[#FFE1D3] text-[#9a3412]" },
+  entender: { rotulo: "Entender", classes: "bg-[#CDEBFB] text-[#0a3d62]" },
   participar: { rotulo: "Participar", classes: "bg-azul-fundo text-branco" },
 };
 

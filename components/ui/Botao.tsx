@@ -11,7 +11,7 @@ const variantes: Record<VarianteBotao, string> = {
   primario: "bg-azul-acao text-branco hover:bg-azul-fundo",
   secundario: "border-2 border-azul-acao bg-branco text-azul-acao hover:bg-areia",
   discreto: "text-azul-acao underline-offset-4 hover:underline px-3",
-  dourado: "bg-dourado text-azul-fundo hover:bg-[#F0C933]",
+  dourado: "bg-dourado text-[#0a3d62] hover:bg-[#F0C933]",
 };
 
 export function classesBotao(variante: VarianteBotao = "primario", extra?: string) {

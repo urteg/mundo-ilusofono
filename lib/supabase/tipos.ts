@@ -329,15 +329,16 @@ export type Database = {
           email_semanal: boolean | null;
           email_videos: boolean | null;
           fuso: string | null;
+          fuso_escolhido: boolean;
           id: string;
           legendas: boolean;
           meta_diaria_min: number;
-          modo_escuro: boolean;
           nome: string | null;
           previa_video: boolean;
           pular_vistos: boolean;
           reproducao_automatica: boolean;
           stripe_customer_id: string | null;
+          tema: string;
         };
         ComputedFields: never;
         Insert: {
@@ -348,15 +349,16 @@ export type Database = {
           email_semanal?: boolean | null;
           email_videos?: boolean | null;
           fuso?: string | null;
+          fuso_escolhido?: boolean;
           id: string;
           legendas?: boolean;
           meta_diaria_min?: number;
-          modo_escuro?: boolean;
           nome?: string | null;
           previa_video?: boolean;
           pular_vistos?: boolean;
           reproducao_automatica?: boolean;
           stripe_customer_id?: string | null;
+          tema?: string;
         };
         Update: {
           atualizado_em?: string;
@@ -366,15 +368,16 @@ export type Database = {
           email_semanal?: boolean | null;
           email_videos?: boolean | null;
           fuso?: string | null;
+          fuso_escolhido?: boolean;
           id?: string;
           legendas?: boolean;
           meta_diaria_min?: number;
-          modo_escuro?: boolean;
           nome?: string | null;
           previa_video?: boolean;
           pular_vistos?: boolean;
           reproducao_automatica?: boolean;
           stripe_customer_id?: string | null;
+          tema?: string;
         };
         Relationships: [];
       };

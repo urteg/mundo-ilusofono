@@ -20,7 +20,7 @@ export function TrilhaPassos({ estado }: { estado: Passos }) {
                 className={cx(
                   "font-titulo grid size-11 place-items-center rounded-full border-2 text-lg font-bold",
                   feito
-                    ? "text-branco border-[#00684F] bg-[#00684F]"
+                    ? "border-[#00684F] bg-[#00684F] text-white"
                     : "border-azul-acao bg-branco text-azul-acao",
                 )}
               >

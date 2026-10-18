@@ -7,6 +7,8 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     locale: "pt-BR",
+    // Mesmo fuso do usuário do seed (o app adota o fuso do navegador).
+    timezoneId: "Europe/Madrid",
     // Permite usar um Chromium já instalado (ex.: ambientes sem download de navegador).
     launchOptions: process.env.PLAYWRIGHT_CHROMIUM_PATH
       ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_PATH }

@@ -4,6 +4,7 @@ import { Avisos } from "@/components/app/Avisos";
 import { BarraApp } from "@/components/app/BarraApp";
 import { NavInferior } from "@/components/app/NavInferior";
 import { Pilulas } from "@/components/app/Pilulas";
+import { TemaApp } from "@/components/app/TemaApp";
 import { carregarParticipante } from "@/lib/app/participante";
 
 export const metadata: Metadata = {
@@ -15,6 +16,13 @@ export default async function LayoutApp({ children }: { children: ReactNode }) {
   const p = await carregarParticipante();
   return (
     <div className="bg-papel min-h-dvh">
+      {/* Tema já no primeiro carregamento, antes de pintar (o TemaApp cuida das navegações). */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.dataset.tema=${JSON.stringify(p.tema)}`,
+        }}
+      />
+      <TemaApp tema={p.tema} fuso={p.fuso} fusoEscolhido={p.fusoEscolhido} />
       <a
         href="#conteudo"
         className="bg-azul-acao text-branco sr-only z-50 rounded-full px-5 py-3 font-bold focus:not-sr-only focus:fixed focus:top-3 focus:left-3"

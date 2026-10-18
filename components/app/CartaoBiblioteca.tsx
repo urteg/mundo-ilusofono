@@ -55,7 +55,7 @@ export function CartaoBiblioteca({
           {duracaoVideo(video.duracao_seg)}
         </span>
         {visto && !video.bloqueado && (
-          <span className="text-branco absolute top-2 left-2 grid size-8 place-items-center rounded-full bg-[#00684F]">
+          <span className="absolute top-2 left-2 grid size-8 place-items-center rounded-full bg-[#00684F] text-white">
             <Icone nome="check" tamanho={18} strokeWidth={3} rotulo="Visto" />
           </span>
         )}

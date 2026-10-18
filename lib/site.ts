@@ -2,7 +2,7 @@ export const site = {
   nome: "Mundo Ilusófono",
   lema: "O português se vive, não só se estuda.",
   descricao:
-    "Vídeos em português do Brasil para quem quer entender a língua de verdade, com lives e conversa em grupo.",
+    "Vídeos em português, com gente de vários países, para quem quer entender a língua de verdade, com lives e conversa em grupo.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
   email: "marliobps@gmail.com",
 };

@@ -1,6 +1,6 @@
 # Mundo Ilusófono
 
-Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do participante.
+Plataforma de vídeos em português para estrangeiros, com falantes de vários países onde a língua é falada (português pluricêntrico): site de venda + aplicativo web do participante.
 
 > O português se vive, não só se estuda.
 
@@ -50,7 +50,7 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 - [x] Fase 0: base (tokens, fontes, componentes, vitrine `/_ui`)
 - [x] Fase 1: site (Início, Como funciona, Séries, Planos, Desafio, Recursos, Blog, Obrigado, 404)
 - [x] Fase 2: Supabase, RLS e login por link no e-mail
-- [ ] Fase 3: app, telas principais (feito: casca do app, pílulas, Lição de hoje, tempo fora do app, Assistir com filtros, Séries, player com tempo contado de verdade; falta: Progresso, Conta)
+- [x] Fase 3: app, telas principais (casca do app, pílulas, Lição de hoje, Assistir com filtros, Séries, player com tempo contado de verdade, Progresso com calendário, Horas fora do app, Conta com preferências, modo escuro, exportação e exclusão de conta)
 - [ ] Fase 4: Stripe e acesso (botões de compra levam a `/entrar`; ver `TODO(Fase 4)`)
 - [ ] Fase 5: lives
 - [ ] Fase 6: vocabulário
@@ -97,6 +97,7 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 - Perguntas frequentes: respostas finais (rascunhos em `lib/faq.ts`, cada um marcado "revisar com o Márlio").
 - Blog: títulos, resumos e textos dos 3 posts (`content/blog/`).
 - Obrigado Participar: dia e hora da próxima live (virá do banco na Fase 5).
+- Nomes dos níveis 0 a 6 (`lib/niveis.ts`, `nomesDosNiveis`): hoje usam os nomes das fases do método em português, a confirmar.
 - Regra para menores de 18 anos (`lib/app/catalogo.ts`): por ora os vídeos adultos só mostram o selo +18.
 - Última legenda do vídeo de demonstração (`public/videos/exemplo.vtt`).
 
@@ -108,5 +109,7 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 - Vídeo de exemplo de 30 segundos (Início).
 - PDF do roteiro de níveis (Recursos; enquanto não existir, o botão fica desabilitado).
 - Títulos dos vídeos de exemplo (vitrine `/_ui`).
+
+**Pendências técnicas ligadas a outras fases**: cancelar a assinatura no Stripe ao excluir a conta (Fase 4); enviar os e-mails conforme as preferências (Resend); a preferência "prévia do vídeo ao passar o mouse" já é salva, mas a prévia ainda não existe nos cartões.
 
 **Fora do site**: hospedagem dos vídeos pagos (Bunny Stream ou Mux); registro fiscal/IVA; criar no Stripe os preços com IVA incluído (Entender €7,99 e €55, Participar €13,99 e €99, Desafio €9,90) e arquivar os antigos.

@@ -29,7 +29,8 @@ export const faq: CategoriaFaq[] = [
       {
         pergunta: "Qual português eu vou ouvir?",
         // revisar com o Márlio
-        resposta: "O português do Brasil, do jeito que se fala no dia a dia.",
+        resposta:
+          "O português do dia a dia, falado por gente de vários países: do Brasil, de Portugal, da África e de outros lugares. Você escolhe por onde começar e, com o tempo, entende todos.",
       },
     ],
   },

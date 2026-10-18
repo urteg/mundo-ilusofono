@@ -73,10 +73,13 @@ test.describe("app com o usuário do seed", () => {
     // Tempo fora do app pelo "+" da pílula.
     await page.getByRole("button", { name: "Adicionar tempo fora do app" }).click();
     const dialogo = page.getByRole("dialog", { name: "Adicionar tempo fora do app" });
-    await dialogo.getByLabel("Ouvindo (podcast, música, rádio)").check();
+    await dialogo.getByRole("radio", { name: /Ouvindo/ }).click();
     await dialogo.getByLabel("Minutos").fill("45");
     await dialogo.getByRole("button", { name: "Salvar" }).click();
-    await expect(dialogo.getByText("Pronto. Esse tempo já entrou nas suas horas.")).toBeVisible();
+    await expect(dialogo).toBeHidden();
+    await expect(
+      page.getByText("Salvo. Esse tempo já entrou nas suas horas e na meta do dia."),
+    ).toBeVisible();
     const { data: fora } = await adminTeste()
       .from("tempo_fora")
       .select("tipo, segundos")

@@ -16,7 +16,7 @@ test("login por link no e-mail, de ponta a ponta, e sair", async ({ page, reques
   await page.getByLabel("Seu e-mail").fill(email);
   await page.getByRole("button", { name: "Enviar link de acesso" }).click();
   await expect(page.getByRole("heading", { name: "Olhe o seu e-mail" })).toBeVisible();
-  await expect(page.getByText(email)).toBeVisible();
+  await expect(page.getByText(email).first()).toBeVisible();
 
   const link = await linkDoEmail(request, email);
   await page.goto(link);
@@ -31,7 +31,7 @@ test("login por link no e-mail, de ponta a ponta, e sair", async ({ page, reques
   await expect(page).toHaveURL(/\/app$/);
 
   await page.goto("/app/conta");
-  await expect(page.getByText(email)).toBeVisible();
+  await expect(page.getByText(email).first()).toBeVisible();
   await page.getByRole("button", { name: "Sair" }).click();
   await expect(page).toHaveURL(/\/$/);
   await page.goto("/app");

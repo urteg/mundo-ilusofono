@@ -44,7 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    // O app define data-tema no <html> antes da hidratação (tema da conta).
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${fredoka.variable} ${nunitoSans.variable} ${caveat.variable} antialiased`}>
         {children}
       </body>

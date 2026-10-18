@@ -96,7 +96,7 @@ export default async function LicaoDeHoje() {
       {live && (
         <Link
           href="/app/lives"
-          className="rounded-card bg-azul-fundo text-branco shadow-card flex max-w-[760px] flex-wrap items-center justify-between gap-4 p-6 hover:bg-[#0c4a75]"
+          className="rounded-card bg-azul-fundo text-branco shadow-card hover:bg-azul-fundo/90 flex max-w-[760px] flex-wrap items-center justify-between gap-4 p-6"
         >
           <div className="flex min-w-0 items-center gap-4">
             <span className="bg-branco/15 grid size-12 shrink-0 place-items-center rounded-full">

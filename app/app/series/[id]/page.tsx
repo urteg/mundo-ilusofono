@@ -113,7 +113,7 @@ export default async function Pagina({ params }: Props) {
                   </span>
                 </span>
                 {ep.visto ? (
-                  <span className="text-branco grid size-9 shrink-0 place-items-center rounded-full bg-[#00684F]">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-full bg-[#00684F] text-white">
                     <Icone nome="check" tamanho={18} strokeWidth={3} rotulo="Visto" />
                   </span>
                 ) : ep.bloqueado ? (

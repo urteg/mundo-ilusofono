@@ -5,7 +5,7 @@ export const etapas = [
   { nome: "Primeiros passos", classes: "bg-[#D7F3EC] text-[#00684F]" },
   { nome: "Seguindo em frente", classes: "bg-azul-claro text-azul-acao" },
   { nome: "Mais fluência", classes: "bg-[#FFE4D6] text-[#B23A0B]" },
-  { nome: "Quase nativo", classes: "bg-[#DDE5EE] text-azul-fundo" },
+  { nome: "Quase nativo", classes: "bg-[#DDE5EE] text-[#0a3d62]" },
 ] as const;
 
 type Props = { etapa: 1 | 2 | 3 | 4; rotulo?: string; barras?: boolean; className?: string };

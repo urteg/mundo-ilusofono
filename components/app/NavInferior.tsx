@@ -70,7 +70,7 @@ export function NavInferior() {
         onClick={(e) => {
           if (e.target === folha.current) setAberta(false);
         }}
-        className="rounded-t-card bg-branco text-texto backdrop:bg-azul-fundo/50 mx-auto mt-auto mb-0 w-full max-w-[560px] p-0 lg:hidden"
+        className="rounded-t-card bg-branco text-texto mx-auto mt-auto mb-0 w-full max-w-[560px] p-0 backdrop:bg-[#0a3d62]/60 lg:hidden"
       >
         <div className="flex flex-col gap-1 px-4 pt-3 pb-[calc(1rem+env(safe-area-inset-bottom))]">
           <div className="flex items-center justify-between">

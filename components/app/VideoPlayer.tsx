@@ -319,7 +319,7 @@ export function VideoPlayer({
       onKeyDown={teclas}
       data-testid="player"
       data-tocando={tocando ? "1" : "0"}
-      className="group bg-azul-fundo relative aspect-video w-full overflow-hidden rounded-[20px] focus-visible:outline-4 focus-visible:outline-offset-2"
+      className="tema-claro-fixo group bg-azul-fundo relative aspect-video w-full overflow-hidden rounded-[20px] focus-visible:outline-4 focus-visible:outline-offset-2"
     >
       {provedor === "file" ? (
         <video
@@ -342,7 +342,7 @@ export function VideoPlayer({
         <button
           type="button"
           onClick={alternarTocar}
-          className="bg-dourado text-azul-fundo absolute top-1/2 left-1/2 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full shadow-lg"
+          className="bg-dourado absolute top-1/2 left-1/2 grid size-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[#0a3d62] shadow-lg"
           aria-label="Reproduzir"
           tabIndex={-1}
         >

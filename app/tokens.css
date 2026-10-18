@@ -1,4 +1,5 @@
-:root {
+:root,
+.tema-claro-fixo {
   --azul: #0984e3;
   --azul-acao: #0665b8;
   --azul-fundo: #0a3d62;
@@ -22,4 +23,57 @@
   --sombra: 0 4px 16px rgba(30, 39, 46, 0.1);
 }
 
-/* Modo escuro: só quando ativado na conta (Fase 7), via data-tema="escuro" no <html>. */
+/*
+ * Modo escuro do app: data-tema no <html> vem da preferência da conta
+ * ("sistema" segue o aparelho). O site público fica sempre claro (sem data-tema).
+ * Em escuro, "branco" vira a cor das superfícies e "azul-fundo" a cor dos títulos;
+ * por isso texto sobre cores fixas usa valores fixos (ex.: text-white sobre verde-escuro).
+ * Partes que devem ficar sempre claras (ex.: o player) usam a classe .tema-claro-fixo.
+ */
+:root[data-tema="escuro"] {
+  --azul: #4aa3f0;
+  --azul-acao: #7cbcff;
+  --azul-fundo: #e3eefb;
+  --dourado: #e3ba14;
+  --verde: #00b894;
+  --coral: #ff7f50;
+  --coral-texto: #ff9e73;
+  --fogo: #ffb38a;
+  --papel: #0f1923;
+  --papel-escuro: #17232f;
+  --azul-claro: #1e3a57;
+  --marcador-fundo: #4d3f00;
+  --marcador-texto: #ffe58a;
+  --areia: #263544;
+  --borda: #5a6b7c;
+  --texto: #e8edf2;
+  --texto-suave: #b3c0cc;
+  --branco: #1b2834;
+  --sombra: 0 4px 16px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-tema="sistema"] {
+    --azul: #4aa3f0;
+    --azul-acao: #7cbcff;
+    --azul-fundo: #e3eefb;
+    --dourado: #e3ba14;
+    --verde: #00b894;
+    --coral: #ff7f50;
+    --coral-texto: #ff9e73;
+    --fogo: #ffb38a;
+    --papel: #0f1923;
+    --papel-escuro: #17232f;
+    --azul-claro: #1e3a57;
+    --marcador-fundo: #4d3f00;
+    --marcador-texto: #ffe58a;
+    --areia: #263544;
+    --borda: #5a6b7c;
+    --texto: #e8edf2;
+    --texto-suave: #b3c0cc;
+    --branco: #1b2834;
+    --sombra: 0 4px 16px rgba(0, 0, 0, 0.45);
+    color-scheme: dark;
+  }
+}

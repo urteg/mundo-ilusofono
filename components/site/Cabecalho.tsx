@@ -115,7 +115,7 @@ export function Cabecalho() {
         onClick={(e) => {
           if (e.target === painel.current) setMenuAberto(false);
         }}
-        className="bg-papel text-texto shadow-card backdrop:bg-azul-fundo/50 m-0 ml-auto h-dvh max-h-dvh w-[min(22rem,100%)] max-w-none p-0 lg:hidden"
+        className="bg-papel text-texto shadow-card m-0 ml-auto h-dvh max-h-dvh w-[min(22rem,100%)] max-w-none p-0 backdrop:bg-[#0a3d62]/60 lg:hidden"
       >
         <div className="flex h-full flex-col gap-6 p-5">
           <div className="flex items-center justify-between">
