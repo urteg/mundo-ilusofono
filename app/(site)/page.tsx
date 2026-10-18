@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import { CenaCampo, CenaConversa, CenaMar } from "@/components/site/cenas";
 import { ChamadaEmail } from "@/components/site/ChamadaEmail";
+import { Apresentador, Envoltorio, FaixaChamada, Mao } from "@/components/site/Secao";
 import { QuadroVideoExemplo } from "@/components/site/LegendaAnimada";
 import { Acordeao, BotaoLink, Cartao, Icone, Marcador, SeloEtapa } from "@/components/ui";
 import { site } from "@/lib/site";
@@ -15,16 +15,6 @@ export const metadata: Metadata = {
 
 // [PLACEHOLDER: número de alunos, só quando for verdadeiro]. Enquanto for null, o contador não aparece.
 const numeroAlunos: number | null = null;
-
-const Envoltorio = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
-  <div className={`mx-auto w-full max-w-[1200px] px-4 sm:px-8 ${className}`}>{children}</div>
-);
-
-const Mao = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
-  <span className={`font-mao text-coral-texto text-[28px] leading-none ${className}`}>
-    {children}
-  </span>
-);
 
 function NumeroPasso({ n }: { n: number }) {
   return (
@@ -342,8 +332,8 @@ export default function Inicio() {
             {[1, 2, 3].map((n) => (
               <Apresentador
                 key={n}
-                nome={<Marcador>[PLACEHOLDER: apresentador convidado]</Marcador>}
-                temas={<Marcador>[PLACEHOLDER: temas]</Marcador>}
+                nome="[PLACEHOLDER: apresentador convidado]"
+                temas="[PLACEHOLDER: temas]"
               />
             ))}
           </ul>
@@ -428,28 +418,10 @@ export default function Inicio() {
       </section>
 
       {/* j. Chamada final */}
-      <section className="bg-azul-acao text-branco py-20">
-        <Envoltorio className="flex flex-col items-center gap-8 text-center">
-          <h2 className="text-branco text-[clamp(34px,4vw,48px)]">{site.lema}</h2>
-          <p className="text-azul-claro max-w-xl text-lg">
-            Ainda não quer começar? Deixe seu e-mail e receba um vídeo por semana.
-          </p>
-          <ChamadaEmail />
-        </Envoltorio>
-      </section>
+      <FaixaChamada texto="Ainda não quer começar? Deixe seu e-mail e receba um vídeo por semana.">
+        <ChamadaEmail />
+      </FaixaChamada>
     </>
-  );
-}
-
-function Apresentador({ nome, temas }: { nome: ReactNode; temas: ReactNode }) {
-  return (
-    <Cartao as="li" className="flex flex-col items-start gap-3 p-6">
-      <div className="bg-areia grid size-20 place-items-center rounded-full p-1 text-center text-[11px]">
-        <Marcador>[PLACEHOLDER: foto]</Marcador>
-      </div>
-      <b className="font-titulo text-azul-fundo text-xl font-semibold">{nome}</b>
-      <span className="text-texto-suave">{temas}</span>
-    </Cartao>
   );
 }
 

@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 
 // Acrescente aqui cada página pública do site à medida que ela for criada.
-const paginas = ["/"];
+const paginas = ["/", "/metodo", "/series", "/planos"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return paginas.map((caminho) => ({
