@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Método</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .mi {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.55;
+          }
+          .mi h1,
+          .mi h2,
+          .mi h3 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.12;
+            font-weight: 600;
+          }
+          .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            box-sizing: border-box;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 26px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 17px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+          }
+          .btn:hover {
+            background: #05549a;
+            color: #fff;
+          }
+          .btn.gold {
+            background: #e3ba14;
+            border-color: #e3ba14;
+            color: #0a3d62;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+          }
+          .bubble {
+            border-radius: 22px 22px 22px 4px;
+          }
+          .lv {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font:
+              700 12px/1.3 "Nunito Sans",
+              sans-serif;
+          }
+          .lv1 {
+            background: #d7f3ec;
+            color: #00684f;
+          }
+          .lv2 {
+            background: #dcebfa;
+            color: #0665b8;
+          }
+          .lv3 {
+            background: #ffe4d6;
+            color: #b23a0b;
+          }
+          .lv4 {
+            background: #dde5ee;
+            color: #0a3d62;
+          }
+          .hand {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .ph {
+            background: #fff1b8;
+            color: #6b5200;
+            border-radius: 6px;
+            padding: 0 6px;
+            font-weight: 700;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .navy {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .navy h2,
+          .navy h3 {
+            color: #fff;
+          }
+          .thumb {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+          }
+          .navlink {
+            color: #1e272e;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 4px;
+          }
+          .navlink:hover,
+          .navlink.on {
+            color: #0665b8;
+          }
+          .foot a {
+            color: #dcebfa;
+            text-decoration: none;
+          }
+          .foot a:hover {
+            color: #fff;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div class="mi">
+        <header style="border-bottom: 1px solid #ece4d2">
+          <div
+            class="wrap"
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 16px 28px;
+              padding-top: 14px;
+              padding-bottom: 14px;
+            "
+          >
+            <a
+              href="Main.dc.html"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                color: #0a3d62;
+                font:
+                  700 22px &quot;Fredoka&quot;,
+                  sans-serif;
+              "
+              ><img
+                src="marca/logo.png"
+                alt=""
+                width="52"
+                height="52"
+                style="display: block; width: 52px; height: 52px; object-fit: contain"
+              /><span style="display: flex; flex-direction: column; line-height: 1"
+                ><span>Mundo</span><span>Ilusófono</span></span
+              ></a
+            >
+            <nav
+              aria-label="Principal"
+              style="display: flex; flex-wrap: wrap; gap: 4px 22px; flex: 1 1 auto"
+            >
+              <a class="navlink" href="Main.dc.html#como">Como funciona</a
+              ><a class="navlink" href="Site-Series.dc.html">Séries</a
+              ><a class="navlink" href="Site-Planos.dc.html">Planos</a
+              ><a class="navlink on" href="Site-Metodo.dc.html" aria-current="page">Método</a>
+            </nav>
+            <div style="display: flex; align-items: center; gap: 12px">
+              <a class="navlink" href="App-Entrar.dc.html">Entrar</a
+              ><a class="btn" href="Site-Desafio.dc.html">Comece o Desafio</a>
+            </div>
+          </div>
+        </header>
+
+        <section
+          class="wrap"
+          style="
+            padding-top: 88px;
+            padding-bottom: 72px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 920px;
+            text-align: center;
+            align-items: center;
+          "
+        >
+          <span class="hand" style="font-size: 30px">sem lista de regras</span>
+          <h1 style="font-size: clamp(44px, 6vw, 76px); font-weight: 700">Como funciona</h1>
+          <p style="margin: 0; font-size: 21px" class="muted">
+            Você assiste a vídeos que entende quase por inteiro. O resto o seu cérebro completa pelo
+            contexto. É assim que todo mundo aprendeu a primeira língua.
+          </p>
+        </section>
+
+        <section class="wrap" style="padding-bottom: 88px">
+          <div
+            class="card bubble"
+            style="padding: 48px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center"
+          >
+            <div style="flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px">
+              <h2 style="font-size: 40px">O que é entender de verdade</h2>
+              <p style="margin: 0; font-size: 18px" class="muted">
+                Não é traduzir na cabeça. É ouvir "tá muito calor hoje, né?" e sentir o calor junto.
+                Quando a história faz sentido, a palavra nova gruda sozinha.
+              </p>
+              <p style="margin: 0; font-size: 18px" class="muted">
+                Por isso cada vídeo mostra muito: gestos, objetos, lugares. Você entende o principal
+                e deixa o resto passar.
+              </p>
+            </div>
+            <div style="flex: 1 1 360px; display: flex; flex-direction: column; gap: 12px">
+              <img
+                class="thumb"
+                src="cenas/feira.svg"
+                alt="Cena ilustrada: feira com frutas"
+                style="border-radius: 18px"
+              />
+              <span class="hand" style="font-size: 26px">"essa aqui tá docinha, ó"</span>
+            </div>
+          </div>
+        </section>
+
+        <section style="background: #f6f0e4; padding: 88px 0">
+          <div
+            class="wrap"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+            "
+          >
+            <div
+              class="card"
+              style="padding: 28px; display: flex; flex-direction: column; gap: 12px"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0665B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"
+                ></path>
+              </svg>
+              <h3 style="font-size: 24px">Sem pressão</h3>
+              <p style="margin: 0" class="muted">
+                Ninguém te corrige no meio da frase. Você fala quando tiver vontade.
+              </p>
+            </div>
+            <div
+              class="card"
+              style="padding: 28px; display: flex; flex-direction: column; gap: 12px"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00684F"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+              <h3 style="font-size: 24px">No seu ritmo</h3>
+              <p style="margin: 0" class="muted">
+                Dez minutos num dia, uma hora no outro. Tudo conta.
+              </p>
+            </div>
+            <div
+              class="card"
+              style="padding: 28px; display: flex; flex-direction: column; gap: 12px"
+            >
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#B23A0B"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 5h11a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H9l-5 4z"></path>
+              </svg>
+              <h3 style="font-size: 24px">Português de verdade</h3>
+              <p style="margin: 0" class="muted">
+                O português falado na rua, com "né", "tá" e "olha". Não o do livro.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="wrap"
+          style="
+            padding-top: 96px;
+            padding-bottom: 96px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+          "
+        >
+          <h2 style="font-size: 48px">Quatro passos</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              gap: 24px;
+            "
+          >
+            <div class="card" style="overflow: hidden; display: flex; flex-direction: column">
+              <img class="thumb" src="cenas/campo.svg" alt="" />
+              <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px">
+                <span class="hand" style="font-size: 24px">passo 1</span>
+                <h3 style="font-size: 22px">Descobrir o nível</h3>
+                <p style="margin: 0" class="muted">Três vídeos curtos dizem por onde começar.</p>
+              </div>
+            </div>
+            <div class="card" style="overflow: hidden; display: flex; flex-direction: column">
+              <img class="thumb" src="cenas/mar.svg" alt="" />
+              <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px">
+                <span class="hand" style="font-size: 24px">passo 2</span>
+                <h3 style="font-size: 22px">Assistir</h3>
+                <p style="margin: 0" class="muted">
+                  Vídeos do seu nível, sobre o que te interessa.
+                </p>
+              </div>
+            </div>
+            <div class="card" style="overflow: hidden; display: flex; flex-direction: column">
+              <img class="thumb" src="cenas/feira.svg" alt="" />
+              <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px">
+                <span class="hand" style="font-size: 24px">passo 3</span>
+                <h3 style="font-size: 22px">Contar as horas</h3>
+                <p style="margin: 0" class="muted">O app soma cada minuto, dentro e fora dele.</p>
+              </div>
+            </div>
+            <div class="card" style="overflow: hidden; display: flex; flex-direction: column">
+              <img class="thumb" src="cenas/conversa.svg" alt="" />
+              <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px">
+                <span class="hand" style="font-size: 24px">passo 4</span>
+                <h3 style="font-size: 22px">Chegar à fluência</h3>
+                <p style="margin: 0" class="muted">A fala aparece quando o ouvido está pronto.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="navy" style="padding: 96px 0">
+          <div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+            <h2 style="font-size: 48px">A escada de níveis</h2>
+            <div style="display: flex; flex-direction: column; gap: 14px">
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  gap: 16px;
+                  background: #fff;
+                  color: #1e272e;
+                  border-radius: 18px;
+                  padding: 18px 24px;
+                  margin-left: 0;
+                  max-width: 640px;
+                "
+              >
+                <span class="lv lv1">Primeiros passos</span
+                ><span style="flex: 1">Entende cenas do dia a dia com muita imagem</span
+                ><b><span class="ph">[0 a N h]</span></b>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  gap: 16px;
+                  background: #fff;
+                  color: #1e272e;
+                  border-radius: 18px;
+                  padding: 18px 24px;
+                  margin-left: 8%;
+                  max-width: 640px;
+                "
+              >
+                <span class="lv lv2">Seguindo em frente</span
+                ><span style="flex: 1">Acompanha conversas simples sem pausar</span
+                ><b><span class="ph">[N a N h]</span></b>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  gap: 16px;
+                  background: #fff;
+                  color: #1e272e;
+                  border-radius: 18px;
+                  padding: 18px 24px;
+                  margin-left: 16%;
+                  max-width: 640px;
+                "
+              >
+                <span class="lv lv3">Mais fluência</span
+                ><span style="flex: 1">Entende histórias, opiniões e piadas</span
+                ><b><span class="ph">[N a N h]</span></b>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: center;
+                  gap: 16px;
+                  background: #fff;
+                  color: #1e272e;
+                  border-radius: 18px;
+                  padding: 18px 24px;
+                  margin-left: 24%;
+                  max-width: 640px;
+                "
+              >
+                <span class="lv lv4">Quase nativo</span
+                ><span style="flex: 1">Assiste a qualquer coisa feita para brasileiros</span
+                ><b><span class="ph">[N h ou mais]</span></b>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="wrap"
+          style="
+            padding-top: 96px;
+            padding-bottom: 96px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+          "
+        >
+          <h2 style="font-size: 44px">Histórias de alunos</h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+            "
+          >
+            <div class="card" style="overflow: hidden">
+              <div
+                style="
+                  aspect-ratio: 16/9;
+                  background: #ece4d2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span class="ph">[depoimento em vídeo]</span>
+              </div>
+              <div style="padding: 18px 22px">
+                <span class="ph">[nome]</span>, <span class="ph">[país]</span>
+              </div>
+            </div>
+            <div class="card" style="overflow: hidden">
+              <div
+                style="
+                  aspect-ratio: 16/9;
+                  background: #ece4d2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span class="ph">[depoimento em vídeo]</span>
+              </div>
+              <div style="padding: 18px 22px">
+                <span class="ph">[nome]</span>, <span class="ph">[país]</span>
+              </div>
+            </div>
+            <div class="card" style="overflow: hidden">
+              <div
+                style="
+                  aspect-ratio: 16/9;
+                  background: #ece4d2;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <span class="ph">[depoimento em vídeo]</span>
+              </div>
+              <div style="padding: 18px 22px">
+                <span class="ph">[nome]</span>, <span class="ph">[país]</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="background: #0665b8; color: #fff; padding: 80px 0">
+          <div
+            class="wrap"
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 22px;
+              text-align: center;
+            "
+          >
+            <h2 style="font-size: 48px; color: #fff">O português se vive, não só se estuda.</h2>
+            <a class="btn gold" href="Site-Desafio.dc.html" style="min-height: 56px"
+              >Comece o Desafio</a
+            >
+          </div>
+        </section>
+
+        <footer class="navy foot" style="padding: 48px 0 36px">
+          <div
+            class="wrap"
+            style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px"
+          >
+            <b
+              style="
+                font:
+                  700 20px &quot;Fredoka&quot;,
+                  sans-serif;
+              "
+              >Mundo Ilusófono</b
+            >
+            <div style="display: flex; flex-wrap: wrap; gap: 20px">
+              <a href="Site-Series.dc.html">Séries</a><a href="Site-Planos.dc.html">Planos</a
+              ><a href="Site-Recursos.dc.html">Perguntas frequentes</a
+              ><a href="Site-Blog.dc.html">Blog</a
+              ><a href="mailto:marliobps@gmail.com">marliobps@gmail.com</a>
+            </div>
+            <span style="color: #dcebfa; font-size: 14px">Os preços não incluem imposto.</span>
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":3200}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>App web: conta</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+            color: #1e272e;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .h {
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.08;
+            color: #0a3d62;
+          }
+          .cv {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 56px;
+            padding: 0 32px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .btn.sm {
+            min-height: 46px;
+            padding: 0 24px;
+            font-size: 16px;
+          }
+          .btn.lt {
+            background: #fdfaf4;
+            color: #0a3d62;
+          }
+          .btn2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 24px;
+            border-radius: 999px;
+            border: 2px solid #0665b8;
+            color: #0665b8;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .btn2.lt {
+            border-color: #fdfaf4;
+            color: #fdfaf4;
+          }
+          .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            padding: 24px;
+          }
+          .eyebrow {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            color: #0665b8;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            font-weight: 800;
+            font-size: 15px;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            background: #fff;
+            color: #1e272e;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            cursor: pointer;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .lvb {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 3px 12px 3px 9px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+          }
+          .vc {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+          }
+          .vt {
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+          }
+          .vt svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+          .dur {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(10, 61, 98, 0.92);
+            color: #fff;
+            border-radius: 8px;
+            padding: 2px 9px;
+            font-size: 13px;
+            font-weight: 800;
+          }
+          .pg {
+            height: 6px;
+            background: #ece4d2;
+          }
+          .pg i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .vb {
+            padding: 14px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .top a.n {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+          }
+          .top a.n.on {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .sw {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .tg {
+            display: inline-flex;
+            background: #ece4d2;
+            border-radius: 999px;
+            padding: 6px;
+            gap: 4px;
+          }
+          .tg button {
+            min-height: 48px;
+            padding: 0 28px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #1e272e;
+            cursor: pointer;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 17px;
+          }
+          th,
+          td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ece4d2;
+          }
+          th {
+            font-family: "Fredoka", system-ui, sans-serif;
+            color: #0a3d62;
+            font-size: 18px;
+          }
+
+          body {
+            background: #fdfaf4;
+          }
+        </style>
+      </helmet>
+      <div style="width: 100%; min-height: 1050px">
+        <header class="top" style="background: #fdfaf4; box-shadow: 0 1px 0 #ece4d2">
+          <div
+            class="wrap"
+            style="
+              max-width: 1300px;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 16px;
+              padding-top: 12px;
+              padding-bottom: 12px;
+            "
+          >
+            <a
+              href="Web-Inicio.dc.html"
+              style="display: flex; align-items: center; gap: 10px; text-decoration: none"
+              ><span
+                style="
+                  width: 40px;
+                  height: 36px;
+                  background: #0984e3;
+                  border-radius: 14px 14px 14px 4px;
+                  display: inline-block;
+                "
+                aria-hidden="true"
+              ></span
+              ><span class="h" style="font-size: 22px; color: #0a3d62">Mundo Ilusófono</span></a
+            >
+            <nav
+              style="display: flex; flex-wrap: wrap; gap: 4px; margin-left: 12px"
+              aria-label="Menu do app"
+            >
+              <a class="n" href="Web-Inicio.dc.html">Início</a
+              ><a class="n" href="Web-Assistir.dc.html">Assistir</a
+              ><a class="n" href="Web-Series.dc.html">Séries</a
+              ><a class="n" href="Web-Lives.dc.html">Lives</a
+              ><a class="n" href="Web-Progresso.dc.html">Progresso</a
+              ><a class="n on" href="Web-Conta.dc.html">Conta</a>
+            </nav>
+            <span style="flex-grow: 1"></span
+            ><a
+              class="pill"
+              href="Web-Progresso.dc.html"
+              style="min-width: 300px; text-decoration: none; color: #1e272e"
+              ><span>12/20 min</span
+              ><span
+                style="
+                  flex-grow: 1;
+                  height: 10px;
+                  border-radius: 999px;
+                  background: #ece4d2;
+                  overflow: hidden;
+                "
+                ><i style="display: block; width: 60%; height: 100%; background: #00b894"></i></span
+              ><span style="color: #0665b8" aria-label="Adicionar tempo"
+                ><svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M5 12h14" /></svg></span></a
+            ><a
+              class="pill"
+              href="Web-Progresso.dc.html"
+              style="color: #9a3412; text-decoration: none"
+              ><svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-4 0-6 1-9z"
+                /></svg
+              >3</a
+            >
+          </div>
+        </header>
+        <main>
+          <div
+            class="wrap"
+            style="
+              max-width: 1300px;
+              padding-top: 32px;
+              padding-bottom: 64px;
+              display: flex;
+              flex-direction: column;
+              gap: 28px;
+            "
+          >
+            <div><h1 class="h" style="font-size: 44px">Conta</h1></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 24px">
+              <div class="card" style="flex: 1 1 440px">
+                <b class="h" style="font-size: 24px">Perfil</b>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>E-mail</b>
+                    <div style="color: #4a5560">voce@email.com</div>
+                  </div>
+                  <a href="Web-Conta.dc.html" style="font-weight: 800">Alterar</a>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Nome</b>
+                    <div style="color: #4a5560">[Nome]</div>
+                  </div>
+                  <a href="Web-Conta.dc.html" style="font-weight: 800">Alterar</a>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Fuso horário</b>
+                    <div style="color: #4a5560">Europe/Madrid</div>
+                  </div>
+                  <a href="Web-Conta.dc.html" style="font-weight: 800">Alterar</a>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Meta diária</b>
+                    <div style="color: #4a5560">20 minutos</div>
+                  </div>
+                  <a href="Web-Conta.dc.html" style="font-weight: 800">Alterar</a>
+                </div>
+              </div>
+              <div class="card" style="flex: 1 1 440px">
+                <b class="h" style="font-size: 24px">Preferências</b>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Legenda em português</b>
+                    <div style="color: #4a5560">Ligada nos vídeos</div>
+                  </div>
+                  <span
+                    style="
+                      width: 52px;
+                      height: 30px;
+                      border-radius: 999px;
+                      background: #00b894;
+                      position: relative;
+                      display: inline-block;
+                    "
+                    ><i
+                      style="
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 999px;
+                        background: #fff;
+                      "
+                    ></i
+                  ></span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Reprodução automática</b>
+                    <div style="color: #4a5560">Passa para o próximo vídeo</div>
+                  </div>
+                  <span
+                    style="
+                      width: 52px;
+                      height: 30px;
+                      border-radius: 999px;
+                      background: #00b894;
+                      position: relative;
+                      display: inline-block;
+                    "
+                    ><i
+                      style="
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 999px;
+                        background: #fff;
+                      "
+                    ></i
+                  ></span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Lembrete diário</b>
+                    <div style="color: #4a5560">Um e-mail por dia</div>
+                  </div>
+                  <span
+                    style="
+                      width: 52px;
+                      height: 30px;
+                      border-radius: 999px;
+                      background: #cfc6b2;
+                      position: relative;
+                      display: inline-block;
+                    "
+                    ><i
+                      style="
+                        position: absolute;
+                        top: 3px;
+                        left: 3px;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 999px;
+                        background: #fff;
+                      "
+                    ></i
+                  ></span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    padding: 16px 0;
+                    border-bottom: 1px solid #ece4d2;
+                  "
+                >
+                  <div style="flex: 1">
+                    <b>Aviso de lives</b>
+                    <div style="color: #4a5560">Por e-mail, 1 hora antes</div>
+                  </div>
+                  <span
+                    style="
+                      width: 52px;
+                      height: 30px;
+                      border-radius: 999px;
+                      background: #00b894;
+                      position: relative;
+                      display: inline-block;
+                    "
+                    ><i
+                      style="
+                        position: absolute;
+                        top: 3px;
+                        right: 3px;
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 999px;
+                        background: #fff;
+                      "
+                    ></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="card"
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <div>
+                <b class="h" style="font-size: 24px">Assinatura</b>
+                <div style="color: #4a5560">Participar · Mensal · €12,99 + IVA</div>
+              </div>
+              <div style="display: flex; gap: 12px">
+                <a class="btn sm" href="Web-Planos.dc.html">Gerenciar plano</a
+                ><a class="btn2" href="Main.dc.html">Sair</a>
+              </div>
+            </div>
+            <div
+              class="card"
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <div>
+                <b>Precisa de ajuda?</b>
+                <div style="color: #4a5560">Veja as perguntas frequentes ou fale com a gente.</div>
+              </div>
+              <div style="display: flex; gap: 12px">
+                <a class="btn2" href="Recursos.dc.html">Perguntas frequentes</a
+                ><a class="btn2" href="Recursos.dc.html">Fale com a gente</a>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1050}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

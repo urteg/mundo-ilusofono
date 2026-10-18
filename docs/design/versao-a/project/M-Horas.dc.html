@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Adicionar tempo fora do app</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1,
+          .m h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 17px/1 "Fredoka",
+              sans-serif;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+            cursor: pointer;
+            flex: 1;
+          }
+          .btn.sec {
+            background: #fff;
+            color: #0665b8;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .seg {
+            display: flex;
+            gap: 6px;
+          }
+          .seg button {
+            flex: 1;
+            min-height: 52px;
+            border-radius: 14px;
+            border: 2px solid #ece4d2;
+            background: #fff;
+            font:
+              600 15px "Fredoka",
+              sans-serif;
+            color: #1e272e;
+            cursor: pointer;
+            padding: 0 4px;
+          }
+          .seg button[aria-pressed="true"] {
+            border-color: #0665b8;
+            background: #eef5fc;
+            color: #0665b8;
+          }
+          .field {
+            min-height: 48px;
+            border-radius: 12px;
+            border: 2px solid #cfc6b2;
+            padding: 0 12px;
+            font:
+              16px "Nunito Sans",
+              sans-serif;
+            color: #1e272e;
+            background: #fff;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .lbl {
+            font-weight: 700;
+            font-size: 14px;
+          }
+          .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 56px;
+            border-bottom: 1px solid #ece4d2;
+          }
+          .type {
+            display: inline-flex;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font:
+              700 12px "Nunito Sans",
+              sans-serif;
+          }
+          .t1 {
+            background: #dcebfa;
+            color: #0665b8;
+          }
+          .t2 {
+            background: #d7f3ec;
+            color: #00684f;
+          }
+          .t3 {
+            background: #ffe4d6;
+            color: #b23a0b;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="
+          width: 390px;
+          height: 844px;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          position: relative;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            background: #fff;
+            border-bottom: 1px solid #ece4d2;
+            flex: none;
+          "
+        >
+          <a
+            href="M-Progresso.dc.html"
+            aria-label="Voltar para Progresso"
+            style="
+              display: flex;
+              width: 44px;
+              height: 44px;
+              align-items: center;
+              justify-content: center;
+              color: #0a3d62;
+            "
+            ><svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 5l-7 7 7 7"></path></svg
+          ></a>
+          <h1 style="font-size: 20px">Horas fora do app</h1>
+        </header>
+        <main
+          style="
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          "
+        >
+          <button type="button" class="btn" onClick="{{abrir}}" style="flex: none">
+            Adicionar tempo
+          </button>
+          <div>
+            <sc-for list="{{registros}}" as="r" hint-placeholder-count="4"
+              ><div class="row">
+                <span class="type {{r.cls}}">{{r.tipo}}</span
+                ><span style="flex: 1; font-size: 14px">{{r.data}}</span
+                ><b style="font-size: 14px">{{r.dur}}</b>
+              </div></sc-for
+            >
+          </div>
+          <p style="margin: 0; font-weight: 700">Total: {{total}}</p>
+        </main>
+
+        <sc-if value="{{aberto}}" hint-placeholder-val="{{true}}">
+          <div
+            style="
+              position: absolute;
+              inset: 0;
+              background: rgba(10, 61, 98, 0.5);
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+            "
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="mh-t"
+              style="
+                background: #fff;
+                border-radius: 22px 22px 0 0;
+                padding: 10px 18px 22px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+              "
+            >
+              <span
+                aria-hidden="true"
+                style="
+                  width: 44px;
+                  height: 5px;
+                  border-radius: 999px;
+                  background: #cfc6b2;
+                  align-self: center;
+                "
+              ></span>
+              <h2 id="mh-t" style="font-size: 22px">Adicionar tempo fora do app</h2>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <span class="lbl" id="mh-tipo">O que você fez?</span>
+                <div class="seg" role="group" aria-labelledby="mh-tipo">
+                  <sc-for list="{{tipos}}" as="t" hint-placeholder-count="3"
+                    ><button type="button" aria-pressed="{{t.sel}}" onClick="{{t.pick}}">
+                      {{t.nome}}
+                    </button></sc-for
+                  >
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label class="lbl" for="mh-data">Data</label
+                ><input id="mh-data" class="field" type="date" value="2026-10-18" />
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <span class="lbl">Duração</span>
+                <div style="display: flex; gap: 10px">
+                  <label style="flex: 1; display: flex; align-items: center; gap: 6px"
+                    ><input
+                      class="field"
+                      type="number"
+                      min="0"
+                      max="12"
+                      value="{{horas}}"
+                      onInput="{{onHoras}}"
+                      aria-label="Horas"
+                    /><span class="muted">h</span></label
+                  >
+                  <label style="flex: 1; display: flex; align-items: center; gap: 6px"
+                    ><input
+                      class="field"
+                      type="number"
+                      min="0"
+                      max="59"
+                      step="5"
+                      value="{{minutos}}"
+                      onInput="{{onMin}}"
+                      aria-label="Minutos"
+                    /><span class="muted">min</span></label
+                  >
+                </div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <label class="lbl" for="mh-nota"
+                  >Nota <span class="muted" style="font-weight: 400">(opcional)</span></label
+                ><input
+                  id="mh-nota"
+                  class="field"
+                  type="text"
+                  placeholder="Ex.: podcast no ônibus"
+                  value="{{nota}}"
+                  onInput="{{onNota}}"
+                />
+              </div>
+              <div style="display: flex; gap: 10px">
+                <button type="button" class="btn sec" onClick="{{fechar}}">Cancelar</button
+                ><button type="button" class="btn" onClick="{{salvar}}">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"folhaAberta":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const s = this.state;
+          const aberto = s.aberto ?? (this.props.folhaAberta ?? true);
+          const tipo = s.tipo ?? 'Ouvindo';
+          const horas = s.horas ?? '0', minutos = s.minutos ?? '30', nota = s.nota ?? '';
+          const cls = { Assistindo: 't1', Ouvindo: 't2', Conversando: 't3' };
+          const extra = s.extra ?? [];
+          const lista = [...extra,
+            { tipo: 'Assistindo', data: '17 out.', min: 45 },
+            { tipo: 'Ouvindo', data: '15 out.', min: 30 },
+            { tipo: 'Conversando', data: '12 out.', min: 20 },
+            { tipo: 'Assistindo', data: '4 out.', min: 30 }];
+          const fmt = (m) => (m >= 60 ? Math.floor(m / 60) + ' h ' : '') + (m % 60 ? (m % 60) + ' min' : '');
+          return {
+            aberto, abrir: () => this.setState({ aberto: true }), fechar: () => this.setState({ aberto: false }),
+            tipos: ['Assistindo', 'Ouvindo', 'Conversando'].map((nome) => ({ nome, sel: tipo === nome ? 'true' : 'false', pick: () => this.setState({ tipo: nome }) })),
+            horas, minutos, nota,
+            onHoras: (e) => this.setState({ horas: e.target.value }),
+            onMin: (e) => this.setState({ minutos: e.target.value }),
+            onNota: (e) => this.setState({ nota: e.target.value }),
+            salvar: () => {
+              const m = (parseInt(horas, 10) || 0) * 60 + (parseInt(minutos, 10) || 0);
+              if (!m) return;
+              this.setState({ aberto: false, extra: [{ tipo, data: '18 out.', min: m }, ...extra], nota: '' });
+            },
+            registros: lista.map((r) => ({ tipo: r.tipo, cls: cls[r.tipo], data: r.data, dur: fmt(r.min) })),
+            total: fmt(lista.reduce((a, r) => a + r.min, 0))
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

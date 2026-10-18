@@ -8,12 +8,17 @@
   --coral-texto: #c2410c;
   --fogo: #9a3412;
   --papel: #fdfaf4;
+  --papel-escuro: #f6f0e4;
+  --azul-claro: #dcebfa;
+  --marcador-fundo: #fff1b8;
+  --marcador-texto: #6b5200;
   --areia: #ece4d2;
   --borda: #cfc6b2;
   --texto: #1e272e;
   --texto-suave: #4a5560;
   --branco: #ffffff;
   --raio-card: 22px;
+  --raio-bolha: 22px 22px 22px 4px;
   --sombra: 0 4px 16px rgba(30, 39, 46, 0.1);
 }
 

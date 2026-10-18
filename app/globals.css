@@ -11,12 +11,17 @@
   --color-coral-texto: var(--coral-texto);
   --color-fogo: var(--fogo);
   --color-papel: var(--papel);
+  --color-papel-escuro: var(--papel-escuro);
+  --color-azul-claro: var(--azul-claro);
+  --color-marcador-fundo: var(--marcador-fundo);
+  --color-marcador-texto: var(--marcador-texto);
   --color-areia: var(--areia);
   --color-borda: var(--borda);
   --color-texto: var(--texto);
   --color-texto-suave: var(--texto-suave);
   --color-branco: var(--branco);
   --radius-card: var(--raio-card);
+  --radius-bolha: var(--raio-bolha);
   --shadow-card: var(--sombra);
   --font-titulo: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
   --font-sans: var(--font-nunito-sans), system-ui, sans-serif;
@@ -24,6 +29,7 @@
 }
 
 html {
+  scroll-padding-top: 5rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -57,5 +63,54 @@ h4 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Legenda do vídeo de exemplo (Início): 3 falas de 3 s em ciclo de 9 s. */
+.legenda-fala {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  animation: legenda-fala 9s infinite;
+}
+.legenda-tempo {
+  width: 0;
+  animation: legenda-tempo 9s linear infinite;
+}
+@keyframes legenda-fala {
+  0%,
+  2% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  5%,
+  30% {
+    opacity: 1;
+    transform: none;
+  }
+  33.3%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes legenda-tempo {
+  to {
+    width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .legenda-fala {
+    animation: none;
+  }
+  .legenda-fala:first-child {
+    opacity: 1;
+  }
+  .legenda-tempo {
+    animation: none;
+    width: 35%;
   }
 }

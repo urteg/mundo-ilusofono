@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Série</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .mi {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.55;
+          }
+          .mi h1,
+          .mi h2,
+          .mi h3 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            box-sizing: border-box;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 24px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 16px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+          }
+          .btn:hover {
+            background: #05549a;
+            color: #fff;
+          }
+          .btn.sec {
+            background: #fff;
+            color: #0665b8;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+          }
+          .lv {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font:
+              700 12px/1.3 "Nunito Sans",
+              sans-serif;
+          }
+          .lv2 {
+            background: #dcebfa;
+            color: #0665b8;
+          }
+          .ph {
+            background: #fff1b8;
+            color: #6b5200;
+            border-radius: 6px;
+            padding: 0 6px;
+            font-weight: 700;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .bar {
+            height: 8px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+            border-radius: 999px;
+          }
+          .tab {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font:
+              600 16px "Fredoka",
+              sans-serif;
+          }
+          .tab:hover {
+            background: #f6f0e4;
+            color: #0a3d62;
+          }
+          .tab.on {
+            color: #0665b8;
+            background: #dcebfa;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 52px;
+            padding: 4px 4px 4px 16px;
+            border: 2px solid #ece4d2;
+            border-radius: 999px;
+            background: #fff;
+            font:
+              700 14px "Nunito Sans",
+              sans-serif;
+            box-sizing: border-box;
+          }
+          .ib {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: #dcebfa;
+            color: #0665b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            flex: none;
+          }
+          .ep {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 12px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: inherit;
+          }
+          .ep:hover {
+            background: #f6f0e4;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div class="mi">
+        <header style="background: #fff; border-bottom: 1px solid #ece4d2">
+          <div
+            class="wrap"
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 12px 24px;
+              padding-top: 10px;
+              padding-bottom: 10px;
+            "
+          >
+            <a
+              href="App-Inicio.dc.html"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                color: #0a3d62;
+                font:
+                  700 20px &quot;Fredoka&quot;,
+                  sans-serif;
+              "
+              ><img
+                src="marca/logo.png"
+                alt=""
+                width="46"
+                height="46"
+                style="display: block; width: 46px; height: 46px; object-fit: contain"
+              /><span style="display: flex; flex-direction: column; line-height: 1"
+                ><span>Mundo</span><span>Ilusófono</span></span
+              ></a
+            >
+            <nav
+              aria-label="App"
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                flex: 1 1 auto;
+                justify-content: center;
+              "
+            >
+              <a class="tab" href="App-Inicio.dc.html">Início</a
+              ><a class="tab" href="App-Assistir.dc.html">Assistir</a
+              ><a class="tab on" href="App-Series.dc.html" aria-current="page">Séries</a
+              ><a class="tab" href="App-Lives.dc.html">Lives</a
+              ><a class="tab" href="App-Progresso.dc.html">Progresso</a
+              ><a class="tab" href="App-Conta.dc.html">Conta</a>
+            </nav>
+            <div style="display: flex; gap: 10px; align-items: center">
+              <div class="pill">
+                <span>12/20 min</span
+                ><span class="bar" style="width: 64px"><i style="width: 60%"></i></span
+                ><a class="ib" href="App-Horas.dc.html" aria-label="Adicionar tempo fora do app"
+                  ><svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 5v14M5 12h14"></path></svg
+                ></a>
+              </div>
+              <div
+                class="pill"
+                style="padding-right: 16px; color: #9a3412"
+                aria-label="Sequência de 3 dias"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#9A3412"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"
+                  ></path></svg
+                >3
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main
+          class="wrap"
+          style="
+            padding-top: 28px;
+            padding-bottom: 64px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+          "
+        >
+          <a
+            href="App-Series.dc.html"
+            style="
+              font-weight: 700;
+              display: inline-flex;
+              align-items: center;
+              gap: 6px;
+              min-height: 44px;
+              align-self: flex-start;
+            "
+            ><svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 5l-7 7 7 7"></path></svg
+            >Voltar para Séries</a
+          >
+          <div class="card" style="display: flex; flex-wrap: wrap; overflow: hidden">
+            <img
+              src="cenas/mar.svg"
+              alt="Capa da série: barco no mar"
+              style="
+                flex: 1.3 1 480px;
+                min-width: 0;
+                aspect-ratio: 16/9;
+                object-fit: cover;
+                display: block;
+              "
+            />
+            <div
+              style="
+                flex: 1 1 380px;
+                padding: 32px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+              "
+            >
+              <span class="lv lv2" style="align-self: flex-start"
+                ><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                  <path
+                    d="M2 12V9M5.5 12V6.5M9 12V4M12.5 12V1.5"
+                    stroke="currentColor"
+                    stroke-opacity=".3"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  ></path>
+                  <path
+                    d="M2 12V9M5.5 12V6.5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  ></path></svg
+                >Seguindo em frente</span
+              >
+              <h1 style="font-size: 36px"><span class="ph">[título da série]</span></h1>
+              <span class="muted">com Márlio · 12 episódios · 1h 12 min</span>
+              <p style="margin: 0" class="muted">
+                <span class="ph">[descrição da série em duas frases]</span>
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 6px">
+                <div style="display: flex; justify-content: space-between; font-size: 14px">
+                  <b>Seu progresso</b><span class="muted">4 de 12</span>
+                </div>
+                <div class="bar"><i style="width: 33%"></i></div>
+              </div>
+              <a class="btn" href="App-Video.dc.html" style="align-self: flex-start"
+                ><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5v14l11-7z" fill="currentColor"></path></svg
+                >Continuar: episódio 5</a
+              >
+            </div>
+          </div>
+
+          <section style="display: flex; flex-direction: column; gap: 8px">
+            <h2 style="font-size: 24px; margin-bottom: 8px">Episódios</h2>
+            <sc-for list="{{eps}}" as="e" hint-placeholder-count="8">
+              <a class="ep" href="App-Video.dc.html">
+                <span
+                  style="
+                    font:
+                      700 18px &quot;Fredoka&quot;,
+                      sans-serif;
+                    color: #4a5560;
+                    width: 28px;
+                    text-align: center;
+                  "
+                  >{{e.n}}</span
+                >
+                <span style="position: relative; width: 168px; flex: none"
+                  ><img
+                    src="{{e.img}}"
+                    alt=""
+                    style="
+                      width: 168px;
+                      aspect-ratio: 16/9;
+                      object-fit: cover;
+                      border-radius: 12px;
+                      display: block;
+                    "
+                  /><span
+                    style="
+                      position: absolute;
+                      right: 6px;
+                      bottom: 6px;
+                      background: rgba(30, 39, 46, 0.85);
+                      color: #fff;
+                      border-radius: 6px;
+                      padding: 1px 6px;
+                      font-weight: 700;
+                      font-size: 12px;
+                    "
+                    >{{e.dur}}</span
+                  ></span
+                >
+                <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"
+                  ><b
+                    style="
+                      font:
+                        600 18px &quot;Fredoka&quot;,
+                        sans-serif;
+                      color: #0a3d62;
+                    "
+                    ><span class="ph">[título do episódio]</span></b
+                  ><span class="muted" style="font-size: 14px">{{e.status}}</span></span
+                >
+                <sc-if value="{{e.visto}}" hint-placeholder-val="{{false}}"
+                  ><span
+                    aria-label="Visto"
+                    style="
+                      width: 36px;
+                      height: 36px;
+                      border-radius: 999px;
+                      background: #00b894;
+                      color: #fff;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      flex: none;
+                    "
+                    ><svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span
+                ></sc-if>
+              </a>
+            </sc-for>
+          </section>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1300}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const imgs = ['mar', 'campo', 'feira', 'conversa'];
+          const durs = ['5:40', '6:10', '5:55', '6:30', '6:05', '5:20', '6:45', '5:50'];
+          return {
+            eps: durs.map((dur, i) => ({ n: i + 1, dur, img: 'cenas/' + imgs[i % 4] + '.svg', visto: i < 4, status: i < 4 ? 'Visto' : (i === 4 ? 'Próximo' : 'Ainda não visto') }))
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

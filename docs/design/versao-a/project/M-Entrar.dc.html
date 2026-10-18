@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entrar no celular</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 52px;
+            padding: 0 24px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 17px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+          }
+          .hand {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .field {
+            min-height: 52px;
+            border-radius: 14px;
+            border: 2px solid #cfc6b2;
+            padding: 0 16px;
+            font:
+              16px "Nunito Sans",
+              sans-serif;
+            color: #1e272e;
+            background: #fff;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="width: 390px; height: 844px; display: flex; flex-direction: column; overflow: hidden"
+      >
+        <div
+          style="
+            position: relative;
+            height: 330px;
+            flex: none;
+            background: #dcebfa;
+            overflow: hidden;
+          "
+        >
+          <img
+            src="cenas/campo.svg"
+            alt="Cena ilustrada: casa no campo"
+            style="display: block; width: 100%; height: 100%; object-fit: cover"
+          />
+          <span
+            class="hand"
+            style="
+              position: absolute;
+              left: 20px;
+              bottom: 20px;
+              font-size: 30px;
+              background: #fff;
+              padding: 6px 16px;
+              border-radius: 22px 22px 22px 4px;
+              transform: rotate(-3deg);
+            "
+            >vamos lá, tá?</span
+          >
+        </div>
+        <div style="flex: 1; padding: 28px 24px; display: flex; flex-direction: column; gap: 16px">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              color: #0a3d62;
+              font:
+                700 18px &quot;Fredoka&quot;,
+                sans-serif;
+            "
+          >
+            <img
+              src="marca/logo.png"
+              alt=""
+              width="44"
+              height="44"
+              style="display: block; width: 44px; height: 44px; object-fit: contain"
+            /><span style="display: flex; flex-direction: column; line-height: 1"
+              ><span>Mundo</span><span>Ilusófono</span></span
+            >
+          </div>
+          <h1 style="font-size: 30px">Entre com seu e-mail</h1>
+          <label for="m-email" style="font-weight: 700; font-size: 14px">Seu e-mail</label>
+          <input
+            id="m-email"
+            class="field"
+            type="email"
+            placeholder="voce@email.com"
+            style="margin-top: -8px"
+          />
+          <a class="btn" href="M-Inicio.dc.html">Enviar link de acesso</a>
+          <p class="muted" style="margin: 0; text-align: center; font-size: 15px">
+            Sem senha. Você recebe um link e entra.
+          </p>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

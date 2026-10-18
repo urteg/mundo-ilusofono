@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Assistir no celular</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1,
+          .m h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 52px;
+            padding: 0 20px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 17px/1 "Fredoka",
+              sans-serif;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+            cursor: pointer;
+            width: 100%;
+          }
+          .lv {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font:
+              700 11px/1.3 "Nunito Sans",
+              sans-serif;
+          }
+          .lv1 {
+            background: #d7f3ec;
+            color: #00684f;
+          }
+          .lv2 {
+            background: #dcebfa;
+            color: #0665b8;
+          }
+          .lv3 {
+            background: #ffe4d6;
+            color: #b23a0b;
+          }
+          .lv4 {
+            background: #dde5ee;
+            color: #0a3d62;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .bar {
+            height: 6px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+            border-radius: 999px;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 50px;
+            padding: 0 3px 0 12px;
+            border: 2px solid #ece4d2;
+            border-radius: 999px;
+            background: #fff;
+            font:
+              700 13px "Nunito Sans",
+              sans-serif;
+            box-sizing: border-box;
+          }
+          .ib {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: #dcebfa;
+            color: #0665b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex: none;
+          }
+          .nav {
+            display: flex;
+            border-top: 1px solid #ece4d2;
+            background: #fff;
+            flex: none;
+          }
+          .nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            min-height: 64px;
+            color: #4a5560;
+            text-decoration: none;
+            font:
+              600 12px "Nunito Sans",
+              sans-serif;
+          }
+          .nav a.on {
+            color: #0665b8;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 2px solid #cfc6b2;
+            border-radius: 999px;
+            background: #fff;
+            color: #1e272e;
+            font:
+              600 14px "Nunito Sans",
+              sans-serif;
+            cursor: pointer;
+            white-space: nowrap;
+            flex: none;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .sw {
+            position: relative;
+            width: 48px;
+            height: 28px;
+            border-radius: 999px;
+            background: #cfc6b2;
+            border: 0;
+            cursor: pointer;
+            flex: none;
+            padding: 0;
+          }
+          .sw.on {
+            background: #00b894;
+          }
+          .sw i {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: #fff;
+            transition: left 0.15s;
+          }
+          .sw.on i {
+            left: 23px;
+          }
+          .utab {
+            min-height: 44px;
+            padding: 0 2px;
+            border: 0;
+            background: transparent;
+            font:
+              600 16px "Fredoka",
+              sans-serif;
+            color: #4a5560;
+            border-bottom: 3px solid transparent;
+          }
+          .utab.on {
+            color: #0665b8;
+            border-bottom-color: #0665b8;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="
+          width: 390px;
+          height: 844px;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          position: relative;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #fff;
+            border-bottom: 1px solid #ece4d2;
+            flex: none;
+          "
+        >
+          <a
+            href="M-Inicio.dc.html"
+            aria-label="Mundo Ilusófono, início"
+            style="display: flex; margin-right: auto"
+            ><img
+              src="marca/logo.png"
+              alt=""
+              width="46"
+              height="46"
+              style="display: block; width: 46px; height: 46px; object-fit: contain"
+          /></a>
+          <div class="pill">
+            <span>12/20 min</span
+            ><span class="bar" style="width: 40px"><i style="width: 60%"></i></span
+            ><a class="ib" href="M-Horas.dc.html" aria-label="Adicionar tempo fora do app"
+              ><svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14"></path></svg
+            ></a>
+          </div>
+          <div
+            class="pill"
+            style="padding-right: 12px; color: #9a3412"
+            aria-label="Sequência de 3 dias"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9A3412"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"
+              ></path></svg
+            >3
+          </div>
+        </header>
+
+        <main style="flex: 1; overflow-y: auto; display: flex; flex-direction: column">
+          <div style="padding: 18px 16px 0; display: flex; flex-direction: column; gap: 10px">
+            <h1 style="font-size: 26px">O que vamos assistir?</h1>
+            <div role="tablist" style="display: flex; gap: 22px; border-bottom: 1px solid #ece4d2">
+              <button role="tab" aria-selected="true" class="utab on">Explorar</button
+              ><button role="tab" aria-selected="false" class="utab">Histórico</button
+              ><button role="tab" aria-selected="false" class="utab">Salvos</button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; overflow-x: auto; padding: 12px 16px; flex: none">
+            <button
+              type="button"
+              class="chip"
+              onClick="{{abrir}}"
+              style="border-color: #0665b8; color: #0665b8"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M4 6h16M7 12h10M10 18h4"></path></svg
+              >Filtros{{qtdFiltros}}
+            </button>
+            <sc-for list="{{niveis}}" as="n" hint-placeholder-count="5"
+              ><button
+                type="button"
+                class="{{n.cls}}"
+                aria-pressed="{{n.sel}}"
+                onClick="{{n.pick}}"
+              >
+                {{n.nome}}
+              </button></sc-for
+            >
+          </div>
+          <div style="padding: 0 16px 20px; display: flex; flex-direction: column; gap: 12px">
+            <sc-for list="{{videos}}" as="v" hint-placeholder-count="6">
+              <a
+                href="{{v.href}}"
+                style="
+                  display: flex;
+                  gap: 12px;
+                  text-decoration: none;
+                  color: inherit;
+                  background: #fff;
+                  border-radius: 16px;
+                  box-shadow: 0 1px 3px rgba(30, 39, 46, 0.08);
+                  padding: 8px;
+                  align-items: center;
+                "
+              >
+                <span style="position: relative; flex: none; width: 132px"
+                  ><img
+                    src="{{v.img}}"
+                    alt=""
+                    style="display: block; width: 132px; aspect-ratio: 16/9; object-fit: cover; border-radius: 10px; {{v.imgStyle}}" /><span
+                    style="
+                      position: absolute;
+                      right: 4px;
+                      bottom: 8px;
+                      background: rgba(30, 39, 46, 0.85);
+                      color: #fff;
+                      border-radius: 6px;
+                      padding: 0 5px;
+                      font-weight: 700;
+                      font-size: 11px;
+                    "
+                    >{{v.dur}}</span
+                  ><span
+                    class="bar"
+                    style="
+                      position: absolute;
+                      left: 0;
+                      right: 0;
+                      bottom: 0;
+                      height: 4px;
+                      border-radius: 0 0 10px 10px;
+                    "
+                    ><i style="{{v.prog}}"></i></span
+                ></span>
+                <span
+                  style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"
+                >
+                  <b
+                    style="
+                      font:
+                        600 15px &quot;Fredoka&quot;,
+                        sans-serif;
+                      color: #0a3d62;
+                    "
+                    >{{v.titulo}}</b
+                  >
+                  <span class="lv {{v.lvc}}" style="align-self: flex-start">{{v.lv}}</span>
+                  <span class="muted" style="font-size: 12px; font-weight: 700">{{v.estado}}</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </main>
+
+        <nav class="nav" aria-label="App">
+          <a href="M-Inicio.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"></path></svg
+            >Início</a
+          >
+          <a class="on" href="M-Assistir.dc.html" aria-current="page"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+              <path d="M10 9l4 2-4 2z"></path>
+              <path d="M8 21h8"></path></svg
+            >Assistir</a
+          >
+          <a href="M-Series.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="14" height="13" rx="2"></rect>
+              <path d="M7 4h12a2 2 0 0 1 2 2v11"></path></svg
+            >Séries</a
+          >
+          <a href="M-Lives.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="2"></circle>
+              <path
+                d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
+              ></path></svg
+            >Lives</a
+          >
+          <a href="M-Conta.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path></svg
+            >Mais</a
+          >
+        </nav>
+
+        <sc-if value="{{aberto}}" hint-placeholder-val="{{false}}">
+          <div
+            style="
+              position: absolute;
+              inset: 0;
+              background: rgba(10, 61, 98, 0.5);
+              display: flex;
+              flex-direction: column;
+              justify-content: flex-end;
+            "
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="sheet-t"
+              style="
+                background: #fff;
+                border-radius: 22px 22px 0 0;
+                padding: 12px 20px 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+              "
+            >
+              <span
+                aria-hidden="true"
+                style="
+                  width: 44px;
+                  height: 5px;
+                  border-radius: 999px;
+                  background: #cfc6b2;
+                  align-self: center;
+                "
+              ></span>
+              <div style="display: flex; justify-content: space-between; align-items: center">
+                <h2 id="sheet-t" style="font-size: 22px">Filtros</h2>
+                <button
+                  type="button"
+                  onClick="{{limpar}}"
+                  style="
+                    min-height: 44px;
+                    border: 0;
+                    background: transparent;
+                    color: #0665b8;
+                    font:
+                      700 15px &quot;Nunito Sans&quot;,
+                      sans-serif;
+                  "
+                >
+                  Limpar
+                </button>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <b style="font-size: 14px">Tema</b>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <sc-for list="{{temas}}" as="t" hint-placeholder-count="4"
+                    ><button
+                      type="button"
+                      class="{{t.cls}}"
+                      aria-pressed="{{t.sel}}"
+                      onClick="{{t.pick}}"
+                    >
+                      {{t.nome}}
+                    </button></sc-for
+                  >
+                </div>
+              </div>
+              <label style="display: flex; flex-direction: column; gap: 6px"
+                ><b style="font-size: 14px">Ordenar</b
+                ><select
+                  style="
+                    min-height: 48px;
+                    border: 2px solid #cfc6b2;
+                    border-radius: 12px;
+                    padding: 0 12px;
+                    font:
+                      600 15px &quot;Nunito Sans&quot;,
+                      sans-serif;
+                    background: #fff;
+                  "
+                >
+                  <option>Mais novos</option>
+                  <option>Mais fáceis</option>
+                  <option>Mais curtos</option>
+                </select></label
+              >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  min-height: 48px;
+                "
+              >
+                <span id="m-ocultar" style="font-weight: 700">Ocultar vistos</span
+                ><button
+                  type="button"
+                  class="{{swCls}}"
+                  role="switch"
+                  aria-checked="{{ocultarTxt}}"
+                  aria-labelledby="m-ocultar"
+                  onClick="{{toggleOcultar}}"
+                >
+                  <i></i>
+                </button>
+              </div>
+              <button type="button" class="btn" onClick="{{fechar}}">{{verLabel}}</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"folhaAberta":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const s = this.state;
+          const aberto = s.aberto ?? (this.props.folhaAberta ?? false);
+          const nivel = s.nivel ?? 0, tema = s.tema ?? '', ocultar = s.ocultar ?? false;
+          const LV = [null, ['Primeiros passos', 'lv1'], ['Seguindo em frente', 'lv2'], ['Mais fluência', 'lv3'], ['Quase nativo', 'lv4']];
+          const base = [
+            ['Um sábado na feira', 2, 'feira', 'Comida', '6:40', 'visto', 100],
+            ['Um passeio de barco', 1, 'mar', 'Viagem', '5:12', 'andamento', 40],
+            ['A casa da vó', 1, 'campo', 'Família', '4:06', 'andamento', 70],
+            ['Café com o vizinho', 2, 'conversa', 'Conversa', '8:18', 'novo', 0],
+            ['Férias no litoral', 2, 'mar', 'Viagem', '9:30', 'bloqueado', 0],
+            ['O almoço de domingo', 3, 'campo', 'Família', '12:12', 'novo', 0],
+            ['Receita da tia', 3, 'feira', 'Comida', '11:24', 'novo', 0],
+            ['Pescadores de madrugada', 4, 'mar', 'Viagem', '18:06', 'novo', 0]
+          ];
+          const est = { visto: 'Visto', andamento: 'Em andamento', bloqueado: 'Plano Participar', novo: 'Novo' };
+          const videos = base.filter(([, n, , t, , e]) => (!nivel || n === nivel) && (!tema || t === tema) && (!ocultar || e !== 'visto'))
+            .map(([titulo, n, img, , dur, e, p]) => ({
+              titulo, dur, lv: LV[n][0], lvc: LV[n][1], img: 'cenas/' + img + '.svg',
+              estado: est[e], href: e === 'bloqueado' ? 'App-Planos.dc.html' : 'M-Video.dc.html',
+              imgStyle: e === 'bloqueado' ? 'filter: grayscale(.6); opacity: .7' : '',
+              prog: 'width: ' + p + '%; border-radius: 0'
+            }));
+          const n = (tema ? 1 : 0) + (ocultar ? 1 : 0);
+          return {
+            aberto, abrir: () => this.setState({ aberto: true }), fechar: () => this.setState({ aberto: false }),
+            limpar: () => this.setState({ tema: '', ocultar: false }),
+            qtdFiltros: n ? ' (' + n + ')' : '',
+            niveis: ['Todos', 'Primeiros passos', 'Seguindo em frente', 'Mais fluência', 'Quase nativo'].map((nome, k) => ({ nome, cls: nivel === k ? 'chip on' : 'chip', sel: nivel === k ? 'true' : 'false', pick: () => this.setState({ nivel: k }) })),
+            temas: ['Comida', 'Viagem', 'Família', 'Conversa'].map((nome) => ({ nome, cls: tema === nome ? 'chip on' : 'chip', sel: tema === nome ? 'true' : 'false', pick: () => this.setState({ tema: tema === nome ? '' : nome }) })),
+            swCls: ocultar ? 'sw on' : 'sw', ocultarTxt: ocultar ? 'true' : 'false', toggleOcultar: () => this.setState({ ocultar: !ocultar }),
+            videos, verLabel: 'Ver ' + videos.length + (videos.length === 1 ? ' vídeo' : ' vídeos')
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

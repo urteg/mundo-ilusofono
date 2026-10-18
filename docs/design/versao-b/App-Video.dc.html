@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Celular: vídeo</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+            color: #1e272e;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .h {
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.08;
+            color: #0a3d62;
+          }
+          .cv {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 56px;
+            padding: 0 32px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .btn.sm {
+            min-height: 46px;
+            padding: 0 24px;
+            font-size: 16px;
+          }
+          .btn.lt {
+            background: #fdfaf4;
+            color: #0a3d62;
+          }
+          .btn2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 24px;
+            border-radius: 999px;
+            border: 2px solid #0665b8;
+            color: #0665b8;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .btn2.lt {
+            border-color: #fdfaf4;
+            color: #fdfaf4;
+          }
+          .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            padding: 24px;
+          }
+          .eyebrow {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            color: #0665b8;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            font-weight: 800;
+            font-size: 15px;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            background: #fff;
+            color: #1e272e;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            cursor: pointer;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .lvb {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 3px 12px 3px 9px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+          }
+          .vc {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+          }
+          .vt {
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+          }
+          .vt svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+          .dur {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(10, 61, 98, 0.92);
+            color: #fff;
+            border-radius: 8px;
+            padding: 2px 9px;
+            font-size: 13px;
+            font-weight: 800;
+          }
+          .pg {
+            height: 6px;
+            background: #ece4d2;
+          }
+          .pg i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .vb {
+            padding: 14px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .top a.n {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+          }
+          .top a.n.on {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .sw {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .tg {
+            display: inline-flex;
+            background: #ece4d2;
+            border-radius: 999px;
+            padding: 6px;
+            gap: 4px;
+          }
+          .tg button {
+            min-height: 48px;
+            padding: 0 28px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #1e272e;
+            cursor: pointer;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 17px;
+          }
+          th,
+          td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ece4d2;
+          }
+          th {
+            font-family: "Fredoka", system-ui, sans-serif;
+            color: #0a3d62;
+            font-size: 18px;
+          }
+
+          body {
+            background: #fdfaf4;
+          }
+
+          .ph {
+            width: 390px;
+            height: 844px;
+            background: #fdfaf4;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+          }
+          .pc {
+            flex-grow: 1;
+            padding: 44px 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            overflow: hidden;
+          }
+          .pn {
+            display: flex;
+            border-top: 1px solid #ece4d2;
+            background: #fff;
+            padding-bottom: 14px;
+          }
+          .pn a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            min-height: 58px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #4a5560;
+            text-decoration: none;
+          }
+          .pn a.on {
+            color: #0665b8;
+          }
+          .pcard {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+          .pv {
+            display: flex;
+            gap: 12px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 2px 8px rgba(30, 39, 46, 0.08);
+            text-decoration: none;
+            color: inherit;
+          }
+          .pt {
+            flex: 0 0 118px;
+            height: 72px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+          }
+          .pt .dur {
+            right: 5px;
+            bottom: 5px;
+            font-size: 11px;
+            padding: 1px 6px;
+          }
+        </style>
+      </helmet>
+      <div style="width: 100%; min-height: 844px">
+        <div class="ph">
+          <div class="pc">
+            <div
+              style="margin: -44px -20px 0; height: 230px; position: relative; background: #ffe3a3"
+            >
+              <svg
+                viewBox="0 0 400 225"
+                width="100%"
+                height="100%"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+              >
+                <rect width="400" height="225" fill="#ffe3a3" />
+                <rect width="400" height="70" fill="#ff6b35" />
+                <rect y="156" width="400" height="69" fill="#8b5a2b" />
+                <circle cx="80" cy="140" r="28" fill="#d63a2f" />
+                <circle cx="160" cy="146" r="25" fill="#f5a623" />
+                <circle cx="240" cy="140" r="28" fill="#00b894" />
+                <circle cx="320" cy="146" r="25" fill="#d63a2f" /></svg
+              ><a
+                href="App-Inicio.dc.html"
+                aria-label="Voltar"
+                style="
+                  position: absolute;
+                  left: 14px;
+                  top: 48px;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 999px;
+                  background: #fdfaf4;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #0a3d62;
+                "
+                ><svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M15 5l-7 7 7 7" /></svg></a
+              ><span
+                style="
+                  position: absolute;
+                  left: 14px;
+                  right: 14px;
+                  bottom: 30px;
+                  background: rgba(10, 61, 98, 0.92);
+                  color: #fff;
+                  border-radius: 10px;
+                  padding: 8px;
+                  text-align: center;
+                  font-size: 15px;
+                  font-weight: 700;
+                "
+                >Quanto custa a banana, moço?</span
+              ><span
+                style="
+                  position: absolute;
+                  left: 14px;
+                  right: 14px;
+                  bottom: 12px;
+                  height: 6px;
+                  border-radius: 999px;
+                  background: rgba(255, 255, 255, 0.5);
+                "
+                ><i
+                  style="
+                    display: block;
+                    width: 34%;
+                    height: 100%;
+                    border-radius: 999px;
+                    background: #00b894;
+                  "
+                ></i
+              ></span>
+            </div>
+            <b class="h" style="font-size: 22px">Na feira com a Dona Lúcia</b
+            ><span
+              ><span class="lvb" style="background: #0b7a5e"
+                ><svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" /></svg
+                >Primeiros passos</span
+              ></span
+            >
+            <div class="pcard">
+              <b>Quanto você entendeu?</b>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+                <span class="chip" style="justify-content: center; min-height: 44px"
+                  >Quase nada</span
+                ><span class="chip" style="justify-content: center; min-height: 44px"
+                  >Algumas partes</span
+                ><span class="chip" style="justify-content: center; min-height: 44px"
+                  >A maior parte</span
+                ><span class="chip" style="justify-content: center; min-height: 44px">Tudo</span>
+              </div>
+            </div>
+            <a class="btn" href="App-Vocabulario.dc.html">Ver as palavras</a>
+          </div>
+          <nav class="pn" aria-label="Menu do app">
+            <a class="" href="App-Inicio.dc.html"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></svg
+              >Início</a
+            ><a class="on" href="App-Assistir.dc.html"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <path d="M10 9l5 3-5 3z" /></svg
+              >Assistir</a
+            ><a class="" href="App-Series.dc.html"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="8" width="14" height="11" rx="2" />
+                <path d="M7 5h14v11M10 12l3 2-3 2z" /></svg
+              >Séries</a
+            ><a class="" href="App-Lives.dc.html"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <path d="M6 6a8 8 0 0 0 0 12M18 6a8 8 0 0 1 0 12" /></svg
+              >Lives</a
+            ><a class="" href="App-Conta.dc.html"
+              ><svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="5" cy="12" r="1.5" />
+                <circle cx="12" cy="12" r="1.5" />
+                <circle cx="19" cy="12" r="1.5" /></svg
+              >Mais</a
+            >
+          </nav>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

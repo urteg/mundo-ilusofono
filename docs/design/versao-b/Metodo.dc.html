@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Site: método</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+            color: #1e272e;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .h {
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.08;
+            color: #0a3d62;
+          }
+          .cv {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 56px;
+            padding: 0 32px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .btn.sm {
+            min-height: 46px;
+            padding: 0 24px;
+            font-size: 16px;
+          }
+          .btn.lt {
+            background: #fdfaf4;
+            color: #0a3d62;
+          }
+          .btn2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 24px;
+            border-radius: 999px;
+            border: 2px solid #0665b8;
+            color: #0665b8;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .btn2.lt {
+            border-color: #fdfaf4;
+            color: #fdfaf4;
+          }
+          .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            padding: 24px;
+          }
+          .eyebrow {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            color: #0665b8;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            font-weight: 800;
+            font-size: 15px;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            background: #fff;
+            color: #1e272e;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            cursor: pointer;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .lvb {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 3px 12px 3px 9px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+          }
+          .vc {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+          }
+          .vt {
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+          }
+          .vt svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+          .dur {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(10, 61, 98, 0.92);
+            color: #fff;
+            border-radius: 8px;
+            padding: 2px 9px;
+            font-size: 13px;
+            font-weight: 800;
+          }
+          .pg {
+            height: 6px;
+            background: #ece4d2;
+          }
+          .pg i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .vb {
+            padding: 14px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .top a.n {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+          }
+          .top a.n.on {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .sw {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .tg {
+            display: inline-flex;
+            background: #ece4d2;
+            border-radius: 999px;
+            padding: 6px;
+            gap: 4px;
+          }
+          .tg button {
+            min-height: 48px;
+            padding: 0 28px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #1e272e;
+            cursor: pointer;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 17px;
+          }
+          th,
+          td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ece4d2;
+          }
+          th {
+            font-family: "Fredoka", system-ui, sans-serif;
+            color: #0a3d62;
+            font-size: 18px;
+          }
+
+          body {
+            background: #fdfaf4;
+          }
+        </style>
+      </helmet>
+      <div style="width: 100%; min-height: 3300px">
+        <header>
+          <div
+            class="wrap"
+            style="
+              max-width: 1260px;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 16px;
+              padding-top: 14px;
+              padding-bottom: 14px;
+            "
+          >
+            <a
+              href="Main.dc.html"
+              style="display: flex; align-items: center; gap: 10px; text-decoration: none"
+              ><span
+                style="
+                  width: 40px;
+                  height: 36px;
+                  background: #0984e3;
+                  border-radius: 14px 14px 14px 4px;
+                  display: inline-block;
+                "
+                aria-hidden="true"
+              ></span
+              ><span class="h" style="font-size: 22px; color: #0a3d62">Mundo Ilusófono</span></a
+            >
+            <nav
+              style="display: flex; flex-wrap: wrap; gap: 4px; margin-left: 16px"
+              aria-label="Menu do site"
+            >
+              <a
+                href="SeriesPub.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Séries</a
+              ><a
+                href="Metodo.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Método</a
+              ><a
+                href="Planos.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Planos</a
+              ><a
+                href="Recursos.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Recursos</a
+              ><a
+                href="Blog.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Blog</a
+              >
+            </nav>
+            <span style="flex-grow: 1"></span><a class="btn2" href="Web-Entrar.dc.html">Entrar</a
+            ><a class="btn sm" href="Desafio.dc.html">Comece o Desafio</a>
+          </div>
+        </header>
+        <section>
+          <div
+            class="wrap"
+            style="
+              max-width: 1000px;
+              padding-top: 56px;
+              padding-bottom: 40px;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              text-align: center;
+              align-items: center;
+            "
+          >
+            <span class="eyebrow">COMO FUNCIONA</span>
+            <h1 class="h" style="font-size: 68px">Você entende primeiro. Falar vem depois.</h1>
+            <p
+              style="
+                margin: 0;
+                font-size: 21px;
+                line-height: 1.55;
+                max-width: 700px;
+                color: #2f3b44;
+              "
+            >
+              É assim que a gente aprende a língua materna: ouvindo muito, entendendo pelo contexto,
+              até a fala aparecer sozinha. O Mundo Ilusófono recria isso em português.
+            </p>
+          </div>
+        </section>
+        <section style="background: #f6f0e4">
+          <div
+            class="wrap"
+            style="
+              max-width: 1240px;
+              padding-top: 72px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 28px;
+            "
+          >
+            <div style="display: flex; flex-wrap: wrap; gap: 20px">
+              <div
+                class="card"
+                style="
+                  flex: 1 1 300px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  padding: 28px;
+                "
+              >
+                <span style="color: #0984e3"
+                  ><svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="3" />
+                    <path d="M10 9l5 3-5 3z" /></svg
+                ></span>
+                <h3 class="h" style="font-size: 26px">Entender de verdade</h3>
+                <p style="margin: 0; font-size: 17px; line-height: 1.55">
+                  Você ouve português real, em vídeos que você acompanha pela imagem e pela legenda.
+                </p>
+              </div>
+              <div
+                class="card"
+                style="
+                  flex: 1 1 300px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  padding: 28px;
+                "
+              >
+                <span style="color: #0984e3"
+                  ><svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 5h16v11H9l-5 4z" /></svg
+                ></span>
+                <h3 class="h" style="font-size: 26px">Palavras no contexto</h3>
+                <p style="margin: 0; font-size: 17px; line-height: 1.55">
+                  As palavras aparecem em cena, com imagem e exemplo, e voltam em outros vídeos.
+                </p>
+              </div>
+              <div
+                class="card"
+                style="
+                  flex: 1 1 300px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  padding: 28px;
+                "
+              >
+                <span style="color: #0984e3"
+                  ><svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"
+                    /></svg
+                ></span>
+                <h3 class="h" style="font-size: 26px">Cultura de brinde</h3>
+                <p style="margin: 0; font-size: 17px; line-height: 1.55">
+                  Você conhece o Brasil, a Galiza e o mundo ilusófono enquanto entende.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section style="">
+          <div
+            class="wrap"
+            style="
+              max-width: 1240px;
+              padding-top: 72px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 28px;
+            "
+          >
+            <h2 class="h" style="font-size: 48px; text-align: center">Os quatro passos</h2>
+            <div style="display: flex; flex-direction: column; gap: 20px">
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  gap: 24px;
+                  align-items: center;
+                  padding: 28px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 64px;
+                    height: 64px;
+                    border-radius: 999px;
+                    background: #00b894;
+                    color: #0a3d62;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 700;
+                    font-size: 30px;
+                  "
+                  >1</span
+                >
+                <div>
+                  <h3 class="h" style="font-size: 28px">Descubra o seu nível</h3>
+                  <p style="margin: 6px 0 0; font-size: 18px; line-height: 1.55">
+                    Você escolhe entre os caminhos e começa pelo vídeo certo.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  gap: 24px;
+                  align-items: center;
+                  padding: 28px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 64px;
+                    height: 64px;
+                    border-radius: 999px;
+                    background: #00b894;
+                    color: #0a3d62;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 700;
+                    font-size: 30px;
+                  "
+                  >2</span
+                >
+                <div>
+                  <h3 class="h" style="font-size: 28px">Assista com prazer</h3>
+                  <p style="margin: 6px 0 0; font-size: 18px; line-height: 1.55">
+                    Escolha o que gosta. Se você segue a história, está funcionando.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  gap: 24px;
+                  align-items: center;
+                  padding: 28px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 64px;
+                    height: 64px;
+                    border-radius: 999px;
+                    background: #00b894;
+                    color: #0a3d62;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 700;
+                    font-size: 30px;
+                  "
+                  >3</span
+                >
+                <div>
+                  <h3 class="h" style="font-size: 28px">Conte suas horas</h3>
+                  <p style="margin: 6px 0 0; font-size: 18px; line-height: 1.55">
+                    O progresso é em horas entendidas. Tudo conta, até o que você ouve fora do app.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  gap: 24px;
+                  align-items: center;
+                  padding: 28px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 64px;
+                    height: 64px;
+                    border-radius: 999px;
+                    background: #00b894;
+                    color: #0a3d62;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 700;
+                    font-size: 30px;
+                  "
+                  >4</span
+                >
+                <div>
+                  <h3 class="h" style="font-size: 28px">Chegue à fluência, um vídeo por vez</h3>
+                  <p style="margin: 6px 0 0; font-size: 18px; line-height: 1.55">
+                    Entender mais torna a fala mais fácil. Você participa quando estiver pronto.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section style="background: #f6f0e4">
+          <div
+            class="wrap"
+            style="
+              max-width: 1240px;
+              padding-top: 72px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 28px;
+            "
+          >
+            <h2 class="h" style="font-size: 48px; text-align: center">A escada de níveis</h2>
+            <p style="margin: 0; text-align: center; font-size: 18px; color: #4a5560">
+              [PLACEHOLDER: horas de cada nível, a definir pelo Márlio]
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 1</span
+                ><span style="flex: 1; font-size: 17px">Começando do zero.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >0 h</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 2</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você entende palavras e frases do dia a dia com ajuda da imagem.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 3</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você acompanha histórias simples e vídeos feitos para quem está começando.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 4</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você entende uma pessoa que fala com calma com você.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 5</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você entende falantes nativos conversando normalmente.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 6</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você se vira bem em conversas do dia a dia.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+              <div
+                class="card"
+                style="
+                  flex-direction: row;
+                  display: flex;
+                  align-items: center;
+                  gap: 20px;
+                  padding: 18px 24px;
+                "
+              >
+                <span
+                  style="
+                    flex: 0 0 120px;
+                    font-family: Fredoka, sans-serif;
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #0a3d62;
+                  "
+                  >Nível 7</span
+                ><span style="flex: 1; font-size: 17px"
+                  >Você usa o português com tranquilidade em qualquer situação.</span
+                ><span style="flex: 0 0 120px; text-align: right; font-weight: 800; color: #0665b8"
+                  >[horas]</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+        <section style="">
+          <div
+            class="wrap"
+            style="
+              max-width: 1240px;
+              padding-top: 72px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 28px;
+            "
+          >
+            <h2 class="h" style="font-size: 48px; text-align: center">Histórias de alunos</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 20px">
+              <div
+                style="
+                  flex: 1 1 300px;
+                  aspect-ratio: 16/9;
+                  border-radius: 22px;
+                  background: #0a3d62;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  min-height: 200px;
+                "
+              >
+                <svg
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="3" />
+                  <path d="M10 9l5 3-5 3z" /></svg
+                ><span style="margin-left: 10px; font-weight: 800">[vídeo de aluno 1]</span>
+              </div>
+              <div
+                style="
+                  flex: 1 1 300px;
+                  aspect-ratio: 16/9;
+                  border-radius: 22px;
+                  background: #0a3d62;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  min-height: 200px;
+                "
+              >
+                <svg
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="3" />
+                  <path d="M10 9l5 3-5 3z" /></svg
+                ><span style="margin-left: 10px; font-weight: 800">[vídeo de aluno 2]</span>
+              </div>
+              <div
+                style="
+                  flex: 1 1 300px;
+                  aspect-ratio: 16/9;
+                  border-radius: 22px;
+                  background: #0a3d62;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #fff;
+                  min-height: 200px;
+                "
+              >
+                <svg
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="3" />
+                  <path d="M10 9l5 3-5 3z" /></svg
+                ><span style="margin-left: 10px; font-weight: 800">[vídeo de aluno 3]</span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section style="background: #0984e3">
+          <div
+            class="wrap"
+            style="
+              padding-top: 72px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              align-items: center;
+              text-align: center;
+            "
+          >
+            <h2 class="h" style="color: #fff; font-size: 44px">Sua jornada começa com um vídeo.</h2>
+            <a class="btn lt" href="Desafio.dc.html">Comece o Desafio de 7 dias</a>
+          </div>
+        </section>
+        <footer style="background: #0a3d62; color: #d7e6f2">
+          <div
+            class="wrap"
+            style="
+              max-width: 1260px;
+              padding-top: 48px;
+              padding-bottom: 32px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 40px;
+              justify-content: space-between;
+            "
+          >
+            <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
+              <span class="h" style="color: #fff; font-size: 24px">Mundo Ilusófono</span
+              ><span class="cv" style="color: #e3ba14; font-size: 28px"
+                >O português se vive, não só se estuda.</span
+              ><span style="font-size: 14px">Contato: marliobps@gmail.com</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Explorar</b
+              ><a
+                href="Metodo.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Método</a
+              ><a
+                href="SeriesPub.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Séries</a
+              ><a
+                href="Planos.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Planos</a
+              >
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Recursos</b
+              ><a
+                href="Recursos.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Perguntas frequentes</a
+              ><a href="Blog.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Blog</a
+              ><a
+                href="Desafio.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Desafio 7 Dias</a
+              >
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Empresa</b
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Sobre o Márlio</a
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Privacidade</a
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Termos</a
+              >
+            </div>
+          </div>
+          <div
+            class="wrap"
+            style="max-width: 1260px; padding-bottom: 28px; font-size: 13px; color: #a9c4d9"
+          >
+            Os preços não incluem imposto. O IVA do seu país aparece somado no pagamento. · A
+            Coruña, Galiza
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":3300}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>

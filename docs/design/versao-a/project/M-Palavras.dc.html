@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Palavras no celular</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1,
+          .m h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 15px/1 "Fredoka",
+              sans-serif;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .bar {
+            height: 6px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+            border-radius: 999px;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 50px;
+            padding: 0 3px 0 12px;
+            border: 2px solid #ece4d2;
+            border-radius: 999px;
+            background: #fff;
+            font:
+              700 13px "Nunito Sans",
+              sans-serif;
+            box-sizing: border-box;
+          }
+          .ib {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: #dcebfa;
+            color: #0665b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex: none;
+          }
+          .nav {
+            display: flex;
+            border-top: 1px solid #ece4d2;
+            background: #fff;
+            flex: none;
+          }
+          .nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            min-height: 64px;
+            color: #4a5560;
+            text-decoration: none;
+            font:
+              600 12px "Nunito Sans",
+              sans-serif;
+          }
+          .nav a.on {
+            color: #0665b8;
+          }
+          .mode {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 6px;
+            border-radius: 16px;
+            border: 2px solid #ece4d2;
+            background: #fdfaf4;
+            font:
+              600 15px "Fredoka",
+              sans-serif;
+            color: #0a3d62;
+            cursor: pointer;
+          }
+          .st {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font:
+              700 12px "Nunito Sans",
+              sans-serif;
+          }
+          .st.a {
+            background: #fff1b8;
+            color: #6b5200;
+          }
+          .st.b {
+            background: #d7f3ec;
+            color: #00684f;
+          }
+          .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 56px;
+            border-bottom: 1px solid #ece4d2;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="width: 390px; height: 844px; display: flex; flex-direction: column; overflow: hidden"
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #fff;
+            border-bottom: 1px solid #ece4d2;
+            flex: none;
+          "
+        >
+          <a
+            href="M-Conta.dc.html"
+            aria-label="Voltar para Mais"
+            style="
+              display: flex;
+              width: 44px;
+              height: 44px;
+              align-items: center;
+              justify-content: center;
+              margin-right: auto;
+              color: #0a3d62;
+            "
+            ><svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 5l-7 7 7 7"></path></svg
+          ></a>
+          <div class="pill">
+            <span>12/20 min</span
+            ><span class="bar" style="width: 40px"><i style="width: 60%"></i></span
+            ><a class="ib" href="M-Horas.dc.html" aria-label="Adicionar tempo fora do app"
+              ><svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14"></path></svg
+            ></a>
+          </div>
+          <div
+            class="pill"
+            style="padding-right: 12px; color: #9a3412"
+            aria-label="Sequência de 3 dias"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9A3412"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"
+              ></path></svg
+            >3
+          </div>
+        </header>
+
+        <main
+          style="
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+          "
+        >
+          <h1 style="font-size: 26px">Palavras</h1>
+          <section
+            style="
+              background: #fff;
+              border-radius: 18px;
+              box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+              padding: 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            "
+          >
+            <h2 style="font-size: 19px">Exercícios</h2>
+            <div style="display: flex; gap: 8px">
+              <button type="button" class="mode">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#0665B8"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="6" width="14" height="14" rx="2"></rect>
+                  <path d="M7 3h12a2 2 0 0 1 2 2v12"></path></svg
+                >Lembrar
+              </button>
+              <button type="button" class="mode">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#00684F"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 9v6h4l5 4V5L8 9z"></path>
+                  <path d="M16.5 8.5a5 5 0 0 1 0 7"></path></svg
+                >Ouvir
+              </button>
+              <button type="button" class="mode">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#B23A0B"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 5h11a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H9l-5 4z"></path></svg
+                >Produzir
+              </button>
+            </div>
+          </section>
+          <div
+            style="
+              background: #fff4cc;
+              border-radius: 18px 18px 18px 4px;
+              padding: 14px 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+            "
+          >
+            <span style="font-size: 15px"
+              ><b>23 palavras</b> dos vídeos que você viu ainda não estão na sua lista.</span
+            >
+            <button type="button" class="btn" style="align-self: flex-start">
+              Adicionar todas
+            </button>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center">
+            <span class="st a">Aprendendo 41</span><span class="st b">Aprendida 86</span
+            ><span class="muted" style="margin-left: auto; font-size: 13px; font-weight: 700"
+              >Recentes</span
+            >
+          </div>
+          <label
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              min-height: 48px;
+              border: 2px solid #cfc6b2;
+              border-radius: 999px;
+              background: #fff;
+              padding: 0 16px;
+            "
+            ><svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#4A5560"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="7"></circle>
+              <path d="M20 20l-3.5-3.5"></path></svg
+            ><span
+              style="
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+              "
+              >Buscar palavras</span
+            ><input
+              type="search"
+              placeholder="Buscar palavra"
+              style="
+                border: 0;
+                outline: none;
+                font:
+                  15px &quot;Nunito Sans&quot;,
+                  sans-serif;
+                flex: 1;
+                min-width: 0;
+                background: transparent;
+              "
+          /></label>
+          <div>
+            <sc-for list="{{lista}}" as="p" hint-placeholder-count="6">
+              <div class="row">
+                <b
+                  style="
+                    font:
+                      600 17px &quot;Fredoka&quot;,
+                      sans-serif;
+                    color: #0a3d62;
+                    flex: 1;
+                  "
+                  >{{p.w}}</b
+                ><span class="{{p.cls}}">{{p.st}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </main>
+
+        <nav class="nav" aria-label="App">
+          <a href="M-Inicio.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"></path></svg
+            >Início</a
+          >
+          <a href="M-Assistir.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+              <path d="M10 9l4 2-4 2z"></path>
+              <path d="M8 21h8"></path></svg
+            >Assistir</a
+          >
+          <a href="M-Series.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="14" height="13" rx="2"></rect>
+              <path d="M7 4h12a2 2 0 0 1 2 2v11"></path></svg
+            >Séries</a
+          >
+          <a href="M-Lives.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="2"></circle>
+              <path
+                d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
+              ></path></svg
+            >Lives</a
+          >
+          <a class="on" href="M-Conta.dc.html" aria-current="page"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path></svg
+            >Mais</a
+          >
+        </nav>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const d = [['a feira', 0], ['a manga', 0], ['o troco', 0], ['o barco', 1], ['a vó', 1], ['o quintal', 0], ['bater papo', 1]];
+          return { lista: d.map(([w, a]) => ({ w, st: a ? 'Aprendida' : 'Aprendendo', cls: a ? 'st b' : 'st a' })) };
+        }
+      }
+    </script>
+  </body>
+</html>

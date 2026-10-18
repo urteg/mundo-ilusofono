@@ -1,0 +1,360 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "App-Assistir.dc.html": {
+      "expand": "fill",
+      "h": 1500,
+      "is_interactive": true,
+      "title": "App · Assistir",
+      "w": 1360,
+      "x": 2880,
+      "y": 5600
+    },
+    "App-Conta.dc.html": {
+      "expand": "fill",
+      "h": 1000,
+      "is_interactive": true,
+      "title": "App · Conta",
+      "w": 1360,
+      "x": 17280,
+      "y": 5600
+    },
+    "App-Entrar.dc.html": {
+      "expand": "fill",
+      "h": 760,
+      "is_interactive": true,
+      "title": "App · Entrar",
+      "w": 1360,
+      "x": 0,
+      "y": 5600
+    },
+    "App-Horas.dc.html": {
+      "expand": "fill",
+      "h": 1100,
+      "is_interactive": true,
+      "title": "App · Horas fora do app",
+      "w": 1360,
+      "x": 14400,
+      "y": 5600
+    },
+    "App-Inicio.dc.html": {
+      "expand": "fill",
+      "h": 1100,
+      "title": "App · Lição de hoje",
+      "w": 1360,
+      "x": 1440,
+      "y": 5600
+    },
+    "App-Lives.dc.html": {
+      "expand": "fill",
+      "h": 1500,
+      "title": "App · Lives",
+      "w": 1360,
+      "x": 11520,
+      "y": 5600
+    },
+    "App-Palavras.dc.html": {
+      "expand": "fill",
+      "h": 1300,
+      "title": "App · Palavras",
+      "w": 1360,
+      "x": 10080,
+      "y": 5600
+    },
+    "App-Planos.dc.html": {
+      "expand": "fill",
+      "h": 1700,
+      "is_interactive": true,
+      "title": "App · Planos",
+      "w": 1360,
+      "x": 15840,
+      "y": 5600
+    },
+    "App-Progresso.dc.html": {
+      "expand": "fill",
+      "h": 1900,
+      "title": "App · Progresso",
+      "w": 1360,
+      "x": 12960,
+      "y": 5600
+    },
+    "App-Serie.dc.html": {
+      "expand": "fill",
+      "h": 1300,
+      "title": "App · Série",
+      "w": 1360,
+      "x": 5760,
+      "y": 5600
+    },
+    "App-Series.dc.html": {
+      "expand": "fill",
+      "h": 1500,
+      "title": "App · Séries",
+      "w": 1360,
+      "x": 4320,
+      "y": 5600
+    },
+    "App-Video.dc.html": {
+      "expand": "fill",
+      "h": 1300,
+      "is_interactive": true,
+      "title": "App · Vídeo",
+      "w": 1360,
+      "x": 7200,
+      "y": 5600
+    },
+    "App-Vocabulario.dc.html": {
+      "expand": "fill",
+      "h": 1200,
+      "is_interactive": true,
+      "title": "App · Vocabulário do vídeo",
+      "w": 1360,
+      "x": 8640,
+      "y": 5600
+    },
+    "M-Assistir.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Celular · Assistir",
+      "w": 390,
+      "x": 940,
+      "y": 7900
+    },
+    "M-Conta.dc.html": {
+      "h": 844,
+      "title": "Celular · Conta",
+      "w": 390,
+      "x": 4230,
+      "y": 7900
+    },
+    "M-Entrar.dc.html": {
+      "h": 844,
+      "title": "Celular · Entrar",
+      "w": 390,
+      "x": 0,
+      "y": 7900
+    },
+    "M-Horas.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Celular · Adicionar tempo fora do app",
+      "w": 390,
+      "x": 4700,
+      "y": 7900
+    },
+    "M-Inicio.dc.html": {
+      "h": 844,
+      "title": "Celular · Lição de hoje",
+      "w": 390,
+      "x": 470,
+      "y": 7900
+    },
+    "M-Lives.dc.html": {
+      "h": 844,
+      "title": "Celular · Lives",
+      "w": 390,
+      "x": 3290,
+      "y": 7900
+    },
+    "M-Palavras.dc.html": {
+      "h": 844,
+      "title": "Celular · Palavras",
+      "w": 390,
+      "x": 2820,
+      "y": 7900
+    },
+    "M-Progresso.dc.html": {
+      "h": 844,
+      "title": "Celular · Progresso",
+      "w": 390,
+      "x": 3760,
+      "y": 7900
+    },
+    "M-Series.dc.html": {
+      "h": 844,
+      "title": "Celular · Séries",
+      "w": 390,
+      "x": 1410,
+      "y": 7900
+    },
+    "M-Video.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Celular · Vídeo",
+      "w": 390,
+      "x": 1880,
+      "y": 7900
+    },
+    "M-Vocabulario.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "title": "Celular · Vocabulário",
+      "w": 390,
+      "x": 2350,
+      "y": 7900
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 5200,
+      "title": "Site · Início",
+      "w": 1360,
+      "x": 0,
+      "y": 0
+    },
+    "Site-Blog.dc.html": {
+      "expand": "fill",
+      "h": 1800,
+      "title": "Site · Blog",
+      "w": 1360,
+      "x": 8640,
+      "y": 0
+    },
+    "Site-Desafio.dc.html": {
+      "expand": "fill",
+      "h": 1700,
+      "title": "Site · Desafio 7 Dias",
+      "w": 1360,
+      "x": 5760,
+      "y": 0
+    },
+    "Site-Metodo.dc.html": {
+      "expand": "fill",
+      "h": 3200,
+      "title": "Site · Método",
+      "w": 1360,
+      "x": 1440,
+      "y": 0
+    },
+    "Site-Obrigado-Desafio.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "title": "Obrigado · Desafio",
+      "w": 1360,
+      "x": 10080,
+      "y": 0
+    },
+    "Site-Obrigado-Entender.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "title": "Obrigado · Entender",
+      "w": 1360,
+      "x": 11520,
+      "y": 0
+    },
+    "Site-Obrigado-Participar.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "title": "Obrigado · Participar",
+      "w": 1360,
+      "x": 12960,
+      "y": 0
+    },
+    "Site-Planos.dc.html": {
+      "expand": "fill",
+      "h": 2100,
+      "is_interactive": true,
+      "title": "Site · Planos",
+      "w": 1360,
+      "x": 4320,
+      "y": 0
+    },
+    "Site-Recursos.dc.html": {
+      "expand": "fill",
+      "h": 2600,
+      "is_interactive": true,
+      "title": "Site · Recursos e FAQ",
+      "w": 1360,
+      "x": 7200,
+      "y": 0
+    },
+    "Site-Series.dc.html": {
+      "expand": "fill",
+      "h": 2200,
+      "title": "Site · Séries",
+      "w": 1360,
+      "x": 2880,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-18T12:00:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/NE2bYjGhCiKMgZn7YsFwHw",
+      "copiedAt": "2026-10-18T12:00:00Z",
+      "namespace": "mundo-ilusofono",
+      "title": "Mundo Ilusófono Design System",
+      "version": "1789768095-b4ee"
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "appcel": {
+      "kind": "title1",
+      "maxW": 5090,
+      "text": "App no celular",
+      "w": 240,
+      "x": 0,
+      "y": 7600
+    },
+    "appweb": {
+      "kind": "title1",
+      "maxW": 8000,
+      "text": "App no computador (versão web)",
+      "w": 240,
+      "x": 0,
+      "y": 5300
+    },
+    "site": {
+      "kind": "title1",
+      "maxW": 8000,
+      "text": "Site",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Site-Metodo.dc.html",
+    "Site-Series.dc.html",
+    "Site-Planos.dc.html",
+    "Site-Desafio.dc.html",
+    "Site-Recursos.dc.html",
+    "Site-Blog.dc.html",
+    "Site-Obrigado-Desafio.dc.html",
+    "Site-Obrigado-Entender.dc.html",
+    "Site-Obrigado-Participar.dc.html",
+    "App-Entrar.dc.html",
+    "App-Inicio.dc.html",
+    "App-Assistir.dc.html",
+    "App-Series.dc.html",
+    "App-Serie.dc.html",
+    "App-Video.dc.html",
+    "App-Vocabulario.dc.html",
+    "App-Palavras.dc.html",
+    "App-Lives.dc.html",
+    "App-Progresso.dc.html",
+    "App-Horas.dc.html",
+    "App-Planos.dc.html",
+    "App-Conta.dc.html",
+    "M-Entrar.dc.html",
+    "M-Inicio.dc.html",
+    "M-Assistir.dc.html",
+    "M-Series.dc.html",
+    "M-Video.dc.html",
+    "M-Vocabulario.dc.html",
+    "M-Palavras.dc.html",
+    "M-Lives.dc.html",
+    "M-Progresso.dc.html",
+    "M-Conta.dc.html",
+    "M-Horas.dc.html"
+  ],
+  "pages": [],
+  "title": "Mundo Ilusófono: site e app"
+}

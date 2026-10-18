@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Entrar</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .mi {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.55;
+          }
+          .mi h1,
+          .mi h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 52px;
+            padding: 0 28px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 18px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background: #05549a;
+            color: #fff;
+          }
+          .hand {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .thumb {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+          }
+          .field {
+            min-height: 52px;
+            border-radius: 14px;
+            border: 2px solid #cfc6b2;
+            padding: 0 16px;
+            font:
+              16px "Nunito Sans",
+              sans-serif;
+            color: #1e272e;
+            background: #fff;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .field:focus {
+            border-color: #0665b8;
+            outline: none;
+            box-shadow: 0 0 0 3px #dcebfa;
+          }
+          .field.err {
+            border-color: #c2410c;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div class="mi" style="min-height: 760px; display: flex; flex-wrap: wrap">
+        <div
+          style="
+            flex: 1 1 520px;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 56px;
+            box-sizing: border-box;
+            gap: 24px;
+          "
+        >
+          <a
+            href="Main.dc.html"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              text-decoration: none;
+              color: #0a3d62;
+              font:
+                700 22px &quot;Fredoka&quot;,
+                sans-serif;
+            "
+            ><img
+              src="marca/logo.png"
+              alt=""
+              width="52"
+              height="52"
+              style="display: block; width: 52px; height: 52px; object-fit: contain"
+            /><span style="display: flex; flex-direction: column; line-height: 1"
+              ><span>Mundo</span><span>Ilusófono</span></span
+            ></a
+          >
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 20px;
+              max-width: 440px;
+              width: 100%;
+              margin: 0 auto;
+            "
+          >
+            <sc-if value="{{inicial}}" hint-placeholder-val="{{true}}">
+              <div style="display: flex; flex-direction: column; gap: 20px">
+                <h1 style="font-size: 40px">Entre com seu e-mail</h1>
+                <div style="display: flex; flex-direction: column; gap: 8px">
+                  <label for="email" style="font-weight: 700">Seu e-mail</label>
+                  <input
+                    id="email"
+                    type="email"
+                    class="{{fieldClass}}"
+                    placeholder="voce@email.com"
+                    value="{{email}}"
+                    onChange="{{onEmail}}"
+                    aria-invalid="{{invalid}}"
+                    aria-describedby="email-msg"
+                  />
+                  <sc-if value="{{erro}}" hint-placeholder-val="{{false}}">
+                    <span
+                      id="email-msg"
+                      role="alert"
+                      style="color: #c2410c; font-weight: 700; font-size: 14px"
+                      >Esse e-mail não parece certo. Confira e tente de novo.</span
+                    >
+                  </sc-if>
+                </div>
+                <button type="button" class="btn" onClick="{{enviar}}">
+                  Enviar link de acesso
+                </button>
+                <p class="muted" style="margin: 0">Sem senha. Você recebe um link e entra.</p>
+                <p class="muted" style="margin: 0; font-size: 14px">
+                  Ainda não tem conta? <a href="Site-Desafio.dc.html">Comece pelo Desafio 7 Dias</a>
+                </p>
+              </div>
+            </sc-if>
+            <sc-if value="{{enviado}}" hint-placeholder-val="{{false}}">
+              <div style="display: flex; flex-direction: column; gap: 18px">
+                <span
+                  style="
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 999px;
+                    background: #d7f3ec;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  "
+                  ><svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00684F"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="M3 7l9 6 9-6"></path></svg
+                ></span>
+                <h1 style="font-size: 38px">Olhe o seu e-mail</h1>
+                <p class="muted" style="margin: 0; font-size: 18px">
+                  Mandamos um link para <b style="color: #1e272e">{{emailMostrado}}</b>. Clique nele
+                  e você já entra.
+                </p>
+                <a class="btn" href="App-Inicio.dc.html">Abrir o link (demonstração)</a>
+                <button
+                  type="button"
+                  onClick="{{voltar}}"
+                  style="
+                    align-self: flex-start;
+                    min-height: 44px;
+                    border: 0;
+                    background: transparent;
+                    color: #0665b8;
+                    font:
+                      700 16px &quot;Nunito Sans&quot;,
+                      sans-serif;
+                    cursor: pointer;
+                    padding: 0;
+                  "
+                >
+                  Usar outro e-mail
+                </button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1 1 440px;
+            background: #dcebfa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+          "
+        >
+          <div
+            style="
+              width: 280px;
+              transform: rotate(5deg);
+              background: #1e272e;
+              border-radius: 42px;
+              padding: 12px;
+              box-shadow: 0 24px 48px rgba(30, 39, 46, 0.22);
+            "
+          >
+            <div
+              style="
+                background: #fdfaf4;
+                border-radius: 32px;
+                overflow: hidden;
+                height: 520px;
+                display: flex;
+                flex-direction: column;
+              "
+            >
+              <img
+                class="thumb"
+                src="cenas/campo.svg"
+                alt="Cena ilustrada: casa no campo"
+                style="height: 340px"
+              />
+              <div style="padding: 18px; display: flex; flex-direction: column; gap: 8px">
+                <b
+                  style="
+                    font:
+                      600 18px &quot;Fredoka&quot;,
+                      sans-serif;
+                    color: #0a3d62;
+                  "
+                  >A casa da vó</b
+                ><span class="muted" style="font-size: 14px">vídeo 2 de 8 · 4:10</span>
+              </div>
+            </div>
+          </div>
+          <span
+            class="hand"
+            style="
+              position: absolute;
+              left: 48px;
+              bottom: 56px;
+              font-size: 34px;
+              background: #fff;
+              padding: 8px 18px;
+              border-radius: 22px 22px 22px 4px;
+              transform: rotate(-4deg);
+            "
+            >vamos lá, tá?</span
+          >
+        </div>
+      </div>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"estado":{"editor":"enum","options":["inicial","enviado","erro"],"default":"inicial"},"$preview":{"width":1360,"height":760}}'
+    >
+      class Component extends DCLogic {
+        renderVals() {
+          const estado = this.state.estado ?? (this.props.estado ?? 'inicial');
+          const email = this.state.email ?? '';
+          const erro = estado === 'erro';
+          return {
+            inicial: estado !== 'enviado',
+            enviado: estado === 'enviado',
+            erro,
+            invalid: erro ? 'true' : 'false',
+            fieldClass: erro ? 'field err' : 'field',
+            email,
+            emailMostrado: email || 'voce@email.com',
+            onEmail: (e) => this.setState({ email: e.target.value }),
+            enviar: () => this.setState({ estado: /.+@.+\..+/.test(email) ? 'enviado' : 'erro' }),
+            voltar: () => this.setState({ estado: 'inicial' })
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

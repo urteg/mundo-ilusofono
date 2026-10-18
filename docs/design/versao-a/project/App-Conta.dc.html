@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Conta</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .mi {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.55;
+          }
+          .mi h1,
+          .mi h2,
+          .mi h3 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            box-sizing: border-box;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 16px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+            cursor: pointer;
+          }
+          .btn.sec {
+            background: #fff;
+            color: #0665b8;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .bar {
+            height: 8px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+            border-radius: 999px;
+          }
+          .tab {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font:
+              600 16px "Fredoka",
+              sans-serif;
+          }
+          .tab:hover {
+            background: #f6f0e4;
+            color: #0a3d62;
+          }
+          .tab.on {
+            color: #0665b8;
+            background: #dcebfa;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 52px;
+            padding: 4px 4px 4px 16px;
+            border: 2px solid #ece4d2;
+            border-radius: 999px;
+            background: #fff;
+            font:
+              700 14px "Nunito Sans",
+              sans-serif;
+            box-sizing: border-box;
+          }
+          .ib {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: #dcebfa;
+            color: #0665b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            flex: none;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 18px;
+            border: 2px solid #cfc6b2;
+            border-radius: 999px;
+            background: #fff;
+            color: #1e272e;
+            font:
+              600 15px "Nunito Sans",
+              sans-serif;
+            cursor: pointer;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .pref {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 56px;
+            border-bottom: 1px solid #ece4d2;
+          }
+          .sw {
+            position: relative;
+            width: 48px;
+            height: 28px;
+            border-radius: 999px;
+            background: #cfc6b2;
+            border: 0;
+            cursor: pointer;
+            flex: none;
+            padding: 0;
+          }
+          .sw.on {
+            background: #00b894;
+          }
+          .sw i {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: #fff;
+            transition: left 0.15s;
+          }
+          .sw.on i {
+            left: 23px;
+          }
+          .link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 52px;
+            border-bottom: 1px solid #ece4d2;
+            text-decoration: none;
+            color: #1e272e;
+            font-weight: 600;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div class="mi">
+        <header style="background: #fff; border-bottom: 1px solid #ece4d2">
+          <div
+            class="wrap"
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 12px 24px;
+              padding-top: 10px;
+              padding-bottom: 10px;
+            "
+          >
+            <a
+              href="App-Inicio.dc.html"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                text-decoration: none;
+                color: #0a3d62;
+                font:
+                  700 20px &quot;Fredoka&quot;,
+                  sans-serif;
+              "
+              ><img
+                src="marca/logo.png"
+                alt=""
+                width="46"
+                height="46"
+                style="display: block; width: 46px; height: 46px; object-fit: contain"
+              /><span style="display: flex; flex-direction: column; line-height: 1"
+                ><span>Mundo</span><span>Ilusófono</span></span
+              ></a
+            >
+            <nav
+              aria-label="App"
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                flex: 1 1 auto;
+                justify-content: center;
+              "
+            >
+              <a class="tab" href="App-Inicio.dc.html">Início</a
+              ><a class="tab" href="App-Assistir.dc.html">Assistir</a
+              ><a class="tab" href="App-Series.dc.html">Séries</a
+              ><a class="tab" href="App-Lives.dc.html">Lives</a
+              ><a class="tab" href="App-Progresso.dc.html">Progresso</a
+              ><a class="tab on" href="App-Conta.dc.html" aria-current="page">Conta</a>
+            </nav>
+            <div style="display: flex; gap: 10px; align-items: center">
+              <div class="pill">
+                <span>12/{{meta}} min</span
+                ><span class="bar" style="width: 64px"><i style="width: 60%"></i></span
+                ><a class="ib" href="App-Horas.dc.html" aria-label="Adicionar tempo fora do app"
+                  ><svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 5v14M5 12h14"></path></svg
+                ></a>
+              </div>
+              <div
+                class="pill"
+                style="padding-right: 16px; color: #9a3412"
+                aria-label="Sequência de 3 dias"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#9A3412"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"
+                  ></path></svg
+                >3
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main
+          class="wrap"
+          style="
+            padding-top: 36px;
+            padding-bottom: 64px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            align-items: flex-start;
+          "
+        >
+          <h1 style="font-size: 36px; flex-basis: 100%">Conta</h1>
+          <div style="flex: 1 1 340px; display: flex; flex-direction: column; gap: 20px">
+            <section
+              class="card"
+              style="padding: 26px; display: flex; flex-direction: column; gap: 14px"
+            >
+              <div style="display: flex; gap: 16px; align-items: center">
+                <span
+                  style="
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 999px;
+                    background: #dcebfa;
+                    color: #0665b8;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font:
+                      700 22px &quot;Fredoka&quot;,
+                      sans-serif;
+                  "
+                  >A</span
+                >
+                <div>
+                  <b
+                    style="
+                      font:
+                        600 20px &quot;Fredoka&quot;,
+                        sans-serif;
+                      color: #0a3d62;
+                    "
+                    >Ana Souza</b
+                  >
+                  <div class="muted" style="font-size: 14px">ana@email.com</div>
+                </div>
+              </div>
+              <a class="btn sec" href="#" style="align-self: flex-start">Editar nome e e-mail</a>
+            </section>
+            <section
+              class="card"
+              style="padding: 26px; display: flex; flex-direction: column; gap: 10px"
+            >
+              <h2 style="font-size: 20px">Plano</h2>
+              <span>Entender, anual · próxima cobrança em 12 de março de 2027</span>
+              <a class="btn" href="App-Planos.dc.html" style="align-self: flex-start">Ver planos</a>
+            </section>
+            <section class="card" style="padding: 10px 26px 16px">
+              <h2 style="font-size: 20px; padding: 14px 0 4px">Ajuda</h2>
+              <a class="link" href="Site-Recursos.dc.html"
+                >Perguntas frequentes<svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 5l7 7-7 7"></path></svg
+              ></a>
+              <a class="link" href="mailto:marliobps@gmail.com"
+                >Fale com a gente<svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 5l7 7-7 7"></path></svg
+              ></a>
+              <a class="link" href="Main.dc.html" style="color: #c2410c; border-bottom: 0">Sair</a>
+            </section>
+          </div>
+
+          <section
+            class="card"
+            style="
+              flex: 1.4 1 460px;
+              padding: 10px 28px 20px;
+              display: flex;
+              flex-direction: column;
+            "
+          >
+            <h2 style="font-size: 20px; padding: 16px 0 8px">Preferências</h2>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 8px 0 16px;
+                border-bottom: 1px solid #ece4d2;
+              "
+            >
+              <span style="font-weight: 700" id="lbl-meta">Meta diária</span>
+              <div
+                role="group"
+                aria-labelledby="lbl-meta"
+                style="display: flex; flex-wrap: wrap; gap: 8px"
+              >
+                <sc-for list="{{metas}}" as="m" hint-placeholder-count="4"
+                  ><button
+                    type="button"
+                    class="{{m.cls}}"
+                    aria-pressed="{{m.sel}}"
+                    onClick="{{m.pick}}"
+                  >
+                    {{m.n}} min
+                  </button></sc-for
+                >
+              </div>
+            </div>
+            <label class="pref"
+              ><span style="font-weight: 600">Fuso das lives</span
+              ><select
+                style="
+                  min-height: 44px;
+                  border: 2px solid #cfc6b2;
+                  border-radius: 999px;
+                  background: #fff;
+                  padding: 0 14px;
+                  font:
+                    600 15px &quot;Nunito Sans&quot;,
+                    sans-serif;
+                "
+              >
+                <option>Lisboa (UTC+1)</option>
+                <option>Madri (UTC+2)</option>
+                <option>São Paulo (UTC−3)</option>
+                <option>Nova York (UTC−4)</option>
+              </select></label
+            >
+            <sc-for list="{{prefs}}" as="p" hint-placeholder-count="7">
+              <div class="pref">
+                <span id="{{p.id}}" style="font-weight: 600">{{p.nome}}</span
+                ><button
+                  type="button"
+                  class="{{p.cls}}"
+                  role="switch"
+                  aria-checked="{{p.sel}}"
+                  aria-labelledby="{{p.id}}"
+                  onClick="{{p.toggle}}"
+                >
+                  <i></i>
+                </button>
+              </div>
+            </sc-for>
+          </section>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":1000}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const meta = this.state.meta ?? 20;
+          const p = this.state.p ?? { leg: true, escuro: false, previa: true, novidades: false, novos: true, semanal: true };
+          const lista = [
+            ['leg', 'Legendas ligadas por padrão'],
+            ['escuro', 'Modo escuro'],
+            ['previa', 'Prévia do vídeo ao passar o mouse'],
+            ['novidades', 'E-mail: novidades'],
+            ['novos', 'E-mail: vídeos novos'],
+            ['semanal', 'E-mail semanal']
+          ];
+          return {
+            meta,
+            metas: [10, 20, 30, 45].map((n) => ({ n, cls: meta === n ? 'chip on' : 'chip', sel: meta === n ? 'true' : 'false', pick: () => this.setState({ meta: n }) })),
+            prefs: lista.map(([k, nome]) => ({ id: 'pref-' + k, nome, cls: p[k] ? 'sw on' : 'sw', sel: p[k] ? 'true' : 'false', toggle: () => this.setState({ p: { ...p, [k]: !p[k] } }) }))
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

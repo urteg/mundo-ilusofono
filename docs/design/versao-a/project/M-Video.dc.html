@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vídeo no celular</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1,
+          .m h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .lv {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 0 10px;
+            border-radius: 999px;
+            font:
+              700 12px/1.3 "Nunito Sans",
+              sans-serif;
+            text-decoration: none;
+          }
+          .lv2 {
+            background: #dcebfa;
+            color: #0665b8;
+          }
+          .tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            background: #fff;
+            color: #1e272e;
+            font:
+              600 13px "Nunito Sans",
+              sans-serif;
+            text-decoration: none;
+          }
+          .hand {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .ctl {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 2px solid #ece4d2;
+            background: #fff;
+            color: #1e272e;
+            font:
+              600 14px "Nunito Sans",
+              sans-serif;
+            cursor: pointer;
+            flex: none;
+          }
+          .ctl.on {
+            border-color: #0665b8;
+            color: #0665b8;
+            background: #eef5fc;
+          }
+          .opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 52px;
+            padding: 0 16px;
+            border-radius: 14px;
+            border: 2px solid #ece4d2;
+            background: #fff;
+            font:
+              600 15px "Nunito Sans",
+              sans-serif;
+            color: #1e272e;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+          }
+          .opt.on {
+            border-color: #00b894;
+            background: #e9faf5;
+          }
+          .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            flex: none;
+            box-sizing: border-box;
+          }
+          .opt.on .dot {
+            border: 6px solid #00b894;
+          }
+          .nav {
+            display: flex;
+            border-top: 1px solid #ece4d2;
+            background: #fff;
+            flex: none;
+          }
+          .nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            min-height: 64px;
+            color: #4a5560;
+            text-decoration: none;
+            font:
+              600 12px "Nunito Sans",
+              sans-serif;
+          }
+          .nav a.on {
+            color: #0665b8;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="width: 390px; height: 844px; display: flex; flex-direction: column; overflow: hidden"
+      >
+        <div style="flex: none; background: #1e272e">
+          <div style="display: flex; align-items: center; padding: 4px 8px">
+            <a
+              href="M-Assistir.dc.html"
+              aria-label="Voltar para Assistir"
+              style="
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              "
+              ><svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 5l-7 7 7 7"></path></svg></a
+            ><span style="color: #fff; font-weight: 700; font-size: 14px">vídeo 3 de 12</span>
+          </div>
+          <div style="position: relative">
+            <img
+              src="cenas/feira.svg"
+              alt="Vídeo: um sábado na feira"
+              style="display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover"
+            />
+            <sc-if value="{{legenda}}" hint-placeholder-val="{{true}}"
+              ><div
+                style="
+                  position: absolute;
+                  left: 0;
+                  right: 0;
+                  bottom: 26px;
+                  display: flex;
+                  justify-content: center;
+                  padding: 0 12px;
+                "
+              >
+                <span
+                  style="
+                    background: rgba(30, 39, 46, 0.88);
+                    color: #fff;
+                    border-radius: 8px;
+                    padding: 4px 10px;
+                    font-size: 15px;
+                    font-weight: 600;
+                  "
+                  >Olha, essa manga tá docinha, ó.</span
+                >
+              </div></sc-if
+            >
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 5px;
+                background: rgba(255, 255, 255, 0.35);
+              "
+            >
+              <div style="width: 52%; height: 100%; background: #00b894"></div>
+            </div>
+          </div>
+        </div>
+
+        <main
+          style="
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+          "
+        >
+          <div style="display: flex; gap: 8px; overflow-x: auto">
+            <button
+              type="button"
+              class="{{legCls}}"
+              aria-pressed="{{legTxt}}"
+              onClick="{{toggleLeg}}"
+            >
+              Legenda
+            </button>
+            <button type="button" class="ctl" onClick="{{nextVel}}" aria-label="Velocidade {{vel}}">
+              {{vel}}
+            </button>
+            <button
+              type="button"
+              class="{{likeCls}}"
+              aria-pressed="{{likeTxt}}"
+              onClick="{{toggleLike}}"
+              aria-label="Curtir"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"
+                ></path>
+              </svg>
+            </button>
+            <button type="button" class="ctl" aria-label="Compartilhar">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M7 8l5-5 5 5"></path>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="{{saveCls}}"
+              aria-pressed="{{saveTxt}}"
+              onClick="{{toggleSave}}"
+              aria-label="Salvar"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 3h12v18l-6-4-6 4z"></path>
+              </svg>
+            </button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <h1 style="font-size: 24px">Um sábado na feira</h1>
+            <span class="muted" style="font-size: 14px">vídeo 3 de 12 · 3:20</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <a class="lv lv2" href="M-Assistir.dc.html">Seguindo em frente</a
+              ><a class="tag" href="M-Assistir.dc.html">Brasil</a
+              ><a class="tag" href="M-Assistir.dc.html">Márlio</a
+              ><a class="tag" href="M-Assistir.dc.html">Comida</a>
+            </div>
+          </div>
+          <section
+            style="
+              background: #fff;
+              border-radius: 18px;
+              box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+              padding: 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+            "
+          >
+            <h2 style="font-size: 19px" id="m-q">Quanto você entendeu?</h2>
+            <div
+              role="radiogroup"
+              aria-labelledby="m-q"
+              style="display: flex; flex-direction: column; gap: 8px"
+            >
+              <sc-for list="{{opcoes}}" as="o" hint-placeholder-count="3"
+                ><button
+                  type="button"
+                  role="radio"
+                  class="{{o.cls}}"
+                  aria-checked="{{o.sel}}"
+                  onClick="{{o.pick}}"
+                >
+                  <span class="dot"></span>{{o.nome}}
+                </button></sc-for
+              >
+            </div>
+            <span class="hand" style="font-size: 22px"
+              >palavras que você não conhece? deixa passar. elas voltam.</span
+            >
+          </section>
+          <a
+            href="M-Vocabulario.dc.html"
+            style="
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              background: #fff;
+              border: 3px solid #0984e3;
+              border-radius: 18px;
+              padding: 14px;
+              text-decoration: none;
+              color: inherit;
+            "
+            ><span
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                background: #0665b8;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font:
+                  700 17px &quot;Fredoka&quot;,
+                  sans-serif;
+                flex: none;
+              "
+              >2</span
+            ><span
+              ><b
+                style="
+                  font:
+                    600 17px &quot;Fredoka&quot;,
+                    sans-serif;
+                  color: #0a3d62;
+                "
+                >Entender o vocabulário</b
+              ><span class="muted" style="display: block; font-size: 13px"
+                >5 palavras deste vídeo</span
+              ></span
+            ></a
+          >
+          <a
+            href="M-Lives.dc.html"
+            style="
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              background: #fff;
+              border: 2px solid #ece4d2;
+              border-radius: 18px;
+              padding: 15px;
+              text-decoration: none;
+              color: inherit;
+            "
+            ><span
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 999px;
+                border: 3px solid #cfc6b2;
+                color: #4a5560;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font:
+                  700 17px &quot;Fredoka&quot;,
+                  sans-serif;
+                flex: none;
+                box-sizing: border-box;
+              "
+              >3</span
+            ><span
+              ><b
+                style="
+                  font:
+                    600 17px &quot;Fredoka&quot;,
+                    sans-serif;
+                  color: #0a3d62;
+                "
+                >Participar</b
+              ><span class="muted" style="display: block; font-size: 13px"
+                >Converse na próxima live</span
+              ></span
+            ></a
+          >
+        </main>
+
+        <nav class="nav" aria-label="App">
+          <a href="M-Inicio.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"></path></svg
+            >Início</a
+          >
+          <a class="on" href="M-Assistir.dc.html" aria-current="page"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+              <path d="M10 9l4 2-4 2z"></path>
+              <path d="M8 21h8"></path></svg
+            >Assistir</a
+          >
+          <a href="M-Series.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="14" height="13" rx="2"></rect>
+              <path d="M7 4h12a2 2 0 0 1 2 2v11"></path></svg
+            >Séries</a
+          >
+          <a href="M-Lives.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="2"></circle>
+              <path
+                d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
+              ></path></svg
+            >Lives</a
+          >
+          <a href="M-Conta.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path></svg
+            >Mais</a
+          >
+        </nav>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+      class Component extends DCLogic {
+        renderVals() {
+          const s = this.state;
+          const leg = s.leg ?? true, like = s.like ?? false, save = s.save ?? false, resp = s.resp ?? null;
+          const vels = ['0,75x', '1x', '1,25x'];
+          const vi = s.vi ?? 1;
+          return {
+            legenda: leg, legCls: leg ? 'ctl on' : 'ctl', legTxt: leg ? 'true' : 'false', toggleLeg: () => this.setState({ leg: !leg }),
+            vel: vels[vi], nextVel: () => this.setState({ vi: (vi + 1) % 3 }),
+            likeCls: like ? 'ctl on' : 'ctl', likeTxt: like ? 'true' : 'false', toggleLike: () => this.setState({ like: !like }),
+            saveCls: save ? 'ctl on' : 'ctl', saveTxt: save ? 'true' : 'false', toggleSave: () => this.setState({ save: !save }),
+            opcoes: ['Entendi quase tudo', 'Entendi o principal', 'Entendi pouco'].map((nome) => ({ nome, cls: resp === nome ? 'opt on' : 'opt', sel: resp === nome ? 'true' : 'false', pick: () => this.setState({ resp: nome }) }))
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

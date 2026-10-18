@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Site: recursos e perguntas</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+            color: #1e272e;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #0665b8;
+          }
+          a:hover {
+            color: #0a3d62;
+          }
+          .h {
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.08;
+            color: #0a3d62;
+          }
+          .cv {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 56px;
+            padding: 0 32px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 19px;
+            text-decoration: none;
+            border: 0;
+            cursor: pointer;
+          }
+          .btn:hover {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .btn.sm {
+            min-height: 46px;
+            padding: 0 24px;
+            font-size: 16px;
+          }
+          .btn.lt {
+            background: #fdfaf4;
+            color: #0a3d62;
+          }
+          .btn2 {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 46px;
+            padding: 0 24px;
+            border-radius: 999px;
+            border: 2px solid #0665b8;
+            color: #0665b8;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+          }
+          .btn2.lt {
+            border-color: #fdfaf4;
+            color: #fdfaf4;
+          }
+          .wrap {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px;
+          }
+          .card {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            padding: 24px;
+          }
+          .eyebrow {
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.04em;
+            color: #0665b8;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            font-weight: 800;
+            font-size: 15px;
+          }
+          .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 2px solid #cfc6b2;
+            background: #fff;
+            color: #1e272e;
+            font-weight: 700;
+            font-size: 15px;
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            cursor: pointer;
+          }
+          .chip.on {
+            background: #0a3d62;
+            border-color: #0a3d62;
+            color: #fff;
+          }
+          .lvb {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            padding: 3px 12px 3px 9px;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+          }
+          .vc {
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+          }
+          .vt {
+            height: 190px;
+            position: relative;
+            overflow: hidden;
+          }
+          .vt svg {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+          .dur {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(10, 61, 98, 0.92);
+            color: #fff;
+            border-radius: 8px;
+            padding: 2px 9px;
+            font-size: 13px;
+            font-weight: 800;
+          }
+          .pg {
+            height: 6px;
+            background: #ece4d2;
+          }
+          .pg i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .vb {
+            padding: 14px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .bar {
+            height: 12px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+          }
+          .top a.n {
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            color: #1e272e;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+          }
+          .top a.n.on {
+            background: #0a3d62;
+            color: #fff;
+          }
+          .sw {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            font-weight: 700;
+            cursor: pointer;
+          }
+          .tg {
+            display: inline-flex;
+            background: #ece4d2;
+            border-radius: 999px;
+            padding: 6px;
+            gap: 4px;
+          }
+          .tg button {
+            min-height: 48px;
+            padding: 0 28px;
+            border-radius: 999px;
+            border: 0;
+            background: transparent;
+            font-family: "Fredoka", system-ui, sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            color: #1e272e;
+            cursor: pointer;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 17px;
+          }
+          th,
+          td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #ece4d2;
+          }
+          th {
+            font-family: "Fredoka", system-ui, sans-serif;
+            color: #0a3d62;
+            font-size: 18px;
+          }
+
+          body {
+            background: #fdfaf4;
+          }
+        </style>
+      </helmet>
+      <div style="width: 100%; min-height: 2900px">
+        <header>
+          <div
+            class="wrap"
+            style="
+              max-width: 1260px;
+              display: flex;
+              flex-wrap: wrap;
+              align-items: center;
+              gap: 16px;
+              padding-top: 14px;
+              padding-bottom: 14px;
+            "
+          >
+            <a
+              href="Main.dc.html"
+              style="display: flex; align-items: center; gap: 10px; text-decoration: none"
+              ><span
+                style="
+                  width: 40px;
+                  height: 36px;
+                  background: #0984e3;
+                  border-radius: 14px 14px 14px 4px;
+                  display: inline-block;
+                "
+                aria-hidden="true"
+              ></span
+              ><span class="h" style="font-size: 22px; color: #0a3d62">Mundo Ilusófono</span></a
+            >
+            <nav
+              style="display: flex; flex-wrap: wrap; gap: 4px; margin-left: 16px"
+              aria-label="Menu do site"
+            >
+              <a
+                href="SeriesPub.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Séries</a
+              ><a
+                href="Metodo.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Método</a
+              ><a
+                href="Planos.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Planos</a
+              ><a
+                href="Recursos.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Recursos</a
+              ><a
+                href="Blog.dc.html"
+                style="
+                  text-decoration: none;
+                  color: #1e272e;
+                  font-weight: 800;
+                  font-size: 16px;
+                  min-height: 44px;
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 0 14px;
+                "
+                >Blog</a
+              >
+            </nav>
+            <span style="flex-grow: 1"></span><a class="btn2" href="Web-Entrar.dc.html">Entrar</a
+            ><a class="btn sm" href="Desafio.dc.html">Comece o Desafio</a>
+          </div>
+        </header>
+        <section>
+          <div
+            class="wrap"
+            style="
+              max-width: 1000px;
+              padding-top: 56px;
+              padding-bottom: 24px;
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+              text-align: center;
+              align-items: center;
+            "
+          >
+            <span class="eyebrow">RECURSOS</span>
+            <h1 class="h" style="font-size: 60px">Tudo para começar com segurança.</h1>
+          </div>
+        </section>
+        <section>
+          <div
+            class="wrap"
+            style="
+              max-width: 1260px;
+              padding-bottom: 24px;
+              display: grid;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 20px;
+            "
+          >
+            <a
+              class="card"
+              href="Metodo.dc.html"
+              style="
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+              ><span style="color: #0984e3"
+                ><svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="3" />
+                  <path d="M10 9l5 3-5 3z" /></svg
+              ></span>
+              <h3 class="h" style="font-size: 22px">Mini tutorial</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #2f3b44; flex-grow: 1">
+                Veja em 2 minutos como funciona o app.
+              </p>
+              <b style="color: #0665b8">Assistir</b></a
+            ><a
+              class="card"
+              href="Metodo.dc.html"
+              style="
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+              ><span style="color: #0984e3"
+                ><svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" /></svg
+              ></span>
+              <h3 class="h" style="font-size: 22px">Roteiro de níveis</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #2f3b44; flex-grow: 1">
+                Baixe o pôster com os níveis e as horas de cada um.
+              </p>
+              <b style="color: #0665b8">Baixar o roteiro</b></a
+            ><a
+              class="card"
+              href="Metodo.dc.html"
+              style="
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+              ><span style="color: #0984e3"
+                ><svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zM4 19V5" /></svg
+              ></span>
+              <h3 class="h" style="font-size: 22px">O método</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #2f3b44; flex-grow: 1">
+                Leia com calma como a gente trabalha.
+              </p>
+              <b style="color: #0665b8">Ler</b></a
+            ><a
+              class="card"
+              href="Metodo.dc.html"
+              style="
+                text-decoration: none;
+                color: inherit;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+              ><span style="color: #0984e3"
+                ><svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 5h16v11H9l-5 4z" /></svg
+              ></span>
+              <h3 class="h" style="font-size: 22px">Blog</h3>
+              <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #2f3b44; flex-grow: 1">
+                Textos sobre aquisição de línguas e cultura.
+              </p>
+              <b style="color: #0665b8">Ir ao blog</b></a
+            >
+          </div>
+        </section>
+        <section style="background: #f6f0e4">
+          <div
+            class="wrap"
+            style="
+              max-width: 900px;
+              padding-top: 48px;
+              padding-bottom: 72px;
+              display: flex;
+              flex-direction: column;
+              gap: 14px;
+            "
+          >
+            <h2 class="h" style="font-size: 44px">Perguntas frequentes</h2>
+            <h2 class="h" style="font-size: 30px; margin-top: 20px">Básico</h2>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t0}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Preciso saber português para começar?</span
+                ><span style="transform:rotate({{r0}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d0}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Não. O primeiro caminho usa imagens, gestos e frases curtas.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t1}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Como o método funciona?</span
+                ><span style="transform:rotate({{r1}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d1}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Você assiste vídeos que consegue seguir, entende pelo contexto e conta as horas.
+                Falar vem depois.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t2}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Funciona para crianças e famílias?</span
+                ><span style="transform:rotate({{r2}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d2}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Sim. Há vídeos para diferentes idades e temas.
+              </div>
+            </div>
+            <h2 class="h" style="font-size: 30px; margin-top: 20px">Como assistir</h2>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t3}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>O que devo entender de cada vídeo?</span
+                ><span style="transform:rotate({{r3}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d3}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                O suficiente para seguir a história. Palavras novas pelo caminho são normais.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t4}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Devo rever os vídeos?</span
+                ><span style="transform:rotate({{r4}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d4}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Se você quiser. Rever ajuda, mas não é obrigatório.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t5}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Devo usar legenda?</span
+                ><span style="transform:rotate({{r5}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d5}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                A legenda vem ligada em português. Desligue quando se sentir à vontade.
+              </div>
+            </div>
+            <h2 class="h" style="font-size: 30px; margin-top: 20px">Quando não entendo</h2>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t6}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>E se eu não entender nada?</span
+                ><span style="transform:rotate({{r6}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d6}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Volte um nível. O vídeo certo é o que você segue com esforço pequeno.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t7}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>A fala é muito rápida.</span
+                ><span style="transform:rotate({{r7}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d7}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Use a velocidade 0,75x e comece pelo caminho inicial.
+              </div>
+            </div>
+            <h2 class="h" style="font-size: 30px; margin-top: 20px">Falar</h2>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t8}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Quando devo começar a falar?</span
+                ><span style="transform:rotate({{r8}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d8}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Quando estiver pronto. As lives são o lugar para isso, sem pressão.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t9}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Preciso corrigir meus erros?</span
+                ><span style="transform:rotate({{r9}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d9}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                No começo, não. O foco é comunicar e entender.
+              </div>
+            </div>
+            <h2 class="h" style="font-size: 30px; margin-top: 20px">Planos e pagamento</h2>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t10}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>Posso cancelar quando quiser?</span
+                ><span style="transform:rotate({{r10}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d10}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Pode, na sua conta.
+              </div>
+            </div>
+            <div class="card" style="padding: 0">
+              <button
+                type="button"
+                onClick="{{t11}}"
+                aria-expanded="false"
+                style="
+                  width: 100%;
+                  text-align: left;
+                  background: transparent;
+                  border: 0;
+                  cursor: pointer;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 16px;
+                  min-height: 64px;
+                  padding: 12px 24px;
+                  font-family: Fredoka, sans-serif;
+                  font-weight: 600;
+                  font-size: 20px;
+                  color: #0a3d62;
+                "
+              >
+                <span>O preço inclui imposto?</span
+                ><span style="transform:rotate({{r11}});display:inline-flex"
+                  ><svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 5l7 7-7 7" /></svg
+                ></span>
+              </button>
+              <div style="display:{{d11}};padding:0 24px 22px;font-size:17px;line-height:1.55">
+                Não. O IVA aparece somado no pagamento.
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer style="background: #0a3d62; color: #d7e6f2">
+          <div
+            class="wrap"
+            style="
+              max-width: 1260px;
+              padding-top: 48px;
+              padding-bottom: 32px;
+              display: flex;
+              flex-wrap: wrap;
+              gap: 40px;
+              justify-content: space-between;
+            "
+          >
+            <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 12px">
+              <span class="h" style="color: #fff; font-size: 24px">Mundo Ilusófono</span
+              ><span class="cv" style="color: #e3ba14; font-size: 28px"
+                >O português se vive, não só se estuda.</span
+              ><span style="font-size: 14px">Contato: marliobps@gmail.com</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Explorar</b
+              ><a
+                href="Metodo.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Método</a
+              ><a
+                href="SeriesPub.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Séries</a
+              ><a
+                href="Planos.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Planos</a
+              >
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Recursos</b
+              ><a
+                href="Recursos.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Perguntas frequentes</a
+              ><a href="Blog.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Blog</a
+              ><a
+                href="Desafio.dc.html"
+                style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Desafio 7 Dias</a
+              >
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <b style="color: #fff; font-family: Fredoka, sans-serif">Empresa</b
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Sobre o Márlio</a
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Privacidade</a
+              ><a href="Main.dc.html" style="color: #d7e6f2; text-decoration: none; font-size: 15px"
+                >Termos</a
+              >
+            </div>
+          </div>
+          <div
+            class="wrap"
+            style="max-width: 1260px; padding-bottom: 28px; font-size: 13px; color: #a9c4d9"
+          >
+            Os preços não incluem imposto. O IVA do seu país aparece somado no pagamento. · A
+            Coruña, Galiza
+          </div>
+        </footer>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1360,"height":2900}}'>
+      class Component extends DCLogic {
+        constructor(props) { super(props); this.state = { open: 0 }; }
+        renderVals() {
+          const v = {}; const o = this.state.open;
+          for (let i = 0; i < 12; i++) {
+            v["t" + i] = () => this.setState({ open: this.state.open === i ? -1 : i });
+            v["d" + i] = o === i ? "block" : "none";
+            v["r" + i] = o === i ? "90deg" : "0deg";
+          }
+          return v;
+        }
+      }
+    </script>
+  </body>
+</html>

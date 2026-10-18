@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Caveat, Fredoka, Nunito_Sans } from "next/font/google";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -21,12 +22,20 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(site.url),
   title: {
     default: "Mundo Ilusófono",
     template: "%s | Mundo Ilusófono",
   },
-  description: "O português se vive, não só se estuda.",
+  description: site.descricao,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: site.nome,
+    title: site.nome,
+    description: site.descricao,
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

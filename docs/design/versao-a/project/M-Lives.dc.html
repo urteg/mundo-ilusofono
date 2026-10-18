@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lives no celular</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;family=Caveat:wght@600&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+            background: #fdfaf4;
+          }
+          a {
+            color: #0665b8;
+          }
+          .m {
+            font-family: "Nunito Sans", system-ui, sans-serif;
+            color: #1e272e;
+            background: #fdfaf4;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .m h1,
+          .m h2 {
+            font-family: "Fredoka", ui-rounded, sans-serif;
+            color: #0a3d62;
+            margin: 0;
+            line-height: 1.15;
+            font-weight: 600;
+          }
+          .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 16px;
+            border-radius: 999px;
+            background: #0665b8;
+            color: #fff;
+            font:
+              600 16px/1 "Fredoka",
+              sans-serif;
+            text-decoration: none;
+            border: 2px solid #0665b8;
+            box-sizing: border-box;
+          }
+          .btn.sec {
+            background: #fff;
+            color: #0665b8;
+          }
+          .hand {
+            font-family: "Caveat", cursive;
+            font-weight: 600;
+            color: #c2410c;
+          }
+          .ph {
+            background: #fff1b8;
+            color: #6b5200;
+            border-radius: 6px;
+            padding: 0 6px;
+            font-weight: 700;
+          }
+          .muted {
+            color: #4a5560;
+          }
+          .bar {
+            height: 6px;
+            border-radius: 999px;
+            background: #ece4d2;
+            overflow: hidden;
+          }
+          .bar i {
+            display: block;
+            height: 100%;
+            background: #00b894;
+            border-radius: 999px;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 50px;
+            padding: 0 3px 0 12px;
+            border: 2px solid #ece4d2;
+            border-radius: 999px;
+            background: #fff;
+            font:
+              700 13px "Nunito Sans",
+              sans-serif;
+            box-sizing: border-box;
+          }
+          .ib {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 0;
+            background: #dcebfa;
+            color: #0665b8;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            flex: none;
+          }
+          .nav {
+            display: flex;
+            border-top: 1px solid #ece4d2;
+            background: #fff;
+            flex: none;
+          }
+          .nav a {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            min-height: 64px;
+            color: #4a5560;
+            text-decoration: none;
+            font:
+              600 12px "Nunito Sans",
+              sans-serif;
+          }
+          .nav a.on {
+            color: #0665b8;
+          }
+          .cd {
+            flex: 1;
+            background: #0a3d62;
+            color: #fff;
+            border-radius: 12px;
+            padding: 6px 0;
+            text-align: center;
+            font:
+              700 24px "Fredoka",
+              sans-serif;
+          }
+          .cd small {
+            display: block;
+            font:
+              600 11px "Nunito Sans",
+              sans-serif;
+            color: #dcebfa;
+          }
+          :focus-visible {
+            outline: 3px solid #0984e3;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        class="m"
+        style="width: 390px; height: 844px; display: flex; flex-direction: column; overflow: hidden"
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #fff;
+            border-bottom: 1px solid #ece4d2;
+            flex: none;
+          "
+        >
+          <a
+            href="M-Inicio.dc.html"
+            aria-label="Mundo Ilusófono, início"
+            style="display: flex; margin-right: auto"
+            ><img
+              src="marca/logo.png"
+              alt=""
+              width="46"
+              height="46"
+              style="display: block; width: 46px; height: 46px; object-fit: contain"
+          /></a>
+          <div class="pill">
+            <span>12/20 min</span
+            ><span class="bar" style="width: 40px"><i style="width: 60%"></i></span
+            ><a class="ib" href="M-Horas.dc.html" aria-label="Adicionar tempo fora do app"
+              ><svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14"></path></svg
+            ></a>
+          </div>
+          <div
+            class="pill"
+            style="padding-right: 12px; color: #9a3412"
+            aria-label="Sequência de 3 dias"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#9A3412"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"
+              ></path></svg
+            >3
+          </div>
+        </header>
+
+        <main
+          style="
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px 16px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+          "
+        >
+          <div>
+            <h1 style="font-size: 26px">Lives com o Márlio</h1>
+            <p class="muted" style="margin: 2px 0 0; font-size: 14px">
+              Horários no seu fuso: Lisboa (UTC+1)
+            </p>
+          </div>
+          <section
+            style="
+              background: #fff;
+              border: 3px solid #0984e3;
+              border-radius: 18px;
+              padding: 16px;
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+            "
+          >
+            <span
+              style="
+                align-self: flex-start;
+                background: #dcebfa;
+                color: #0665b8;
+                border-radius: 999px;
+                padding: 3px 10px;
+                font-weight: 700;
+                font-size: 12px;
+              "
+              >Próxima live</span
+            >
+            <h2 style="font-size: 20px">Conversa: <span class="ph">[tema]</span></h2>
+            <div style="font-size: 14px">
+              <b>Qui, 23 out., 18h</b> no seu fuso<br /><span class="muted">19h em Madri</span>
+            </div>
+            <div
+              style="display: flex; gap: 8px"
+              aria-label="Começa em 5 dias, 4 horas e 22 minutos"
+            >
+              <span class="cd">05<small>dias</small></span
+              ><span class="cd">04<small>horas</small></span
+              ><span class="cd">22<small>min</small></span>
+            </div>
+            <a class="btn" href="#">Entrar na live</a>
+            <a class="btn sec" href="#">Adicionar ao calendário</a>
+          </section>
+          <section style="display: flex; flex-direction: column; gap: 8px">
+            <h2 style="font-size: 19px">Próximas aulas</h2>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 52px;
+                border-bottom: 1px solid #ece4d2;
+              "
+            >
+              <b>Ter, 28 out.</b><span class="muted">10h</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 52px;
+                border-bottom: 1px solid #ece4d2;
+              "
+            >
+              <b>Qui, 30 out.</b><span class="muted">18h</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-height: 52px;
+                border-bottom: 1px solid #ece4d2;
+              "
+            >
+              <b>Ter, 4 nov.</b><span class="muted">10h</span>
+            </div>
+            <span class="hand" style="font-size: 22px">os horários alternam a cada semana</span>
+          </section>
+          <a
+            href="#"
+            style="
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              background: #fff;
+              border-radius: 18px 18px 18px 4px;
+              box-shadow: 0 4px 16px rgba(30, 39, 46, 0.1);
+              padding: 16px;
+              text-decoration: none;
+              color: inherit;
+            "
+            ><svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#B23A0B"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 5h11a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H9l-5 4z"></path>
+              <path d="M18 9h1a2 2 0 0 1 2 2v9l-3-2"></path></svg
+            ><span
+              ><b
+                style="
+                  font:
+                    600 17px &quot;Fredoka&quot;,
+                    sans-serif;
+                  color: #0a3d62;
+                "
+                >Conversa em grupo</b
+              ><span class="muted" style="display: block; font-size: 13px"
+                >3 mensagens novas</span
+              ></span
+            ></a
+          >
+          <section style="display: flex; flex-direction: column; gap: 10px">
+            <h2 style="font-size: 19px">Gravações</h2>
+            <div style="display: flex; gap: 10px; overflow-x: auto">
+              <a
+                href="M-Video.dc.html"
+                style="flex: none; width: 200px; text-decoration: none; color: inherit"
+                ><img
+                  src="cenas/conversa.svg"
+                  alt=""
+                  style="
+                    display: block;
+                    width: 200px;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                    border-radius: 12px;
+                  "
+                /><b style="font-size: 14px"><span class="ph">[tema]</span></b
+                ><span class="muted" style="display: block; font-size: 12px"
+                  >16 out. · 48 min</span
+                ></a
+              >
+              <a
+                href="M-Video.dc.html"
+                style="flex: none; width: 200px; text-decoration: none; color: inherit"
+                ><img
+                  src="cenas/feira.svg"
+                  alt=""
+                  style="
+                    display: block;
+                    width: 200px;
+                    aspect-ratio: 16/9;
+                    object-fit: cover;
+                    border-radius: 12px;
+                  "
+                /><b style="font-size: 14px"><span class="ph">[tema]</span></b
+                ><span class="muted" style="display: block; font-size: 12px"
+                  >14 out. · 45 min</span
+                ></a
+              >
+            </div>
+          </section>
+          <p class="muted" style="margin: 0; font-size: 13px">
+            Entender: só gravações. Participar: ao vivo e gravações.
+          </p>
+        </main>
+
+        <nav class="nav" aria-label="App">
+          <a href="M-Inicio.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z"></path></svg
+            >Início</a
+          >
+          <a href="M-Assistir.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="12" rx="2"></rect>
+              <path d="M10 9l4 2-4 2z"></path>
+              <path d="M8 21h8"></path></svg
+            >Assistir</a
+          >
+          <a href="M-Series.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="14" height="13" rx="2"></rect>
+              <path d="M7 4h12a2 2 0 0 1 2 2v11"></path></svg
+            >Séries</a
+          >
+          <a class="on" href="M-Lives.dc.html" aria-current="page"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="2"></circle>
+              <path
+                d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M5 5a10 10 0 0 0 0 14M19 5a10 10 0 0 1 0 14"
+              ></path></svg
+            >Lives</a
+          >
+          <a href="M-Conta.dc.html"
+            ><svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path></svg
+            >Mais</a
+          >
+        </nav>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>
