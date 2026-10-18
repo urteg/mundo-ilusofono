@@ -39,15 +39,17 @@ export function Abertura({
 }) {
   return (
     <section>
-      <Envoltorio
-        className={cx(
-          "flex max-w-[920px] flex-col gap-4 pt-16 pb-14 sm:pt-20",
-          centro && "items-center text-center",
-        )}
-      >
-        <Mao className="text-[30px]">{mao}</Mao>
-        <h1 className="text-azul-fundo text-[clamp(44px,6vw,72px)] font-bold">{titulo}</h1>
-        {children && <div className="text-texto-suave text-xl">{children}</div>}
+      <Envoltorio className="pt-16 pb-14 sm:pt-20">
+        <div
+          className={cx(
+            "flex max-w-[920px] flex-col gap-4",
+            centro && "mx-auto items-center text-center",
+          )}
+        >
+          <Mao className="text-[30px]">{mao}</Mao>
+          <h1 className="text-azul-fundo text-[clamp(44px,6vw,72px)] font-bold">{titulo}</h1>
+          {children && <div className="text-texto-suave text-xl">{children}</div>}
+        </div>
       </Envoltorio>
     </section>
   );
@@ -89,11 +91,13 @@ export function FaixaChamada({
   titulo = site.lema,
   texto,
   rotuloBotao = "Comece o Desafio",
+  href = "/desafio",
   children,
 }: {
   titulo?: string;
   texto?: ReactNode;
   rotuloBotao?: string;
+  href?: string;
   children?: ReactNode;
 }) {
   return (
@@ -102,7 +106,7 @@ export function FaixaChamada({
         <h2 className="text-branco text-[clamp(34px,4vw,48px)]">{titulo}</h2>
         {texto && <p className="text-azul-claro max-w-xl text-lg">{texto}</p>}
         {children ?? (
-          <BotaoLink href="/desafio" variante="dourado" className="min-h-14 px-8 text-[19px]">
+          <BotaoLink href={href} variante="dourado" className="min-h-14 px-8 text-[19px]">
             {rotuloBotao}
           </BotaoLink>
         )}
