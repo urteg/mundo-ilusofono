@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CenaPorNome, TextoOuMarcador } from "@/components/site/Secao";
 import { BarraProgresso, SeloNivel, cx } from "@/components/ui";
 import type { VideoCartao } from "@/lib/app/licao-hoje";
+import { lerNivel } from "@/lib/niveis";
 
 export function duracao(seg: number): string {
   const m = Math.floor(seg / 60);
@@ -38,7 +39,7 @@ export function CartaoVideo({
         className="[&>div]:h-1.5 [&>div]:rounded-none"
       />
       <div className={cx("flex flex-col gap-2", grande ? "p-6" : "p-4")}>
-        <SeloNivel nivel={Number.parseInt(String(video.nivel), 10) || 1} className="self-start" />
+        <SeloNivel nivel={lerNivel(video.nivel)} className="self-start" />
         <h2 className={cx("text-azul-fundo", grande ? "text-[clamp(22px,2.6vw,30px)]" : "text-lg")}>
           <Link href={href} className="after:absolute after:inset-0">
             <TextoOuMarcador texto={video.titulo} />

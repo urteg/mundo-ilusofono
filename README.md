@@ -89,7 +89,6 @@ Para publicar, crie o arquivo e acrescente-o em `lib/blog.ts`.
 Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 
 **Textos e decisões**
-- Conferir a tabela de horas por nível (`lib/niveis.ts`: 0, 50, 100, 250, 500, 1000, 1500) com as horas do Sprout.
 
 - Início: frase do topo; número de participantes (só quando for verdadeiro).
 - Caminhos e níveis: nomes dos três caminhos, subníveis e horas de cada um; nomes finais dos níveis (`components/ui/SeloEtapa.tsx`); horas dos 4 degraus da escada (Como funciona).

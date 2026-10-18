@@ -1,4 +1,5 @@
 import { podeAssistir, type Entitlement, type VideoAcesso } from "./entitlements";
+import { lerNivel } from "./niveis";
 
 // Lição de hoje: primeiro vídeo NÃO visto do nível do participante, na ordem da série,
 // entre os que o plano libera. Se acabou o nível, passa ao próximo. Sem plano, sobram os grátis.
@@ -11,7 +12,7 @@ export type VideoLicao = VideoAcesso & {
 };
 
 function nivelNumero(v: { nivel: string | number }): number {
-  return typeof v.nivel === "number" ? v.nivel : Number.parseInt(v.nivel, 10) || 1;
+  return lerNivel(v.nivel);
 }
 
 function naOrdem<T extends VideoLicao>(videos: T[]): T[] {

@@ -27,8 +27,8 @@ export function resumoProgresso(horas: number): ResumoProgresso {
   if (nivel >= nivelMaximo) {
     return { horas: h, nivel, horasParaProximo: null, fracaoNoNivel: 1 };
   }
-  const inicio = inicioDosNiveis[nivel - 1];
-  const proximo = inicioDosNiveis[nivel];
+  const inicio = inicioDosNiveis[nivel];
+  const proximo = inicioDosNiveis[nivel + 1];
   return {
     horas: h,
     nivel,

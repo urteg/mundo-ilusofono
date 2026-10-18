@@ -15,9 +15,9 @@ insert into public.temas (id, slug, nome) values
 
 -- Séries (capa = nome da cena ilustrada do site)
 insert into public.series (id, titulo, descricao, nivel, capa, apresentador_id, ordem) values
-  ('c0000000-0000-4000-8000-000000000001', 'A cidade', '[PLACEHOLDER: descrição da série]', '1', 'mar', 'a0000000-0000-4000-8000-000000000001', 1),
-  ('c0000000-0000-4000-8000-000000000002', 'A cozinha', '[PLACEHOLDER: descrição da série]', '2', 'feira', 'a0000000-0000-4000-8000-000000000001', 2),
-  ('c0000000-0000-4000-8000-000000000003', 'A família', '[PLACEHOLDER: descrição da série]', '3', 'campo', 'a0000000-0000-4000-8000-000000000002', 3);
+  ('c0000000-0000-4000-8000-000000000001', 'A cidade', '[PLACEHOLDER: descrição da série]', '0', 'mar', 'a0000000-0000-4000-8000-000000000001', 1),
+  ('c0000000-0000-4000-8000-000000000002', 'A cozinha', '[PLACEHOLDER: descrição da série]', '1', 'feira', 'a0000000-0000-4000-8000-000000000001', 2),
+  ('c0000000-0000-4000-8000-000000000003', 'A família', '[PLACEHOLDER: descrição da série]', '2', 'campo', 'a0000000-0000-4000-8000-000000000002', 3);
 
 -- 12 vídeos, 4 por série. Planos: 3 grátis, 8 entender, 1 participar.
 -- Os 7 primeiros formam o Desafio 7 Dias (desafio_dia 1 a 7).
@@ -29,7 +29,7 @@ select
   '[PLACEHOLDER: título do vídeo ' || n || ']',
   (n - 1) % 4 + 1,
   180 + n * 30,
-  ((n - 1) / 4 + 1)::text,
+  ((n - 1) / 4)::text,
   'Brasil',
   case when n <= 8 then 'a0000000-0000-4000-8000-000000000001'::uuid
        else 'a0000000-0000-4000-8000-000000000002'::uuid end,

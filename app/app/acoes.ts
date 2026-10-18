@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import { carregarParticipante } from "@/lib/app/participante";
 import { trocarVideoDeHoje } from "@/lib/app/licao-hoje";
@@ -10,7 +11,9 @@ import { criarClienteServidor } from "@/lib/supabase/servidor";
 export async function escolherOutroVideo() {
   const participante = await carregarParticipante();
   await trocarVideoDeHoje(participante);
-  revalidatePath("/app");
+  // Redireciona para forçar uma leitura nova da lição (funciona com ou sem JavaScript).
+  revalidatePath("/app", "layout");
+  redirect("/app");
 }
 
 const esquemaTempoFora = z.object({

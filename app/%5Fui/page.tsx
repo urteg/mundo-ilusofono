@@ -89,7 +89,7 @@ export default function PaginaUi() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Cartao as="article" className="space-y-3">
             <div className="flex flex-wrap gap-2">
-              <SeloNivel nivel={1} />
+              <SeloNivel nivel={0} />
               <SeloPlano plano="gratis" />
             </div>
             <h3 className="text-xl">[PLACEHOLDER: título do vídeo]</h3>
@@ -97,7 +97,7 @@ export default function PaginaUi() {
           </Cartao>
           <Cartao as="article" className="space-y-3">
             <div className="flex flex-wrap gap-2">
-              <SeloNivel nivel={3} />
+              <SeloNivel nivel={2} />
               <SeloPlano plano="entender" bloqueado />
             </div>
             <h3 className="text-xl">[PLACEHOLDER: título do vídeo]</h3>
@@ -117,7 +117,7 @@ export default function PaginaUi() {
 
       <Secao titulo="Selos">
         <div className="flex flex-wrap gap-2">
-          {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+          {[0, 1, 2, 3, 4, 5, 6].map((n) => (
             <SeloNivel key={n} nivel={n} />
           ))}
         </div>

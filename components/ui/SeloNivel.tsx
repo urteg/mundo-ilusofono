@@ -13,8 +13,10 @@ const estilos = [
 
 type Props = { nivel: number; rotulo?: string; className?: string };
 
+/** Selo "Nível 0" a "Nível 6". */
+
 export function SeloNivel({ nivel, rotulo, className }: Props) {
-  const indice = Math.min(Math.max(Math.round(nivel), 1), estilos.length) - 1;
+  const indice = Math.min(Math.max(Math.round(nivel), 0), estilos.length - 1);
   return (
     <span
       className={cx(
@@ -23,7 +25,7 @@ export function SeloNivel({ nivel, rotulo, className }: Props) {
         className,
       )}
     >
-      {rotulo ?? `Nível ${indice + 1}`}
+      {rotulo ?? `Nível ${indice}`}
     </span>
   );
 }

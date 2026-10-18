@@ -1,4 +1,5 @@
 import { cenaDaCapa, type CenaSerie } from "@/lib/cenas";
+import { lerNivel } from "@/lib/niveis";
 import { criarClientePublico } from "@/lib/supabase/servidor";
 
 // Consultas das páginas públicas do site. Usam só as views v_*_publicas (papel anon).
@@ -25,7 +26,7 @@ export async function listarSeriesPublicas(): Promise<SeriePublica[]> {
     return (data ?? []).map((s, i) => ({
       id: s.id ?? String(i),
       titulo: s.titulo ?? "",
-      nivel: Number.parseInt(s.nivel ?? "1", 10) || 1,
+      nivel: lerNivel(s.nivel),
       episodios: s.episodios ?? 0,
       cena: cenaDaCapa(s.capa),
     }));

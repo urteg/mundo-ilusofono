@@ -26,12 +26,12 @@ test.describe("app com o usuário do seed", () => {
       page.getByRole("list", { name: "Passos da lição" }).getByRole("listitem"),
     ).toHaveCount(3);
 
-    // 0 horas = nível 1; o primeiro vídeo do nível 1 na ordem da série.
+    // 0 horas = nível 0; o primeiro vídeo do nível 0 na ordem da série.
     const recomendado = page.getByRole("region", { name: "Vídeo recomendado" });
     await expect(recomendado.getByRole("heading", { level: 2 })).toHaveText(
       "[PLACEHOLDER: título do vídeo 1]",
     );
-    await expect(recomendado.getByText("Nível 1")).toBeVisible();
+    await expect(recomendado.getByText("Nível 0")).toBeVisible();
     await expect(recomendado.getByRole("link", { name: "Assistir agora" })).toBeVisible();
 
     // Escolher outro vídeo troca a recomendação e grava em licao_passos.

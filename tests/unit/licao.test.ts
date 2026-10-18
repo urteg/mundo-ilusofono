@@ -31,12 +31,12 @@ const ent = (
 });
 
 const videos = [
-  v("n1-s2-a", 1, "entender", 1, 2),
-  v("n1-s1-b", 1, "entender", 2, 1),
-  v("n1-s1-a", 1, "gratis", 1, 1, 1),
-  v("n2-a", 2, "entender", 1, 3, 2),
-  v("n2-p", 2, "participar", 2, 3),
-  v("n3-g", 3, "gratis", 1, 4),
+  v("n1-s2-a", 0, "entender", 1, 2),
+  v("n1-s1-b", 0, "entender", 2, 1),
+  v("n1-s1-a", 0, "gratis", 1, 1, 1),
+  v("n2-a", 1, "entender", 1, 3, 2),
+  v("n2-p", 1, "participar", 2, 3),
+  v("n3-g", 2, "gratis", 1, 4),
 ];
 
 describe("lib/entitlements", () => {
@@ -81,7 +81,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos: new Set(),
-      nivelParticipante: 1,
+      nivelParticipante: 0,
       ents: [ent("entender")],
       agora,
     });
@@ -92,7 +92,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos: new Set(["n1-s1-a"]),
-      nivelParticipante: 1,
+      nivelParticipante: 0,
       ents: [ent("entender")],
       agora,
     });
@@ -104,7 +104,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos,
-      nivelParticipante: 1,
+      nivelParticipante: 0,
       ents: [ent("entender")],
       agora,
     });
@@ -116,7 +116,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos,
-      nivelParticipante: 2,
+      nivelParticipante: 1,
       ents: [ent("entender")],
       agora,
     });
@@ -127,7 +127,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos: new Set(["n1-s1-a"]),
-      nivelParticipante: 1,
+      nivelParticipante: 0,
       ents: [],
       agora,
     });
@@ -139,7 +139,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos: new Set(),
-      nivelParticipante: 2,
+      nivelParticipante: 1,
       ents: [vencido],
       agora,
     });
@@ -151,7 +151,7 @@ describe("lib/licao", () => {
     const r = recomendarVideo({
       videos,
       vistos,
-      nivelParticipante: 1,
+      nivelParticipante: 0,
       ents: [ent("participar")],
       agora,
     });
@@ -161,7 +161,7 @@ describe("lib/licao", () => {
   it("nada elegível devolve null", () => {
     const pagos = videos.filter((x) => x.plano_minimo !== "gratis");
     expect(
-      recomendarVideo({ videos: pagos, vistos: new Set(), nivelParticipante: 1, ents: [], agora }),
+      recomendarVideo({ videos: pagos, vistos: new Set(), nivelParticipante: 0, ents: [], agora }),
     ).toBeNull();
   });
 
@@ -176,7 +176,7 @@ describe("lib/licao", () => {
   });
 
   it("escolher outro sem alternativa devolve null", () => {
-    const so = [v("unico", 1, "gratis", 1)];
+    const so = [v("unico", 0, "gratis", 1)];
     expect(sortearOutro({ videos: so, vistos: new Set(), ents: [], agora }, "unico")).toBeNull();
   });
 });
