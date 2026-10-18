@@ -77,7 +77,7 @@ export default async function Series() {
 
       <FaixaChamada
         titulo="Comece pelos primeiros vídeos"
-        texto={`Sete dias, um vídeo por dia, ${formatarEuro(precos.desafio)} + IVA.`}
+        texto={`Sete dias, um vídeo por dia, ${formatarEuro(precos.desafio)}, IVA incluído.`}
       />
     </>
   );

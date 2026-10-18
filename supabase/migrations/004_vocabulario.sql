@@ -1,4 +1,4 @@
--- 004_vocabulario: palavras, palavras de cada vídeo e palavras do aluno (repetição espaçada).
+-- 004_vocabulario: palavras, palavras de cada vídeo e palavras do participante (repetição espaçada).
 
 create table public.palavras (
   id uuid primary key default gen_random_uuid(),

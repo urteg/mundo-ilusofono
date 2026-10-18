@@ -104,7 +104,7 @@ export const faq: CategoriaFaq[] = [
       {
         pergunta: "Os preços incluem imposto?",
         // revisar com o Márlio
-        resposta: "Não. O IVA é calculado conforme o seu país e somado no pagamento.",
+        resposta: "Sim. O IVA já está incluído no preço que você vê.",
       },
       {
         pergunta: "Posso cancelar?",

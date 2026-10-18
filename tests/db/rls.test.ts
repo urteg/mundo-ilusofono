@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import type { Database } from "@/lib/supabase/tipos";
 
-// Prova a RLS com dois alunos de verdade no banco local.
+// Prova a RLS com dois participantes de verdade no banco local.
 if (existsSync(".env.local")) process.loadEnvFile(".env.local");
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -20,11 +20,11 @@ const PALAVRA = "e0000000-0000-4000-8000-000000000001";
 
 let idA = "";
 let idB = "";
-let alunoA: Cliente;
-let alunoB: Cliente;
+let participanteA: Cliente;
+let participanteB: Cliente;
 const visitante: Cliente = createClient<Database>(url, anon, opcoes);
 
-async function criarAluno(email: string): Promise<[string, Cliente]> {
+async function criarParticipante(email: string): Promise<[string, Cliente]> {
   const { data, error } = await admin.auth.admin.createUser({
     email,
     password: senha,
@@ -38,23 +38,27 @@ async function criarAluno(email: string): Promise<[string, Cliente]> {
 }
 
 beforeAll(async () => {
-  [idA, alunoA] = await criarAluno(`rls-a-${sufixo}@exemplo.com`);
-  [idB, alunoB] = await criarAluno(`rls-b-${sufixo}@exemplo.com`);
+  [idA, participanteA] = await criarParticipante(`rls-a-${sufixo}@exemplo.com`);
+  [idB, participanteB] = await criarParticipante(`rls-b-${sufixo}@exemplo.com`);
 
-  // Dados do aluno A, gravados por ele mesmo.
+  // Dados do participante A, gravados por ele mesmo.
   expect(
-    (await alunoA.from("visualizacoes").insert({ user_id: idA, video_id: VIDEO, segundos: 40 }))
-      .error,
+    (
+      await participanteA
+        .from("visualizacoes")
+        .insert({ user_id: idA, video_id: VIDEO, segundos: 40 })
+    ).error,
   ).toBeNull();
   expect(
     (
-      await alunoA
+      await participanteA
         .from("tempo_fora")
         .insert({ user_id: idA, tipo: "ouvindo", dia: "2026-10-18", segundos: 600 })
     ).error,
   ).toBeNull();
   expect(
-    (await alunoA.from("palavras_aluno").insert({ user_id: idA, palavra_id: PALAVRA })).error,
+    (await participanteA.from("palavras_aluno").insert({ user_id: idA, palavra_id: PALAVRA }))
+      .error,
   ).toBeNull();
 });
 
@@ -62,62 +66,71 @@ afterAll(async () => {
   for (const id of [idA, idB]) if (id) await admin.auth.admin.deleteUser(id);
 });
 
-describe("RLS: cada aluno só vê e altera o que é dele", () => {
+describe("RLS: cada participante só vê e altera o que é dele", () => {
   it("o gatilho criou o perfil com os valores padrão", async () => {
-    const { data } = await alunoA.from("profiles").select("fuso, meta_diaria_min, nome").single();
+    const { data } = await participanteA
+      .from("profiles")
+      .select("fuso, meta_diaria_min, nome")
+      .single();
     expect(data).toEqual({ fuso: "Europe/Madrid", meta_diaria_min: 20, nome: null });
   });
 
   it("A lê os próprios dados", async () => {
-    expect((await alunoA.from("visualizacoes").select("segundos")).data).toEqual([
+    expect((await participanteA.from("visualizacoes").select("segundos")).data).toEqual([
       { segundos: 40 },
     ]);
-    expect((await alunoA.from("tempo_fora").select("segundos")).data).toEqual([{ segundos: 600 }]);
-    expect((await alunoA.from("palavras_aluno").select("palavra_id")).data).toHaveLength(1);
+    expect((await participanteA.from("tempo_fora").select("segundos")).data).toEqual([
+      { segundos: 600 },
+    ]);
+    expect((await participanteA.from("palavras_aluno").select("palavra_id")).data).toHaveLength(1);
   });
 
   for (const tabela of ["visualizacoes", "tempo_fora", "palavras_aluno"] as const) {
     it(`B não lê nem altera ${tabela} de A`, async () => {
-      const leitura = await alunoB.from(tabela).select("*").eq("user_id", idA);
+      const leitura = await participanteB.from(tabela).select("*").eq("user_id", idA);
       expect(leitura.error).toBeNull();
       expect(leitura.data).toEqual([]);
 
-      const alteracao = await alunoB
+      const alteracao = await participanteB
         .from(tabela)
         .update({ user_id: idB })
         .eq("user_id", idA)
         .select();
       expect(alteracao.data ?? []).toEqual([]);
 
-      const apagar = await alunoB.from(tabela).delete().eq("user_id", idA).select();
+      const apagar = await participanteB.from(tabela).delete().eq("user_id", idA).select();
       expect(apagar.data ?? []).toEqual([]);
 
       // Os dados de A continuam lá.
-      expect((await alunoA.from(tabela).select("user_id")).data).toHaveLength(1);
+      expect((await participanteA.from(tabela).select("user_id")).data).toHaveLength(1);
     });
   }
 
   it("B não grava linhas em nome de A", async () => {
-    const r = await alunoB
+    const r = await participanteB
       .from("visualizacoes")
       .insert({ user_id: idA, video_id: VIDEO, segundos: 999 });
     expect(r.error?.code).toBe("42501");
-    const t = await alunoB
+    const t = await participanteB
       .from("tempo_fora")
       .insert({ user_id: idA, tipo: "assistindo", dia: "2026-10-18", segundos: 60 });
     expect(t.error?.code).toBe("42501");
   });
 
   it("B não lê nem altera o perfil de A", async () => {
-    expect((await alunoB.from("profiles").select("*").eq("id", idA)).data).toEqual([]);
-    const r = await alunoB.from("profiles").update({ nome: "invasor" }).eq("id", idA).select();
+    expect((await participanteB.from("profiles").select("*").eq("id", idA)).data).toEqual([]);
+    const r = await participanteB
+      .from("profiles")
+      .update({ nome: "invasor" })
+      .eq("id", idA)
+      .select();
     expect(r.data ?? []).toEqual([]);
     const { data } = await admin.from("profiles").select("nome").eq("id", idA).single();
     expect(data?.nome).not.toBe("invasor");
   });
 
-  it("o aluno altera as próprias preferências", async () => {
-    const r = await alunoA
+  it("o participante altera as próprias preferências", async () => {
+    const r = await participanteA
       .from("profiles")
       .update({ nome: "Ana", meta_diaria_min: 30 })
       .eq("id", idA)
@@ -125,8 +138,8 @@ describe("RLS: cada aluno só vê e altera o que é dele", () => {
     expect(r.data).toEqual([{ nome: "Ana", meta_diaria_min: 30 }]);
   });
 
-  it("o aluno não troca o próprio stripe_customer_id", async () => {
-    const r = await alunoA
+  it("o participante não troca o próprio stripe_customer_id", async () => {
+    const r = await participanteA
       .from("profiles")
       .update({ stripe_customer_id: "cus_falso" })
       .eq("id", idA);
@@ -134,10 +147,10 @@ describe("RLS: cada aluno só vê e altera o que é dele", () => {
   });
 });
 
-describe("RLS: entitlements é só leitura para o aluno", () => {
-  it("nenhum aluno cria, altera ou apaga entitlements", async () => {
-    for (const aluno of [alunoA, alunoB]) {
-      const criar = await aluno
+describe("RLS: entitlements é só leitura para o participante", () => {
+  it("nenhum participante cria, altera ou apaga entitlements", async () => {
+    for (const participante of [participanteA, participanteB]) {
+      const criar = await participante
         .from("entitlements")
         .insert({ user_id: idA, produto: "participar", status: "active" });
       expect(criar.error).not.toBeNull();
@@ -145,26 +158,28 @@ describe("RLS: entitlements é só leitura para o aluno", () => {
     await admin
       .from("entitlements")
       .insert({ user_id: idA, produto: "entender", status: "active" });
-    const alterar = await alunoA
+    const alterar = await participanteA
       .from("entitlements")
       .update({ produto: "participar" })
       .eq("user_id", idA)
       .select();
     expect(alterar.error ?? alterar.data?.length === 0).toBeTruthy();
-    const apagar = await alunoA.from("entitlements").delete().eq("user_id", idA).select();
+    const apagar = await participanteA.from("entitlements").delete().eq("user_id", idA).select();
     expect(apagar.error ?? apagar.data?.length === 0).toBeTruthy();
     // A lê o próprio; B não lê o de A.
-    expect((await alunoA.from("entitlements").select("produto")).data).toEqual([
+    expect((await participanteA.from("entitlements").select("produto")).data).toEqual([
       { produto: "entender" },
     ]);
-    expect((await alunoB.from("entitlements").select("*").eq("user_id", idA)).data).toEqual([]);
+    expect((await participanteB.from("entitlements").select("*").eq("user_id", idA)).data).toEqual(
+      [],
+    );
   });
 });
 
 describe("video_ref e sala_url nunca saem para o cliente", () => {
   const clientes = () =>
     [
-      ["aluno", alunoA],
+      ["participante", participanteA],
       ["visitante", visitante],
     ] as const;
 
@@ -189,7 +204,7 @@ describe("video_ref e sala_url nunca saem para o cliente", () => {
   });
 
   it("as views públicas devolvem o catálogo", async () => {
-    const { data: videos } = await alunoA.from("v_videos_publicos").select("*");
+    const { data: videos } = await participanteA.from("v_videos_publicos").select("*");
     expect(videos).toHaveLength(12);
     for (const v of videos ?? []) expect(Object.keys(v)).not.toContain("video_ref");
     const { data: lives } = await visitante.from("v_lives_publicas").select("*");
@@ -200,16 +215,16 @@ describe("video_ref e sala_url nunca saem para o cliente", () => {
     }
   });
 
-  it("visitante sem login não lê tabelas de conteúdo nem de alunos", async () => {
+  it("visitante sem login não lê tabelas de conteúdo nem de participantes", async () => {
     for (const tabela of ["series", "palavras", "profiles", "visualizacoes"] as const) {
       const r = await visitante.from(tabela).select("*").limit(1);
       expect(r.error?.code, tabela).toBe("42501");
     }
   });
 
-  it("aluno logado lê o conteúdo e não escreve nele", async () => {
-    expect((await alunoA.from("series").select("titulo")).data).toHaveLength(3);
-    const r = await alunoA.from("series").insert({ titulo: "x", nivel: "1" });
+  it("participante logado lê o conteúdo e não escreve nele", async () => {
+    expect((await participanteA.from("series").select("titulo")).data).toHaveLength(3);
+    const r = await participanteA.from("series").insert({ titulo: "x", nivel: "1" });
     expect(r.error).not.toBeNull();
   });
 });

@@ -10,27 +10,27 @@ import {
 } from "@/lib/precos";
 
 describe("lib/precos", () => {
-  it("formata no padrão €6,99 e €49, sem espaço depois do símbolo", () => {
-    expect(formatarEuro(699)).toBe("€6,99");
-    expect(formatarEuro(4900)).toBe("€49");
-    expect(formatarEuro(precos.desafio)).toBe("€9");
+  it("formata no padrão €7,99 e €55, sem espaço depois do símbolo", () => {
+    expect(formatarEuro(799)).toBe("€7,99");
+    expect(formatarEuro(5500)).toBe("€55");
+    expect(formatarEuro(precos.desafio)).toBe("€9,90");
   });
 
   it("tem os quatro preços das assinaturas", () => {
-    expect(precoPlano("entender", "mensal")).toBe("€6,99");
-    expect(precoPlano("entender", "anual")).toBe("€49");
-    expect(precoPlano("participar", "mensal")).toBe("€12,99");
-    expect(precoPlano("participar", "anual")).toBe("€89");
+    expect(precoPlano("entender", "mensal")).toBe("€7,99");
+    expect(precoPlano("entender", "anual")).toBe("€55");
+    expect(precoPlano("participar", "mensal")).toBe("€13,99");
+    expect(precoPlano("participar", "anual")).toBe("€99");
   });
 
   it("mostra o equivalente mensal no anual", () => {
-    expect(notaPlano("entender", "anual")).toBe("equivale a €4,08 por mês");
-    expect(notaPlano("participar", "anual")).toBe("equivale a €7,42 por mês");
+    expect(notaPlano("entender", "anual")).toBe("equivale a €4,58 por mês");
+    expect(notaPlano("participar", "anual")).toBe("equivale a €8,25 por mês");
   });
 
   it("mostra o preço anual como alternativa no mensal", () => {
-    expect(notaPlano("entender", "mensal")).toBe("ou €49 por ano");
-    expect(notaPlano("participar", "mensal")).toBe("ou €89 por ano");
+    expect(notaPlano("entender", "mensal")).toBe("ou €55 por ano");
+    expect(notaPlano("participar", "mensal")).toBe("ou €99 por ano");
   });
 
   it("unidade, intervalo padrão e aviso de imposto", () => {
@@ -39,6 +39,6 @@ describe("lib/precos", () => {
     expect(lerIntervalo("mensal")).toBe("mensal");
     expect(lerIntervalo(null)).toBe("anual");
     expect(lerIntervalo("qualquer")).toBe("anual");
-    expect(avisoImposto).toMatch(/não incluem imposto/);
+    expect(avisoImposto).toMatch(/já incluem o IVA/);
   });
 });

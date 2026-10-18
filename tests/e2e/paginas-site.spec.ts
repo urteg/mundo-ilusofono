@@ -32,28 +32,26 @@ for (const p of paginas) {
   });
 }
 
-test("/planos: todo preço vem com + IVA", async ({ page }) => {
+test("/planos: todo preço diz que o IVA está incluído", async ({ page }) => {
   await page.goto("/planos");
   const texto = await page.locator("main").innerText();
   const precos = texto.match(/€\d+(,\d{2})?[^\n]*/g) ?? [];
   expect(precos.length).toBeGreaterThan(0);
   // O preço grande e a unidade ficam em linhas separadas; checamos os cartões à parte.
-  await expect(page.getByText("por ano + IVA")).toHaveCount(2);
-  await expect(page.getByText(/€9 \+ IVA, pagamento único/)).toBeVisible();
-  await expect(
-    page.getByText("Os preços não incluem imposto. O IVA é somado no pagamento.").first(),
-  ).toBeVisible();
+  await expect(page.getByText("por ano, IVA incluído")).toHaveCount(2);
+  await expect(page.getByText(/€9,90, pagamento único, IVA incluído/)).toBeVisible();
+  await expect(page.getByText("Os preços já incluem o IVA.").first()).toBeVisible();
 });
 
 test("/planos: alternador muda os preços e a URL", async ({ page }) => {
   await page.goto("/planos");
-  await expect(page.getByTestId("preco-entender")).toHaveText("€49");
+  await expect(page.getByTestId("preco-entender")).toHaveText("€55");
   await page.getByRole("button", { name: "Mensal" }).click();
-  await expect(page.getByTestId("preco-entender")).toHaveText("€6,99");
-  await expect(page.getByTestId("nota-participar")).toHaveText("ou €89 por ano");
+  await expect(page.getByTestId("preco-entender")).toHaveText("€7,99");
+  await expect(page.getByTestId("nota-participar")).toHaveText("ou €99 por ano");
   await expect(page).toHaveURL(/\?intervalo=mensal$/);
   await page.reload();
-  await expect(page.getByTestId("preco-participar")).toHaveText("€12,99");
+  await expect(page.getByTestId("preco-participar")).toHaveText("€13,99");
 });
 
 test("/planos?intervalo=mensal abre direto no mensal", async ({ page }) => {
@@ -62,7 +60,7 @@ test("/planos?intervalo=mensal abre direto no mensal", async ({ page }) => {
     "aria-pressed",
     "true",
   );
-  await expect(page.getByTestId("preco-entender")).toHaveText("€6,99");
+  await expect(page.getByTestId("preco-entender")).toHaveText("€7,99");
 });
 
 test("/planos: tabela acessível e rolável no celular", async ({ page, isMobile }) => {

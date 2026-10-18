@@ -39,8 +39,8 @@ const perguntas = [
     conteudo: "Pode. Você continua com acesso até o fim do período já pago.",
   },
   {
-    titulo: "Por que o imposto vem à parte?",
-    conteudo: "O IVA muda de país para país. Ele é calculado e somado na hora do pagamento.",
+    titulo: "O preço já inclui o imposto?",
+    conteudo: "Sim. O IVA já está incluído no valor que você vê. Não há nada a somar no pagamento.",
   },
   {
     titulo: "Posso trocar de plano depois?",
@@ -82,7 +82,7 @@ export default function Planos() {
               <Mao className="text-[26px]">quer experimentar antes?</Mao>
               <h2 className="text-azul-fundo text-[28px]">Desafio 7 Dias</h2>
               <p className="text-texto-suave">
-                {formatarEuro(precos.desafio)} + IVA, pagamento único. Sem assinatura.
+                {formatarEuro(precos.desafio)}, pagamento único, IVA incluído. Sem assinatura.
               </p>
             </div>
             <BotaoLink href="/desafio">Conhecer o Desafio</BotaoLink>

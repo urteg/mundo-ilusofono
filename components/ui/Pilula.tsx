@@ -16,6 +16,7 @@ export function Pilula(props: Props) {
     return (
       <span
         className={cx(classes, props.className)}
+        role="img"
         title="Meta de hoje"
         aria-label={`Meta de hoje: ${props.minutos} de ${props.metaMin} minutos${cumprida ? ", cumprida" : ""}`}
       >
@@ -39,6 +40,7 @@ export function Pilula(props: Props) {
   return (
     <span
       className={cx(classes, props.className)}
+      role="img"
       title="Sequência de dias"
       aria-label={`Sequência: ${props.dias} ${props.dias === 1 ? "dia" : "dias"}`}
     >

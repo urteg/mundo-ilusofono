@@ -1,14 +1,14 @@
 # Mundo Ilusófono
 
-Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do aluno.
+Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do participante.
 Lema oficial, sempre exatamente: "O português se vive, não só se estuda."
 
 ## Regras que nunca se quebram
 
 1. Interface SOMENTE em português do Brasil. Sem seletor de idioma, sem botão de traduzir, sem textos em inglês/espanhol. `<html lang="pt-BR">`. Texto sempre como texto real (nunca em imagem), para o tradutor do navegador funcionar.
-2. Nenhum preço inclui imposto. Sempre exibir "+ IVA" ou "Os preços não incluem imposto". No Stripe: tax_behavior = exclusive e automatic_tax ligado.
+2. Todos os preços já incluem o IVA. Exibir "IVA incluído" junto dos preços (nunca "+ IVA"). Fonte única: `lib/precos.ts`. No Stripe: tax_behavior = inclusive.
 3. Sem emoji em nenhum lugar (UI, código, commits, seeds). Ícones são SVG de traço.
-4. Texto em minúsculas de frase (só a primeira letra maiúscula). Tratamento "você".
+4. Texto em minúsculas de frase (só a primeira letra maiúscula). Tratamento "você". Quem usa a plataforma é "participante", nunca "aluno".
 5. Palavras proibidas na interface: "input compreensível", "i+1", "GPA", "H.I.C.C.", "nutridor". Evitar "aprender": preferir "entender".
 6. Sem senha: login por link no e-mail (Supabase magic link).
 7. Acessibilidade: contraste AA, alvos de toque >= 44px, foco visível, aria-label em ícones, legenda ligada por padrão, respeitar prefers-reduced-motion.

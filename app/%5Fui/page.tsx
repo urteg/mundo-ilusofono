@@ -161,7 +161,7 @@ export default function PaginaUi() {
             },
             {
               titulo: "Os preços incluem imposto?",
-              conteudo: "Não. Os preços não incluem imposto; o IVA é calculado no pagamento.",
+              conteudo: "Sim. Os preços já incluem o IVA.",
             },
             {
               titulo: "Posso cancelar quando quiser?",

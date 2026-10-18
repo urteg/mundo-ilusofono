@@ -1,24 +1,6 @@
-import { expect, test, type APIRequestContext } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
-// Requer o Supabase local (pnpm db:start). O e-mail é lido no Mailpit local.
-const MAILPIT = "http://127.0.0.1:54324";
-
-async function linkDoEmail(request: APIRequestContext, email: string): Promise<string> {
-  for (let tentativa = 0; tentativa < 30; tentativa++) {
-    const busca = await (
-      await request.get(`${MAILPIT}/api/v1/search?query=${encodeURIComponent(`to:${email}`)}`)
-    ).json();
-    const id = busca.messages?.[0]?.ID;
-    if (id) {
-      const mensagem = await (await request.get(`${MAILPIT}/api/v1/message/${id}`)).json();
-      expect(mensagem.Subject).toBe("Seu link para entrar no Mundo Ilusófono");
-      const link = /href="([^"]+)"/.exec(mensagem.HTML)?.[1];
-      if (link) return link.replaceAll("&amp;", "&");
-    }
-    await new Promise((r) => setTimeout(r, 500));
-  }
-  throw new Error(`Nenhum e-mail para ${email}`);
-}
+import { linkDoEmail } from "./apoio";
 
 test("/app sem sessão redireciona para /entrar com o destino", async ({ page }) => {
   await page.goto("/app");
@@ -42,13 +24,14 @@ test("login por link no e-mail, de ponta a ponta, e sair", async ({ page, reques
   await expect(page).toHaveURL(/\/app\/planos$/);
 
   await page.goto("/app");
-  await expect(page.getByRole("heading", { name: "Você entrou" })).toBeVisible();
-  await expect(page.getByText(email)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Lição de hoje" })).toBeVisible();
 
   // Logado, /entrar manda para /app.
   await page.goto("/entrar");
   await expect(page).toHaveURL(/\/app$/);
 
+  await page.goto("/app/conta");
+  await expect(page.getByText(email)).toBeVisible();
   await page.getByRole("button", { name: "Sair" }).click();
   await expect(page).toHaveURL(/\/$/);
   await page.goto("/app");

@@ -169,7 +169,9 @@ export default function Metodo() {
 
       <section className="py-20 sm:py-24">
         <Envoltorio className="flex flex-col gap-8">
-          <h2 className="text-azul-fundo text-[clamp(32px,3.6vw,44px)]">Histórias de alunos</h2>
+          <h2 className="text-azul-fundo text-[clamp(32px,3.6vw,44px)]">
+            Histórias de participantes
+          </h2>
           <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-6">
             {[1, 2, 3].map((n) => (
               <Cartao as="li" key={n} className="overflow-hidden p-0">

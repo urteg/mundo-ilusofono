@@ -1,14 +1,14 @@
-// Fonte única dos preços. Valores em centavos de euro, SEM imposto (o IVA é somado no pagamento).
+// Fonte única dos preços. Valores em centavos de euro, COM o IVA já incluído.
 export type Intervalo = "mensal" | "anual";
 export type PlanoAssinatura = "entender" | "participar";
 
 export const precos = {
-  entender: { mensal: 699, anual: 4900 },
-  participar: { mensal: 1299, anual: 8900 },
-  desafio: 900,
+  entender: { mensal: 799, anual: 5500 },
+  participar: { mensal: 1399, anual: 9900 },
+  desafio: 990,
 } as const;
 
-export const avisoImposto = "Os preços não incluem imposto. O IVA é somado no pagamento.";
+export const avisoImposto = "Os preços já incluem o IVA.";
 
 const formatador = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "EUR" });
 

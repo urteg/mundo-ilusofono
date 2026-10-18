@@ -1,6 +1,6 @@
 # Mundo Ilusófono
 
-Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do aluno.
+Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do participante.
 
 > O português se vive, não só se estuda.
 
@@ -50,7 +50,7 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 - [x] Fase 0: base (tokens, fontes, componentes, vitrine `/_ui`)
 - [x] Fase 1: site (Início, Como funciona, Séries, Planos, Desafio, Recursos, Blog, Obrigado, 404)
 - [x] Fase 2: Supabase, RLS e login por link no e-mail
-- [ ] Fase 3: app, telas principais
+- [ ] Fase 3: app, telas principais (feito: casca do app, pílulas de meta e sequência, Lição de hoje, tempo fora do app; falta: Assistir, Séries, Vídeo, Progresso, Conta)
 - [ ] Fase 4: Stripe e acesso (botões de compra levam a `/entrar`; ver `TODO(Fase 4)`)
 - [ ] Fase 5: lives
 - [ ] Fase 6: vocabulário
@@ -61,7 +61,7 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 
 Migrações em `supabase/migrations/` (001_base a 006_rls) e dados de exemplo em `supabase/seed.sql`.
 
-- RLS ligada em todas as tabelas. O aluno lê e escreve só o que é dele; `entitlements` é só leitura para o aluno; conteúdo é leitura para quem está logado.
+- RLS ligada em todas as tabelas. O participante lê e escreve só o que é dele; `entitlements` é só leitura para o participante; conteúdo é leitura para quem está logado.
 - `videos.video_ref` e `lives.sala_url` nunca saem por consulta do cliente: as tabelas `videos` e `lives` não têm acesso para `anon`/`authenticated`. O cliente usa as views `v_videos_publicos` e `v_lives_publicas`. O site público usa também `v_series_publicas` e `v_apresentadores_publicos`.
 - Clientes: `lib/supabase/cliente.ts` (navegador), `servidor.ts` (servidor com cookies, e cliente público sem sessão para páginas estáticas), `admin.ts` (service role, só no servidor).
 
@@ -90,7 +90,8 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 
 **Textos e decisões**
 
-- Início: frase do topo; número de alunos (só quando for verdadeiro).
+- Início: frase do topo; número de participantes (só quando for verdadeiro).
+- Horas por nível do app (`lib/niveis.ts`, provisório: 0, 50, 150, 300, 600, 1000, 1500).
 - Caminhos e níveis: nomes dos três caminhos, subníveis e horas de cada um; nomes finais dos níveis (`components/ui/SeloEtapa.tsx`); horas dos 4 degraus da escada (Como funciona).
 - Desafio 7 Dias: título e frase de cada um dos 7 dias.
 - Séries: títulos das 6 séries de exemplo (`lib/dados-publicos.ts`).
@@ -107,4 +108,4 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 - PDF do roteiro de níveis (Recursos; enquanto não existir, o botão fica desabilitado).
 - Títulos dos vídeos de exemplo (vitrine `/_ui`).
 
-**Fora do site**: hospedagem dos vídeos pagos (Bunny Stream ou Mux); registro fiscal/IVA; IDs dos preços do Participar no Stripe.
+**Fora do site**: hospedagem dos vídeos pagos (Bunny Stream ou Mux); registro fiscal/IVA; criar no Stripe os preços com IVA incluído (Entender €7,99 e €55, Participar €13,99 e €99, Desafio €9,90) e arquivar os antigos.

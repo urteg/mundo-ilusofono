@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-// [PLACEHOLDER: número de alunos, só quando for verdadeiro]. Enquanto for null, o contador não aparece.
-const numeroAlunos: number | null = null;
+// [PLACEHOLDER: número de participantes, só quando for verdadeiro]. Enquanto for null, o contador não aparece.
+const numeroParticipantes: number | null = null;
 
 function NumeroPasso({ n }: { n: number }) {
   return (
@@ -91,9 +91,9 @@ export default async function Inicio() {
                 Ver planos
               </Link>
             </div>
-            {numeroAlunos !== null && (
+            {numeroParticipantes !== null && (
               <p className="text-texto-suave text-sm">
-                {numeroAlunos.toLocaleString("pt-BR")} pessoas já assistem com a gente.
+                {numeroParticipantes.toLocaleString("pt-BR")} pessoas já assistem com a gente.
               </p>
             )}
           </div>

@@ -76,8 +76,8 @@ export default async function Obrigado({ params }: Props) {
   const c = conteudo[produto as Produto];
   const recibo =
     produto === "desafio"
-      ? `${formatarEuro(precos.desafio)} + IVA, pagamento único. O recibo foi para o seu e-mail.`
-      : "O IVA foi somado no pagamento. O recibo está no seu e-mail.";
+      ? `${formatarEuro(precos.desafio)}, pagamento único com IVA incluído. O recibo foi para o seu e-mail.`
+      : "O IVA já estava incluído no preço. O recibo está no seu e-mail.";
 
   return (
     <section className="py-16 sm:py-20">

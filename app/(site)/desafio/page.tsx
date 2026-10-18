@@ -9,7 +9,7 @@ const preco = formatarEuro(precos.desafio);
 
 export const metadata: Metadata = {
   title: "Desafio 7 Dias",
-  description: `Entenda seus primeiros vídeos em português. Um vídeo por dia, durante sete dias. ${preco} + IVA, pagamento único.`,
+  description: `Entenda seus primeiros vídeos em português. Um vídeo por dia, durante sete dias. ${preco} com IVA incluído, pagamento único.`,
   alternates: { canonical: "/desafio" },
 };
 
@@ -49,9 +49,11 @@ export default function Desafio() {
             <p className="text-texto-suave text-xl">Um vídeo por dia, durante sete dias.</p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <BotaoLink href={destinoComprarDesafio} className="min-h-14 px-8 text-[19px]">
-                Começar por {preco} + IVA
+                Começar por {preco}
               </BotaoLink>
-              <span className="text-texto-suave">Pagamento único. Sem assinatura.</span>
+              <span className="text-texto-suave">
+                Pagamento único, IVA incluído. Sem assinatura.
+              </span>
             </div>
           </div>
           <Cartao className="rounded-bolha min-w-0 flex-[1_1_360px] overflow-hidden p-0">
@@ -111,7 +113,7 @@ export default function Desafio() {
         </Envoltorio>
       </section>
 
-      <FaixaChamada rotuloBotao={`Começar por ${preco} + IVA`} href={destinoComprarDesafio} />
+      <FaixaChamada rotuloBotao={`Começar por ${preco}`} href={destinoComprarDesafio} />
     </>
   );
 }

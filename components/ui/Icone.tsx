@@ -96,6 +96,67 @@ const caminhos = {
       <path d="M16 8a6 6 0 0 1 0 8" />
     </>
   ),
+  inicio: <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6h-6v6H5a1 1 0 0 1-1-1z" />,
+  assistir: (
+    <>
+      <rect x="3" y="5" width="18" height="12" rx="2" />
+      <path d="M10 9l4 2-4 2z" />
+      <path d="M8 21h8" />
+    </>
+  ),
+  series: (
+    <>
+      <rect x="3" y="7" width="14" height="13" rx="2" />
+      <path d="M7 4h12a2 2 0 0 1 2 2v11" />
+    </>
+  ),
+  progresso: (
+    <>
+      <path d="M4 20V10" />
+      <path d="M10 20V4" />
+      <path d="M16 20v-7" />
+      <path d="M22 20H2" />
+    </>
+  ),
+  livro: (
+    <>
+      <path d="M4 5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2z" />
+      <path d="M4 19V5" />
+    </>
+  ),
+  ajuda: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
+      <path d="M12 17h.01" />
+    </>
+  ),
+  sair: (
+    <>
+      <path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3" />
+      <path d="M10 8l-4 4 4 4" />
+      <path d="M6 12h10" />
+    </>
+  ),
+  mais: (
+    <>
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+    </>
+  ),
+  opcoes: (
+    <>
+      <circle cx="5" cy="12" r="1" />
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="19" cy="12" r="1" />
+    </>
+  ),
+  trocar: (
+    <>
+      <path d="M4 7h13l-3-3" />
+      <path d="M20 17H7l3 3" />
+    </>
+  ),
 } as const;
 
 export type NomeIcone = keyof typeof caminhos;

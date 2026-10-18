@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { chavePublicaSupabase, urlSupabase } from "./env";
 import type { Database } from "./tipos";
 
-/** Cliente do servidor com a sessão do aluno (cookies). Respeita a RLS. */
+/** Cliente do servidor com a sessão do participante (cookies). Respeita a RLS. */
 export async function criarClienteServidor() {
   const loja = await cookies();
   return createServerClient<Database>(urlSupabase(), chavePublicaSupabase(), {

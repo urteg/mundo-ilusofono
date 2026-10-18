@@ -28,10 +28,10 @@ test.describe("Início", () => {
     const texto = await page.locator("body").innerText();
     expect(texto).not.toMatch(proibidas);
     expect(texto).toContain("O português se vive, não só se estuda.");
-    expect(texto).toContain("Os preços não incluem imposto.");
+    expect(texto).toContain("Preços com IVA incluído.");
   });
 
-  test("contador de alunos não aparece sem número real", async ({ page }) => {
+  test("contador de participantes não aparece sem número real", async ({ page }) => {
     await expect(page.getByText(/pessoas já assistem/)).toHaveCount(0);
   });
 

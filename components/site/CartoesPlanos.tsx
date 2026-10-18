@@ -103,7 +103,7 @@ export function CartoesPlanos() {
               >
                 {precoPlano(p.id, intervalo)}
               </span>
-              <span className="text-texto-suave">{unidade(intervalo)} + IVA</span>
+              <span className="text-texto-suave">{unidade(intervalo)}, IVA incluído</span>
             </p>
             <p className="-mt-2 text-sm font-semibold text-[#00684F]" data-testid={`nota-${p.id}`}>
               {notaPlano(p.id, intervalo)}

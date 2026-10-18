@@ -1,8 +1,8 @@
 -- 006_rls: segurança por linha em TODAS as tabelas.
 --
 -- Regras:
--- * O aluno lê e escreve só as próprias linhas.
--- * entitlements: o aluno só lê; quem escreve é o webhook do Stripe (service role).
+-- * O participante lê e escreve só as próprias linhas.
+-- * entitlements: o participante só lê; quem escreve é o webhook do Stripe (service role).
 -- * Conteúdo: leitura para quem está logado.
 -- * videos.video_ref e lives.sala_url nunca saem por consulta do cliente: as tabelas
 --   videos e lives ficam sem acesso para anon/authenticated, e o cliente usa as views
@@ -29,13 +29,13 @@ alter table public.video_palavras enable row level security;
 alter table public.palavras_aluno enable row level security;
 alter table public.lives enable row level security;
 
--- Perfil: o próprio aluno lê e altera (a criação é feita pelo gatilho criar_perfil).
+-- Perfil: o próprio participante lê e altera (a criação é feita pelo gatilho criar_perfil).
 create policy "perfil: ler o próprio" on public.profiles
   for select to authenticated using (id = (select auth.uid()));
 create policy "perfil: alterar o próprio" on public.profiles
   for update to authenticated
   using (id = (select auth.uid())) with check (id = (select auth.uid()));
--- O aluno só altera as preferências; stripe_customer_id e datas ficam com o servidor.
+-- O participante só altera as preferências; stripe_customer_id e datas ficam com o servidor.
 -- (Revogar uma coluna não basta enquanto existir permissão na tabela inteira.)
 revoke insert, update, delete on public.profiles from authenticated;
 grant update (
@@ -43,13 +43,13 @@ grant update (
   email_novidades, email_videos, email_semanal
 ) on public.profiles to authenticated;
 
--- Direitos de acesso: somente leitura para o aluno.
+-- Direitos de acesso: somente leitura para o participante.
 create policy "entitlements: ler os próprios" on public.entitlements
   for select to authenticated using (user_id = (select auth.uid()));
 
 -- stripe_eventos: sem políticas (só a service role acessa).
 
--- Tabelas do aluno: tudo, mas só nas próprias linhas.
+-- Tabelas do participante: tudo, mas só nas próprias linhas.
 do $$
 declare
   t text;

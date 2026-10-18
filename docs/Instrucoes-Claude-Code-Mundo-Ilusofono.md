@@ -9,7 +9,7 @@ Ver `../CLAUDE.md` (fonte de verdade).
 ## 2. Pré-requisitos (faça uma vez)
 
 1. Supabase: criar projeto (ou usar o CLI local). Anotar URL, anon key e service role key.
-2. Stripe (modo de teste): produtos já criados: Entender `prod_VSoqh0jh3KoqDP`, Participar `prod_VSp09Q6KVHqGkw`, Desafio `prod_VSon5dQInRGmVn`. Os preços devem estar com imposto não incluído (exclusive). Entender €6,99/mês e €49/ano já estão corretos; faltam Participar €12,99/mês e €89/ano; arquivar os preços antigos com imposto incluído. Copiar os `price_...` para as variáveis de ambiente.
+2. Stripe (modo de teste): produtos já criados: Entender `prod_VSoqh0jh3KoqDP`, Participar `prod_VSp09Q6KVHqGkw`, Desafio `prod_VSon5dQInRGmVn`. Decisão de 18/10/2026: os preços já incluem o IVA (tax_behavior = inclusive). Criar os preços novos: Entender €7,99/mês e €55/ano; Participar €13,99/mês e €99/ano; Desafio €9,90 (pagamento único). Arquivar os preços antigos (€6,99, €49, €12,99, €89 e €9, sem imposto). Copiar os `price_...` para as variáveis de ambiente.
 3. Resend: criar chave de API e domínio (ou usar o SMTP do Supabase no teste).
 4. Instalar: Node 20+, pnpm, Supabase CLI, Stripe CLI.
 
@@ -146,12 +146,12 @@ Seed: 3 séries (a cidade, a cozinha, a família), 12 vídeos de exemplo com tí
 - Checkout (`POST /api/stripe/checkout`): valida `{produto, intervalo}` com zod; mapeia para `STRIPE_PRICE_*`; obtém/cria cliente por e-mail e grava `stripe_customer_id`; cria a sessão com `mode: 'subscription'` (ou `'payment'` para o Desafio), `automatic_tax: {enabled: true}`, `billing_address_collection: 'required'`, `tax_id_collection: {enabled: true}`, `customer_update: {address:'auto', name:'auto'}`, `success_url: /obrigado/{produto}`, `cancel_url: /planos`; devolve a URL.
 - Webhook (`POST /api/stripe/webhook`): verificar assinatura com `STRIPE_WEBHOOK_SECRET`; idempotência guardando `event.id` em `stripe_eventos`; tratar `checkout.session.completed`, `customer.subscription.created|updated|deleted`, `invoice.payment_failed`; atualizar `entitlements`; se o usuário não existir no Supabase, criá-lo e enviar o link de acesso.
 - Portal (`POST /api/stripe/portal`): só logado; cria sessão do Customer Portal e redireciona. Configurar no painel: trocar de plano (entre os 4 preços), atualizar cartão, ver recibos, cancelar.
-- Imposto: Stripe Tax ligado. O registro fiscal (IVA Espanha/UE) será definido com o gestor antes do modo real. Cartão de teste: `4242 4242 4242 4242`.
+- Imposto: preços com IVA incluído (tax_behavior = inclusive); Stripe Tax ligado. O registro fiscal (IVA Espanha/UE) será definido com o gestor antes do modo real. Cartão de teste: `4242 4242 4242 4242`.
 
 ## 8. Fases
 
 - Fase 0, base: projeto, tokens, fontes, ESLint, Prettier, Vitest, Playwright, `.env.example`, README, componentes base em `components/ui` e página `/_ui`. Verificação: `/_ui` mostra todos os componentes em desktop e 390px, sem rolagem horizontal.
-- Fase 1, site: Início, Método, Séries (pública), Planos (alternador mensal/anual), Desafio 7 Dias, Recursos e FAQ, Blog, Obrigado (3 produtos). Navegação e rodapé comuns, "+ IVA", metadados e Open Graph. Verificação: grep de PLACEHOLDER, nenhuma palavra proibida, Lighthouse a11y > 90.
+- Fase 1, site: Início, Método, Séries (pública), Planos (alternador mensal/anual), Desafio 7 Dias, Recursos e FAQ, Blog, Obrigado (3 produtos). Navegação e rodapé comuns, "IVA incluído", metadados e Open Graph. Verificação: grep de PLACEHOLDER, nenhuma palavra proibida, Lighthouse a11y > 90.
 - Fase 2, Supabase e login: migrações com RLS, seed, `pnpm db:reset`, `/entrar` com magic link, criação de `profiles`, middleware protegendo `/app/*`, teste de RLS com segundo usuário.
 - Fase 3, app: layout com barra superior/inferior, Lição de hoje, Assistir, Séries, Vídeo (`<VideoPlayer>` youtube/file), Progresso, Horas fora do app, Conta, `/api/progresso`, `lib/streak.ts`, `lib/progress.ts`, testes de unidade.
 - Fase 4, Stripe e acesso: checkout, webhook, portal, `lib/entitlements.ts` no servidor, `/app/planos`, testes do webhook.
@@ -163,7 +163,7 @@ Seed: 3 séries (a cidade, a cozinha, a família), 12 vídeos de exemplo com tí
 ## 9. Definição de pronto
 
 1. Todas as rotas existem e navegam entre si.
-2. Nenhum texto fora do português; nenhum emoji; todos os preços com "+ IVA".
+2. Nenhum texto fora do português; nenhum emoji; todos os preços com "IVA incluído".
 3. Compra de teste dos 3 produtos cria o acesso correto; o portal abre; cancelar funciona.
 4. Login por e-mail funciona; `/app/*` sem sessão volta para `/entrar`.
 5. Entender não entra ao vivo; Participar entra; gratuitos veem o convite.
