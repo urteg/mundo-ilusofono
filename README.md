@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mundo Ilusófono
 
-## Getting Started
+Plataforma de vídeos em português brasileiro para estrangeiros: site de venda + aplicativo web do aluno.
 
-First, run the development server:
+> O português se vive, não só se estuda.
+
+Regras do projeto: ver `CLAUDE.md`. Plano completo por fases: `docs/Instrucoes-Claude-Code-Mundo-Ilusofono.md`.
+
+## Como rodar
+
+Requisitos: Node 20+, pnpm. (Fases seguintes: Supabase CLI e Stripe CLI.)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local   # preencha os valores
+pnpm dev                     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Comando                        | O que faz                                      |
+| ------------------------------ | ---------------------------------------------- |
+| `pnpm dev`                     | servidor de desenvolvimento                    |
+| `pnpm build` / `pnpm start`    | build de produção                              |
+| `pnpm lint` / `pnpm typecheck` | ESLint e TypeScript                            |
+| `pnpm test`                    | testes de unidade (Vitest)                     |
+| `pnpm e2e`                     | testes de fluxo (Playwright, 1360 px e 390 px) |
+| `pnpm format`                  | Prettier                                       |
+| `pnpm db:reset`                | migrações + seed no Supabase local (fase 2)    |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Se o Playwright não puder baixar navegadores, aponte para um Chromium local:
+`PLAYWRIGHT_CHROMIUM_PATH=/caminho/do/chrome pnpm e2e`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Estrutura
 
-## Learn More
+- `app/tokens.css`: tokens de design (cores, raio, sombra). Espelhados no `@theme` de `app/globals.css` (Tailwind v4).
+- `components/ui`: Botao/BotaoLink, Cartao, Chip, SeloNivel, SeloPlano, BarraProgresso, Pilula, Dialogo, Acordeao, Icone.
+- `/_ui` (`app/%5Fui`): vitrine dos componentes.
+- `tests/unit`, `tests/e2e`.
 
-To learn more about Next.js, take a look at the following resources:
+## Variáveis de ambiente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cliente; só as `NEXT_PUBLIC_*` chegam ao navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Andamento
 
-## Deploy on Vercel
+- [x] Fase 0: base
+- [ ] Fase 1: site
+- [ ] Fase 2: Supabase e login
+- [ ] Fase 3: app, telas principais
+- [ ] Fase 4: Stripe e acesso
+- [ ] Fase 5: lives
+- [ ] Fase 6: vocabulário
+- [ ] Fase 7: V2
+- [ ] Fase 8: qualidade e entrega
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Marcadores pendentes (`[PLACEHOLDER: ...]`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Encontre todos com `grep -rn "PLACEHOLDER" app components lib supabase`.
+
+- Títulos de vídeos (exemplos na vitrine `/_ui`).
+- Pendências gerais do Márlio: foto e biografia final; depoimentos reais; títulos de séries, vídeos e dos 7 dias do Desafio; nomes dos três caminhos e horas por nível; apresentadores convidados; hospedagem dos vídeos pagos (Bunny Stream ou Mux); registro fiscal/IVA; IDs dos preços do Participar no Stripe.

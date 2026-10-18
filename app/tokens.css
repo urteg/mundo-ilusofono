@@ -1,0 +1,20 @@
+:root {
+  --azul: #0984e3;
+  --azul-acao: #0665b8;
+  --azul-fundo: #0a3d62;
+  --dourado: #e3ba14;
+  --verde: #00b894;
+  --coral: #ff6b35;
+  --coral-texto: #c2410c;
+  --fogo: #9a3412;
+  --papel: #fdfaf4;
+  --areia: #ece4d2;
+  --borda: #cfc6b2;
+  --texto: #1e272e;
+  --texto-suave: #4a5560;
+  --branco: #ffffff;
+  --raio-card: 22px;
+  --sombra: 0 4px 16px rgba(30, 39, 46, 0.1);
+}
+
+/* Modo escuro: só quando ativado na conta (Fase 7), via data-tema="escuro" no <html>. */
