@@ -34,6 +34,14 @@ export function FormEntrar({ proximo, erroInicial }: Props) {
       campo.current?.focus();
       return;
     }
+    // Na prévia estática não há servidor para receber o login.
+    if (process.env.NEXT_PUBLIC_PREVIA === "1") {
+      setEstado({
+        tipo: "erro",
+        mensagem: "Esta é só uma prévia do site. O login funciona na versão publicada.",
+      });
+      return;
+    }
     setEstado({ tipo: "enviando" });
     const retorno = new URL("/auth/callback", window.location.origin);
     retorno.searchParams.set("proximo", proximo);

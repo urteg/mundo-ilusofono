@@ -6,7 +6,16 @@ const previa = process.env.PREVIA === "1";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
-  ...(previa ? { output: "export", images: { unoptimized: true }, trailingSlash: false } : {}),
+  // Na prévia as partes com login ficam fora do build; tipos e lint já são checados no build normal.
+  ...(previa
+    ? {
+        output: "export",
+        images: { unoptimized: true },
+        trailingSlash: false,
+        typescript: { ignoreBuildErrors: true },
+        eslint: { ignoreDuringBuilds: true },
+      }
+    : {}),
 };
 
 export default createMDX({})(nextConfig);

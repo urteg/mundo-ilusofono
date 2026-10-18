@@ -13,7 +13,7 @@
     "e2e": "playwright test",
     "format": "prettier --write .",
     "db:reset": "supabase db reset",
-    "previa": "PREVIA=1 next build && node scripts/previa.mjs",
+    "previa": "node scripts/gerar-previa.mjs",
     "db:start": "supabase start",
     "db:stop": "supabase stop",
     "db:tipos": "supabase gen types typescript --local --schema public > lib/supabase/tipos.ts",
