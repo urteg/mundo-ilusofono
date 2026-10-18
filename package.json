@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "e2e": "playwright test",
     "format": "prettier --write .",
-    "db:reset": "supabase db reset"
+    "db:reset": "supabase db reset",
+    "previa": "PREVIA=1 next build && node scripts/previa.mjs"
   },
   "dependencies": {
     "next": "15.5.28",
