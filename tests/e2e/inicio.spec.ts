@@ -9,7 +9,7 @@ test.describe("Início", () => {
 
   test("tem título, metadados e nenhuma rolagem horizontal", async ({ page }) => {
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Entenda português de verdade. Vivendo.",
+      "Entenda português de verdade. E fale com naturalidade.",
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
       "href",

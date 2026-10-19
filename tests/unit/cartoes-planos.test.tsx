@@ -7,7 +7,10 @@ vi.mock("next/navigation", () => ({
   useSearchParams: () => new URLSearchParams(busca),
 }));
 
-import { CartoesPlanos, destinoAssinar } from "@/components/site/CartoesPlanos";
+const ir = vi.fn();
+vi.mock("@/lib/navegar", () => ({ irPara: (url: string) => ir(url) }));
+
+import { CartoesPlanos } from "@/components/site/CartoesPlanos";
 
 describe("alternador de planos", () => {
   beforeEach(() => {
@@ -44,10 +47,34 @@ describe("alternador de planos", () => {
     expect(window.location.search).toBe("?intervalo=anual");
   });
 
-  it("botões de assinar levam ao login até a Fase 4", () => {
+  it("assinar chama o checkout com o plano e o intervalo escolhidos", async () => {
+    const pedidos: unknown[] = [];
+    ir.mockClear();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (_url: string, init: RequestInit) => {
+        pedidos.push(JSON.parse(String(init.body)));
+        return new Response(JSON.stringify({ url: "https://checkout.stripe.com/c/x" }));
+      }),
+    );
     render(<CartoesPlanos />);
-    for (const nome of ["Assinar o Entender", "Assinar o Participar"]) {
-      expect(screen.getByRole("link", { name: nome })).toHaveAttribute("href", destinoAssinar);
-    }
+    await userEvent.click(screen.getByRole("button", { name: "Mensal" }));
+    await userEvent.click(screen.getByRole("button", { name: "Assinar o Participar" }));
+    expect(pedidos).toEqual([{ produto: "participar", intervalo: "mensal" }]);
+    expect(ir).toHaveBeenCalledWith("https://checkout.stripe.com/c/x");
+    vi.unstubAllGlobals();
+  });
+
+  it("sem sessão: vai para o login e volta para a página", async () => {
+    ir.mockClear();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => new Response("{}", { status: 401 })),
+    );
+    window.history.replaceState(null, "", "/planos?intervalo=anual");
+    render(<CartoesPlanos />);
+    await userEvent.click(screen.getByRole("button", { name: "Assinar o Entender" }));
+    expect(ir).toHaveBeenCalledWith("/entrar?proximo=%2Fplanos%3Fintervalo%3Danual");
+    vi.unstubAllGlobals();
   });
 });

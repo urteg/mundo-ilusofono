@@ -10,7 +10,7 @@ import { listarApresentadores } from "@/lib/conteudo-publico";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: `${site.nome}: entenda português de verdade` },
+  title: { absolute: `${site.nome}: entenda e fale português de verdade` },
   description: site.descricao,
   alternates: { canonical: "/" },
 };
@@ -78,10 +78,12 @@ export default async function Inicio() {
         <Envoltorio className="flex flex-wrap items-center gap-12 pt-12 pb-20 sm:pt-20 sm:pb-24">
           <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-6">
             <h1 className="text-azul-fundo text-[clamp(44px,6.4vw,84px)] font-bold tracking-tight">
-              Entenda português de verdade. <span className="text-azul">Vivendo.</span>
+              Entenda português de verdade.{" "}
+              <span className="text-azul">E fale com naturalidade.</span>
             </h1>
             <p className="text-texto-suave max-w-[520px] text-[21px]">
-              <Marcador>[PLACEHOLDER: uma frase]</Marcador>
+              Vídeos que você entende, com gente de vários países. Quanto mais você entende, mais a
+              fala vem sozinha: sem decoreba e sem pressão.
             </p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <BotaoLink href="/desafio" className="min-h-14 px-8 text-[19px]">

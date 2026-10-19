@@ -71,7 +71,7 @@ export async function carregarCatalogo() {
 export async function carregarLicaoHoje(participante: DadosParticipante): Promise<LicaoHoje> {
   const agora = new Date();
   const { catalogo, vistos, emAndamento, supabase } = await carregarCatalogo();
-  const elegiveis = videosElegiveis(catalogo, participante.ents, agora);
+  const elegiveis = videosElegiveis(catalogo, participante.ents, agora, participante.fuso);
 
   const { data: passosHoje } = await supabase
     .from("licao_passos")
@@ -88,6 +88,7 @@ export async function carregarLicaoHoje(participante: DadosParticipante): Promis
       nivelParticipante: participante.progresso.nivel,
       ents: participante.ents,
       agora,
+      fuso: participante.fuso,
     });
     if (video) {
       await supabase
@@ -127,7 +128,7 @@ export async function trocarVideoDeHoje(participante: DadosParticipante): Promis
     .eq("dia", participante.hoje)
     .maybeSingle();
   const outro = sortearOutro(
-    { videos: catalogo, vistos, ents: participante.ents, agora },
+    { videos: catalogo, vistos, ents: participante.ents, agora, fuso: participante.fuso },
     atual?.video_id ?? null,
   );
   if (!outro) return null;

@@ -110,30 +110,39 @@ export type Database = {
       };
       entitlements: {
         Row: {
+          atualizado_em: string;
           comprado_em: string | null;
           intervalo: string | null;
+          pagamento_falhou_em: string | null;
           produto: string;
           renova_em: string | null;
           status: string;
+          stripe_evento_em: string | null;
           stripe_subscription_id: string | null;
           user_id: string;
         };
         ComputedFields: never;
         Insert: {
+          atualizado_em?: string;
           comprado_em?: string | null;
           intervalo?: string | null;
+          pagamento_falhou_em?: string | null;
           produto: string;
           renova_em?: string | null;
           status: string;
+          stripe_evento_em?: string | null;
           stripe_subscription_id?: string | null;
           user_id: string;
         };
         Update: {
+          atualizado_em?: string;
           comprado_em?: string | null;
           intervalo?: string | null;
+          pagamento_falhou_em?: string | null;
           produto?: string;
           renova_em?: string | null;
           status?: string;
+          stripe_evento_em?: string | null;
           stripe_subscription_id?: string | null;
           user_id?: string;
         };
@@ -469,15 +478,18 @@ export type Database = {
         Row: {
           id: string;
           recebido_em: string | null;
+          tipo: string | null;
         };
         ComputedFields: never;
         Insert: {
           id: string;
           recebido_em?: string | null;
+          tipo?: string | null;
         };
         Update: {
           id?: string;
           recebido_em?: string | null;
+          tipo?: string | null;
         };
         Relationships: [];
       };
@@ -952,6 +964,7 @@ export type Database = {
           segundos: number;
         }[];
       };
+      usuario_por_email: { Args: { p_email: string }; Returns: string };
     };
     Enums: {
       [_ in never]: never;

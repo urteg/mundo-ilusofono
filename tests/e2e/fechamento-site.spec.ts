@@ -6,8 +6,10 @@ test("/desafio: botão de compra e linha do formato", async ({ page }) => {
     "Entenda seus primeiros vídeos em português.",
   );
   await expect(page.getByText("Um vídeo por dia, durante sete dias.")).toBeVisible();
-  const comprar = page.getByRole("link", { name: "Começar por €9,90" }).first();
-  await expect(comprar).toHaveAttribute("href", "/entrar?proximo=/app");
+  // O botão chama o checkout; sem sessão, vai para o login e volta para cá.
+  await page.getByRole("button", { name: "Começar por €9,90" }).first().click();
+  await expect(page).toHaveURL(/\/entrar\?proximo=%2Fdesafio$/);
+  await page.goto("/desafio");
   await expect(page.getByText(/^Dia \d$/)).toHaveCount(7);
 });
 

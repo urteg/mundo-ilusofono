@@ -123,27 +123,42 @@ insert into public.conquistas (slug, nome, descricao) values
 
 -- Usuário de teste (login por link: use teste@exemplo.com e abra o e-mail no Mailpit local).
 -- O gatilho criar_perfil cria o perfil automaticamente.
+-- Três usuários de teste (entram pelo link no e-mail; no local, o e-mail chega no Mailpit):
+--   teste@exemplo.com      Entender ativo
+--   gratis@exemplo.com     sem plano
+--   participar@exemplo.com Participar ativo
 insert into auth.users (
   instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
   raw_app_meta_data, raw_user_meta_data, created_at, updated_at,
   confirmation_token, email_change, email_change_token_new, recovery_token
-) values (
-  '00000000-0000-0000-0000-000000000000', 'f0000000-0000-4000-8000-000000000001',
-  'authenticated', 'authenticated', 'teste@exemplo.com', '', now(),
+)
+select
+  '00000000-0000-0000-0000-000000000000', u.id, 'authenticated', 'authenticated', u.email, '', now(),
   '{"provider": "email", "providers": ["email"]}', '{}', now(), now(), '', '', '', ''
-);
+from (values
+  ('f0000000-0000-4000-8000-000000000001'::uuid, 'teste@exemplo.com'),
+  ('f0000000-0000-4000-8000-000000000002'::uuid, 'gratis@exemplo.com'),
+  ('f0000000-0000-4000-8000-000000000003'::uuid, 'participar@exemplo.com')
+) as u (id, email);
 
 insert into auth.identities (
   id, user_id, provider_id, identity_data, provider, last_sign_in_at, created_at, updated_at
-) values (
-  gen_random_uuid(), 'f0000000-0000-4000-8000-000000000001', 'f0000000-0000-4000-8000-000000000001',
-  '{"sub": "f0000000-0000-4000-8000-000000000001", "email": "teste@exemplo.com", "email_verified": true}',
+)
+select
+  gen_random_uuid(), u.id, u.id::text,
+  jsonb_build_object('sub', u.id::text, 'email', u.email, 'email_verified', true),
   'email', now(), now(), now()
+from auth.users u
+where u.id in (
+  'f0000000-0000-4000-8000-000000000001',
+  'f0000000-0000-4000-8000-000000000002',
+  'f0000000-0000-4000-8000-000000000003'
 );
 
--- Plano Entender ativo para o usuário de teste (útil nas próximas fases).
-insert into public.entitlements (user_id, produto, status, intervalo, renova_em)
-values ('f0000000-0000-4000-8000-000000000001', 'entender', 'active', 'mensal', now() + interval '30 days');
+-- Acessos dos usuários de teste (sem Stripe; para dar e tirar acesso à mão: pnpm conceder).
+insert into public.entitlements (user_id, produto, status, intervalo, renova_em) values
+  ('f0000000-0000-4000-8000-000000000001', 'entender', 'active', 'mensal', now() + interval '30 days'),
+  ('f0000000-0000-4000-8000-000000000003', 'participar', 'active', 'anual', now() + interval '300 days');
 
 -- Datas de publicação diferentes, para a ordem "mais novos / mais antigos".
 update public.videos

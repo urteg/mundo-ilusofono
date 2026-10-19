@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CenaPorNome, Envoltorio, FaixaChamada } from "@/components/site/Secao";
-import { BotaoLink, Cartao, Icone, Marcador, type NomeIcone } from "@/components/ui";
-import { destinoComprarDesafio } from "@/lib/acesso";
+import { Cartao, Icone, Marcador, type NomeIcone } from "@/components/ui";
+import { BotaoComprar } from "@/components/site/BotaoComprar";
 import type { CenaSerie } from "@/lib/cenas";
 import { formatarEuro, precos } from "@/lib/precos";
 
@@ -48,9 +48,11 @@ export default function Desafio() {
             </h1>
             <p className="text-texto-suave text-xl">Um vídeo por dia, durante sete dias.</p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              <BotaoLink href={destinoComprarDesafio} className="min-h-14 px-8 text-[19px]">
-                Começar por {preco}
-              </BotaoLink>
+              <div className="w-auto">
+                <BotaoComprar produto="desafio" className="min-h-14 px-8 text-[19px]">
+                  Começar por {preco}
+                </BotaoComprar>
+              </div>
               <span className="text-texto-suave">
                 Pagamento único, IVA incluído. Sem assinatura.
               </span>
@@ -113,7 +115,13 @@ export default function Desafio() {
         </Envoltorio>
       </section>
 
-      <FaixaChamada rotuloBotao={`Começar por ${preco}`} href={destinoComprarDesafio} />
+      <FaixaChamada>
+        <div>
+          <BotaoComprar produto="desafio" variante="dourado" className="min-h-14 px-8 text-[19px]">
+            Começar por {preco}
+          </BotaoComprar>
+        </div>
+      </FaixaChamada>
     </>
   );
 }

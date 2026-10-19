@@ -3,7 +3,12 @@ import { defineConfig } from "vitest/config";
 
 // Testes que precisam do Supabase local rodando (pnpm db:start).
 export default defineConfig({
-  resolve: { alias: { "@": fileURLToPath(new URL("./", import.meta.url)) } },
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./", import.meta.url)),
+      "server-only": fileURLToPath(new URL("./tests/apoio/vazio.ts", import.meta.url)),
+    },
+  },
   test: {
     environment: "node",
     include: ["tests/db/**/*.test.ts"],

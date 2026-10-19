@@ -19,7 +19,16 @@ pnpm dev                     # http://localhost:3000
 ```
 
 E-mails de login no ambiente local: abra o Mailpit em http://127.0.0.1:54324.
-Usuário de teste do seed: `teste@exemplo.com` (plano Entender ativo).
+Usuários de teste do seed (entram pelo link no e-mail): `gratis@exemplo.com` (sem plano), `teste@exemplo.com` (Entender ativo) e `participar@exemplo.com` (Participar ativo).
+
+Para dar e tirar acessos à mão (só no Supabase local):
+
+```bash
+pnpm conceder ana@exemplo.com participar --intervalo=anual --dias=365
+pnpm conceder ana@exemplo.com entender --status=past_due   # simula pagamento atrasado
+pnpm conceder ana@exemplo.com entender --retirar
+pnpm conceder ana@exemplo.com --listar
+```
 
 | Comando                        | O que faz                                      |
 | ------------------------------ | ---------------------------------------------- |
@@ -30,6 +39,10 @@ Usuário de teste do seed: `teste@exemplo.com` (plano Entender ativo).
 | `pnpm e2e`                     | testes de fluxo (Playwright, 1360 px e 390 px) |
 | `pnpm format`                  | Prettier                                       |
 | `pnpm db:reset`                | migrações + seed no Supabase local (fase 2)    |
+| `pnpm test:db`                 | testes com o banco local (RLS, webhook)        |
+| `pnpm conceder`                | dá/retira acessos no Supabase local            |
+| `pnpm stripe:configurar`       | cria produtos, preços e portal no Stripe teste |
+| `pnpm stripe:verificar`        | confere os STRIPE_PRICE_* com lib/precos.ts    |
 
 Se o Playwright não puder baixar navegadores, aponte para um Chromium local:
 `PLAYWRIGHT_CHROMIUM_PATH=/caminho/do/chrome pnpm e2e`.
@@ -51,7 +64,7 @@ Ver `.env.example`. Nenhuma chave secreta vai para o repositório nem para o cli
 - [x] Fase 1: site (Início, Como funciona, Séries, Planos, Desafio, Recursos, Blog, Obrigado, 404)
 - [x] Fase 2: Supabase, RLS e login por link no e-mail
 - [x] Fase 3: app, telas principais (casca do app, pílulas, Lição de hoje, Assistir com filtros, Séries, player com tempo contado de verdade, Progresso com calendário, Horas fora do app, Conta com preferências, modo escuro, exportação e exclusão de conta)
-- [ ] Fase 4: Stripe e acesso (botões de compra levam a `/entrar`; ver `TODO(Fase 4)`)
+- [ ] Fase 4: Stripe e acesso (código e testes prontos; falta a compra de teste de ponta a ponta com as chaves do Stripe, ver "Stripe")
 - [ ] Fase 5: lives
 - [ ] Fase 6: vocabulário
 - [ ] Fase 7: V2
@@ -69,11 +82,54 @@ Migrações em `supabase/migrations/` (001_base a 006_rls) e dados de exemplo em
 
 1. Criar o projeto em supabase.com (região na UE, ex.: Frankfurt) e anotar URL, chave `anon` e `service_role` (Project Settings > API). Colocar nas variáveis da Vercel; a `service_role` nunca vai para o navegador.
 2. Aplicar as migrações: `pnpm exec supabase link --project-ref <ref>` e `pnpm exec supabase db push`. Não rodar o `seed.sql` em produção.
-3. Authentication > URL Configuration: Site URL = endereço do site (ex.: `https://mundoilusofono.com`); Redirect URLs = `https://mundoilusofono.com/auth/callback` (e o endereço de prévia da Vercel, se usar).
+3. Authentication > URL Configuration: Site URL = endereço do site (ex.: `https://mundoilusofono.com`); Redirect URLs = `https://mundoilusofono.com/auth/confirmar**` e `https://mundoilusofono.com/auth/callback` (e os mesmos no endereço de prévia da Vercel, se usar).
 4. Authentication > Sign In / Providers > Email: ligado; "Confirm email" pode ficar ligado (o link de acesso já confirma).
 5. Authentication > Emails > SMTP Settings: usar o Resend (host `smtp.resend.com`, porta 465, usuário `resend`, senha = chave da API do Resend, remetente de um domínio verificado no Resend). Sem SMTP próprio, o Supabase limita a poucos e-mails por hora.
-6. Authentication > Emails > Templates: em "Magic Link" e "Confirm signup", assunto "Seu link para entrar no Mundo Ilusófono" e o HTML de `supabase/templates/link-acesso.html`.
+6. Authentication > Emails > Templates: em "Magic Link" e "Confirm signup", assunto "Seu link para entrar no Mundo Ilusófono" e o HTML de `supabase/templates/link-acesso.html`. O botão do e-mail usa `{{ .RedirectTo }}&token_hash={{ .TokenHash }}&type=email` (rota `/auth/confirmar`): assim o link funciona em qualquer navegador, inclusive para quem comprou sem conta e recebeu o acesso pelo webhook.
 7. Authentication > Rate Limits: revisar o limite de e-mails por hora depois de ligar o SMTP.
+
+## Stripe (modo de teste)
+
+Só chaves de **teste** (`sk_test_`); o servidor recusa chaves de produção. Nenhuma chave vai para o repositório, para os logs ou para o navegador.
+
+Variáveis (no `.env.local` ou nas variáveis da Vercel/ambiente):
+
+| Variável                         | De onde vem                                               |
+| -------------------------------- | --------------------------------------------------------- |
+| `STRIPE_SECRET_KEY`              | Painel do Stripe, modo de teste, Developers > API keys    |
+| `STRIPE_WEBHOOK_SECRET`          | local: o que `stripe listen` mostra; produção: o endpoint |
+| `STRIPE_PRICE_DESAFIO`           | `pnpm stripe:configurar` (ou o price\_ criado no painel)  |
+| `STRIPE_PRICE_ENTENDER_MENSAL`   | idem                                                      |
+| `STRIPE_PRICE_ENTENDER_ANUAL`    | idem                                                      |
+| `STRIPE_PRICE_PARTICIPAR_MENSAL` | idem                                                      |
+| `STRIPE_PRICE_PARTICIPAR_ANUAL`  | idem                                                      |
+
+Preparar a conta de teste:
+
+1. Settings > Tax: ligar o Stripe Tax, endereço da empresa e "Preços incluem impostos" (inclusive). O registro de IVA (Espanha/UE, OSS) é definido com o gestor antes do modo real.
+2. `pnpm stripe:configurar`: cria os produtos e os 5 preços em EUR a partir de `lib/precos.ts`, com `tax_behavior = inclusive`, e configura o Customer Portal. Imprime as linhas `STRIPE_PRICE_*`.
+3. `pnpm stripe:verificar`: confere moeda, valor, intervalo e imposto incluído de cada preço.
+
+Customer Portal (o script faz isto; no painel fica em Settings > Billing > Customer portal):
+
+- trocar de plano entre os 4 preços (Entender e Participar, mensal e anual), com ajuste proporcional;
+- atualizar a forma de pagamento;
+- ver recibos e faturas;
+- cancelar no fim do período (o acesso continua até lá);
+- atualizar nome, endereço e NIF.
+
+Webhook no ambiente local:
+
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+# copie o whsec_ que ele mostra para STRIPE_WEBHOOK_SECRET e reinicie o servidor
+```
+
+Eventos tratados: `checkout.session.completed`, `customer.subscription.created|updated|deleted`, `invoice.payment_failed` e `invoice.paid`. Em produção, criar o endpoint `https://<site>/api/stripe/webhook` com esses eventos.
+
+Compra de teste: cartão `4242 4242 4242 4242`, validade futura, CVC qualquer. O teste de ponta a ponta (`tests/e2e/stripe-real.spec.ts`) só roda quando há chave de teste e `STRIPE_WEBHOOK_SECRET`.
+
+Regras de acesso: pagamento atrasado (`past_due`) mantém o acesso por 3 dias a partir da primeira falha, com um aviso discreto no app; cancelado vale até o fim do período pago; quem já assina troca de plano pelo portal (o checkout recusa uma segunda assinatura).
 
 ## Blog
 
@@ -90,7 +146,7 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 
 **Textos e decisões**
 
-- Início: frase do topo; número de participantes (só quando for verdadeiro).
+- Início: número de participantes (só quando for verdadeiro). A frase de abertura foi escrita em 19/10 (entender + falar com naturalidade); revisar o texto final.
 - Caminhos e níveis: nomes dos três caminhos, subníveis e horas de cada um; nomes finais dos níveis (`components/ui/SeloEtapa.tsx`); horas dos 4 degraus da escada (Como funciona).
 - Desafio 7 Dias: título e frase de cada um dos 7 dias.
 - Séries: títulos das 6 séries de exemplo (`lib/dados-publicos.ts`).

@@ -48,7 +48,9 @@ export const carregarParticipante = cache(async (): Promise<DadosParticipante> =
     supabase.from("atividade_diaria").select("dia, segundos").gte("dia", somarDias(hoje, -400)),
     supabase.from("visualizacoes").select("segundos"),
     supabase.from("tempo_fora").select("dia, segundos"),
-    supabase.from("entitlements").select("produto, status, renova_em, comprado_em"),
+    supabase
+      .from("entitlements")
+      .select("produto, status, intervalo, renova_em, comprado_em, pagamento_falhou_em"),
   ]);
 
   // A meta do dia e a sequência contam o tempo no app e o tempo fora do app.

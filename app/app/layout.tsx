@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Avisos } from "@/components/app/Avisos";
+import { BotaoPortal } from "@/components/app/BotaoPortal";
 import { BarraApp } from "@/components/app/BarraApp";
 import { NavInferior } from "@/components/app/NavInferior";
 import { Pilulas } from "@/components/app/Pilulas";
 import { TemaApp } from "@/components/app/TemaApp";
 import { carregarParticipante } from "@/lib/app/participante";
+import { pagamentoAtrasado } from "@/lib/entitlements";
 
 export const metadata: Metadata = {
   title: { default: "App", template: "%s | Mundo Ilusófono" },
@@ -39,6 +41,23 @@ export default async function LayoutApp({ children }: { children: ReactNode }) {
           />
         }
       />
+      {pagamentoAtrasado(p.ents, new Date()) && (
+        // Aviso discreto: nos 3 primeiros dias depois da falha o acesso continua.
+        <div
+          role="status"
+          className="bg-papel-escuro border-borda border-b"
+          data-testid="aviso-pagamento"
+        >
+          <div className="mx-auto flex w-full max-w-[1260px] flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-2 lg:px-8">
+            <p className="text-sm font-semibold">
+              Não conseguimos cobrar. Atualize a forma de pagamento.
+            </p>
+            <BotaoPortal acao="pagamento" variante="discreto" className="min-h-11 text-sm">
+              Atualizar forma de pagamento
+            </BotaoPortal>
+          </div>
+        </div>
+      )}
       <main
         id="conteudo"
         tabIndex={-1}

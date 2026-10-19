@@ -28,8 +28,9 @@ export function videosElegiveis<T extends VideoLicao>(
   videos: T[],
   ents: Entitlement[],
   agora: Date,
+  fuso?: string,
 ): T[] {
-  return naOrdem(videos.filter((v) => podeAssistir(v, ents, agora)));
+  return naOrdem(videos.filter((v) => podeAssistir(v, ents, agora, fuso)));
 }
 
 type Entrada<T> = {
@@ -39,6 +40,8 @@ type Entrada<T> = {
   nivelParticipante: number;
   ents: Entitlement[];
   agora: Date;
+  /** fuso do participante (o dia do Desafio vira à meia-noite dele) */
+  fuso?: string;
 };
 
 export function recomendarVideo<T extends VideoLicao>({
@@ -47,8 +50,9 @@ export function recomendarVideo<T extends VideoLicao>({
   nivelParticipante,
   ents,
   agora,
+  fuso,
 }: Entrada<T>): T | null {
-  const elegiveis = videosElegiveis(videos, ents, agora);
+  const elegiveis = videosElegiveis(videos, ents, agora, fuso);
   if (elegiveis.length === 0) return null;
   const naoVistos = elegiveis.filter((v) => !vistos.has(v.id));
   return (
@@ -66,11 +70,11 @@ export function recomendarVideo<T extends VideoLicao>({
 
 /** Sorteia outro vídeo elegível, diferente do atual, preferindo os não vistos. */
 export function sortearOutro<T extends VideoLicao>(
-  { videos, vistos, ents, agora }: Omit<Entrada<T>, "nivelParticipante">,
+  { videos, vistos, ents, agora, fuso }: Omit<Entrada<T>, "nivelParticipante">,
   atualId: string | null,
   aleatorio: () => number = Math.random,
 ): T | null {
-  const elegiveis = videosElegiveis(videos, ents, agora).filter((v) => v.id !== atualId);
+  const elegiveis = videosElegiveis(videos, ents, agora, fuso).filter((v) => v.id !== atualId);
   if (elegiveis.length === 0) return null;
   const naoVistos = elegiveis.filter((v) => !vistos.has(v.id));
   const pool = naoVistos.length > 0 ? naoVistos : elegiveis;

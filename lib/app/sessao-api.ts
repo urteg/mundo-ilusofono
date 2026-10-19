@@ -12,7 +12,9 @@ export async function participanteDaApi(): Promise<DadosParticipante | null> {
   if (!user) return null;
   const [perfil, ents] = await Promise.all([
     supabase.from("profiles").select("fuso, meta_diaria_min").eq("id", user.id).maybeSingle(),
-    supabase.from("entitlements").select("produto, status, renova_em, comprado_em"),
+    supabase
+      .from("entitlements")
+      .select("produto, status, intervalo, renova_em, comprado_em, pagamento_falhou_em"),
   ]);
   const fuso = fusoValido(perfil.data?.fuso);
   return {

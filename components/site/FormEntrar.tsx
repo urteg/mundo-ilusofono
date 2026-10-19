@@ -43,7 +43,8 @@ export function FormEntrar({ proximo, erroInicial }: Props) {
       return;
     }
     setEstado({ tipo: "enviando" });
-    const retorno = new URL("/auth/callback", window.location.origin);
+    // O e-mail leva a /auth/confirmar?proximo=...&token_hash=... (ver supabase/templates).
+    const retorno = new URL("/auth/confirmar", window.location.origin);
     retorno.searchParams.set("proximo", proximo);
     const { error } = await criarClienteNavegador().auth.signInWithOtp({
       email: limpo,

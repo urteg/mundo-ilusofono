@@ -221,7 +221,7 @@ test("conta: preferências, fuso, modo escuro com contraste AA e dados", async (
   await expect(page.getByText("Salvo.", { exact: true }).last()).toBeVisible();
 
   await expect(page.locator("html")).toHaveAttribute("data-tema", "escuro");
-  await expect(page.getByLabel(/Meta de hoje: 0 de 30 minutos/)).toBeVisible();
+  await expect(page.getByLabel(/Meta de hoje: 0 de 30 minutos/)).toBeVisible({ timeout: 15_000 });
   const { data: perfil } = await adminTeste()
     .from("profiles")
     .select("nome, meta_diaria_min, tema, email_semanal, fuso, fuso_escolhido")

@@ -35,9 +35,19 @@ test.describe("app com o usuário do seed", () => {
     await expect(recomendado.getByRole("link", { name: "Assistir agora" })).toBeVisible();
 
     // Escolher outro vídeo troca a recomendação e grava em licao_passos.
-    await recomendado.getByRole("button", { name: "Escolher outro vídeo" }).click();
+    // Espera o JavaScript da página carregar (no primeiro acesso, com o servidor frio, o
+    // clique podia chegar antes e se perder).
+    await page.waitForLoadState("networkidle");
+    // A ação redireciona para /app; espera a resposta e a página nova terminar de carregar.
+    await Promise.all([
+      page.waitForResponse((r) => r.request().method() === "POST" && r.url().endsWith("/app")),
+      recomendado.getByRole("button", { name: "Escolher outro vídeo" }).click(),
+    ]);
+    await page.waitForLoadState("networkidle");
+    // Com os dois projetos rodando em paralelo, a troca pode levar alguns segundos.
     await expect(recomendado.getByRole("heading", { level: 2 })).not.toHaveText(
       "[PLACEHOLDER: título do vídeo 1]",
+      { timeout: 15_000 },
     );
     const novo = await recomendado.getByRole("heading", { level: 2 }).textContent();
     const { data: passo } = await adminTeste()

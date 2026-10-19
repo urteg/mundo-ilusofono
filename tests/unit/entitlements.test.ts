@@ -4,6 +4,7 @@ import {
   estaAtivo,
   motivoBloqueio,
   podeAssistir,
+  pagamentoAtrasado,
   produtosAtivos,
   type Entitlement,
 } from "@/lib/entitlements";
@@ -57,6 +58,33 @@ describe("estaAtivo", () => {
   });
   it("past_due sem data de vencimento mantém o acesso", () => {
     expect(estaAtivo(ent("entender", "past_due"), agora)).toBe(true);
+  });
+});
+
+describe("past_due a partir da primeira falha (webhook)", () => {
+  const falhou = "2026-10-15T12:00:00Z";
+  const pd = ent("entender", "past_due", {
+    renova_em: "2026-11-15T12:00:00Z", // o Stripe já avançou o período
+    pagamento_falhou_em: falhou,
+  });
+  it("vale nos 3 dias depois da falha, mesmo com o período avançado", () => {
+    expect(estaAtivo(pd, new Date("2026-10-18T12:00:00Z"))).toBe(true);
+    expect(estaAtivo(pd, new Date("2026-10-18T12:00:01Z"))).toBe(false);
+  });
+  it("aviso discreto só enquanto ainda tem acesso", () => {
+    expect(pagamentoAtrasado([pd], new Date("2026-10-16T00:00:00Z"))).toBe(true);
+    expect(pagamentoAtrasado([pd], new Date("2026-10-20T00:00:00Z"))).toBe(false);
+    expect(pagamentoAtrasado([ent("entender")], agora)).toBe(false);
+  });
+  it("depois de 3 dias, vídeos pagos fecham; grátis continuam", () => {
+    const depois = new Date("2026-10-19T00:00:00Z");
+    expect(podeAssistir(entender, [pd], depois)).toBe(false);
+    expect(podeAssistir(gratis, [pd], depois)).toBe(true);
+  });
+  it("cancelado no fim do período: acesso até renova_em", () => {
+    const c = ent("participar", "canceled", { renova_em: "2026-10-31T00:00:00Z" });
+    expect(podeAssistir(participar, [c], agora)).toBe(true);
+    expect(podeAssistir(participar, [c], new Date("2026-10-31T00:00:00Z"))).toBe(false);
   });
 });
 

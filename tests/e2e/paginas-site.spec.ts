@@ -76,10 +76,8 @@ test("/planos: tabela acessível e rolável no celular", async ({ page, isMobile
 
 test("/planos: botão Assinar leva ao login com o destino", async ({ page }) => {
   await page.goto("/planos");
-  await expect(page.getByRole("link", { name: "Assinar o Participar" })).toHaveAttribute(
-    "href",
-    "/entrar?proximo=/app/planos",
-  );
+  await page.getByRole("button", { name: "Assinar o Participar" }).click();
+  await expect(page).toHaveURL(/\/entrar\?proximo=%2Fplanos/);
 });
 
 test("/series: séries do banco com nível e episódios", async ({ page }) => {

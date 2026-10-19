@@ -2,7 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Alternador, BotaoLink, Icone, cx } from "@/components/ui";
+import { Alternador, Icone, cx } from "@/components/ui";
+import { BotaoComprar } from "./BotaoComprar";
 import {
   lerIntervalo,
   notaPlano,
@@ -11,10 +12,6 @@ import {
   type Intervalo,
   type PlanoAssinatura,
 } from "@/lib/precos";
-
-// TODO(Fase 4): trocar por POST /api/stripe/checkout com { produto, intervalo }.
-// Por enquanto o botão leva ao login e, depois dele, à tela de planos do app.
-export const destinoAssinar = "/entrar?proximo=/app/planos";
 
 const planos: {
   id: PlanoAssinatura;
@@ -108,13 +105,14 @@ export function CartoesPlanos() {
             <p className="-mt-2 text-sm font-semibold text-[#00684F]" data-testid={`nota-${p.id}`}>
               {notaPlano(p.id, intervalo)}
             </p>
-            <BotaoLink
-              href={destinoAssinar}
+            <BotaoComprar
+              produto={p.id}
+              intervalo={intervalo}
               variante={p.destaque ? "primario" : "secundario"}
               className="w-full"
             >
               Assinar o {p.nome}
-            </BotaoLink>
+            </BotaoComprar>
             <ul className="border-areia flex flex-col gap-2.5 border-t pt-4">
               {p.inclui.map((item) => (
                 <li key={item} className="flex items-start gap-2.5">

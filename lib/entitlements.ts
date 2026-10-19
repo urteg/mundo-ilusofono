@@ -10,6 +10,9 @@ export type Entitlement = {
   status: string;
   renova_em: string | null;
   comprado_em: string | null;
+  /** primeira falha de pagamento ainda não resolvida (vem do webhook) */
+  pagamento_falhou_em?: string | null;
+  intervalo?: string | null;
 };
 
 export type VideoAcesso = { plano_minimo: PlanoMinimo | string | null; desafio_dia: number | null };
@@ -24,15 +27,23 @@ export function estaAtivo(e: Entitlement, agora: Date): boolean {
     case "active":
     case "trialing":
       return true;
-    case "past_due":
-      // Pagamento atrasado: mantém o acesso por 3 dias depois do vencimento.
-      return fim === null || agora.getTime() <= fim + diasTolerancia * umDia;
+    case "past_due": {
+      // Pagamento atrasado: mantém o acesso por 3 dias a partir da primeira falha
+      // (ou, sem essa data, do vencimento).
+      const base = e.pagamento_falhou_em ? new Date(e.pagamento_falhou_em).getTime() : fim;
+      return base === null || agora.getTime() <= base + diasTolerancia * umDia;
+    }
     case "canceled":
       // Cancelado: vale até o fim do período já pago.
       return fim !== null && agora.getTime() < fim;
     default:
       return false;
   }
+}
+
+/** Há um pagamento atrasado ainda dentro dos 3 dias de tolerância? (aviso discreto no app) */
+export function pagamentoAtrasado(ents: Entitlement[], agora: Date): boolean {
+  return ents.some((e) => e.status === "past_due" && estaAtivo(e, agora));
 }
 
 export function produtosAtivos(ents: Entitlement[], agora: Date): Set<string> {
