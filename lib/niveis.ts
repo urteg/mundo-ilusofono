@@ -32,13 +32,31 @@ export function lerNivel(valor: string | number | null | undefined): number {
   return Math.min(nivelMaximo, Math.max(0, Math.trunc(n)));
 }
 
-// Nomes das fases do método, em português. [a confirmar pelo Márlio]
+// Nomes das fases do método em português, fiéis à ideia de cada fase (a pessoa cresce como
+// participante de uma comunidade, não "estuda uma língua"):
+//   fase 1 connecting   -> níveis 0 e 1 (1A e 1B): conexões pelo aqui e agora
+//   fase 2 emerging     -> nível 2: a pessoa começa a aparecer, a ser alguém para os outros
+//   fase 3 knowable     -> nível 3: dá para conhecer a pessoa (e ela conhece os outros)
+//   fase 4 deep personal relationships -> nível 4
+//   fase 5 widening understanding      -> nível 5
+//   fase 6 ever-growing                -> nível 6
 export const nomesDosNiveis = [
-  "Conectando: primeiros passos",
-  "Conectando",
-  "Emergente",
-  "Conhecível",
+  "Primeiras conexões",
+  "Criando conexões",
+  "Emergindo",
+  "Tornando-se conhecido",
   "Relações profundas",
   "Ampliando o entendimento",
-  "Sempre participando",
+  "Sempre crescendo",
+] as const;
+
+/** O que a participação tem de característico em cada nível (cartão "Seu nível agora"). */
+export const sentidoDosNiveis = [
+  "Você se conecta pelo aqui e agora: gestos, objetos e situações que dá para ver.",
+  "Conversas simples sobre o que está à vista já fazem sentido.",
+  "Você começa a aparecer como pessoa: entende e conta histórias simples.",
+  "Já dá para conhecer você, e você conhece os outros: histórias de vida e rotinas.",
+  "Conversas sobre sentimentos, valores e o que importa para cada um.",
+  "Você entende o mundo da comunidade: jeitos de falar, humor e temas de todo tipo.",
+  "A participação não para: você segue crescendo na vida em português.",
 ] as const;

@@ -97,7 +97,7 @@ Encontre todos com `grep -rn "PLACEHOLDER" app components lib content`.
 - Perguntas frequentes: respostas finais (rascunhos em `lib/faq.ts`, cada um marcado "revisar com o Márlio").
 - Blog: títulos, resumos e textos dos 3 posts (`content/blog/`).
 - Obrigado Participar: dia e hora da próxima live (virá do banco na Fase 5).
-- Nomes dos níveis 0 a 6 (`lib/niveis.ts`, `nomesDosNiveis`): hoje usam os nomes das fases do método em português, a confirmar.
+- Nomes e frases dos níveis 0 a 6 (`lib/niveis.ts`, `nomesDosNiveis` e `sentidoDosNiveis`): seguem as seis fases do método (Primeiras conexões, Criando conexões, Emergindo, Tornando-se conhecido, Relações profundas, Ampliando o entendimento, Sempre crescendo); revisar o texto final.
 - Regra para menores de 18 anos (`lib/app/catalogo.ts`): por ora os vídeos adultos só mostram o selo +18.
 - Última legenda do vídeo de demonstração (`public/videos/exemplo.vtt`).
 

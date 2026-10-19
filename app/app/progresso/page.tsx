@@ -6,7 +6,7 @@ import { BarraProgresso, Icone, SeloNivel, cx } from "@/components/ui";
 import { carregarPainel } from "@/lib/app/painel";
 import { carregarParticipante } from "@/lib/app/participante";
 import { lerMes, textoHoras, textoSequencia } from "@/lib/calendario";
-import { inicioDosNiveis, nivelMaximo, nomesDosNiveis } from "@/lib/niveis";
+import { inicioDosNiveis, nivelMaximo, nomesDosNiveis, sentidoDosNiveis } from "@/lib/niveis";
 
 export const metadata: Metadata = { title: "Progresso" };
 
@@ -70,11 +70,12 @@ export default async function Pagina({
               {nomesDosNiveis[prog.nivel]}
             </span>
           </div>
+          <p className="text-texto-suave">{sentidoDosNiveis[prog.nivel]}</p>
           <p className="text-lg">
             {prog.horasParaProximo !== null ? (
               <>
                 Faltam <b>{textoHoras(Math.ceil(prog.horasParaProximo * 3600))}</b> para o Nível{" "}
-                {prog.nivel + 1}.
+                {prog.nivel + 1}: {nomesDosNiveis[prog.nivel + 1]}.
               </>
             ) : (
               "Você chegou ao último nível. Daqui em diante, é viver a língua."
